@@ -14,19 +14,20 @@
                   id="userDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                  aria-expanded="false">
                   <span class="me-2">
-                    Welcome, <strong>SCOUTS John</strong></span
-                  >
+                    Welcome, <strong>SCOUTS John</strong></span>
                 </a>
                 <ul
                   class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="userDropdown"
-                >
+                  aria-labelledby="userDropdown">
                   <li>
-                    <a class="dropdown-item" href="/logout">Log out</a>
+                    <a class="dropdown-item" href="/logout">
+                      <i data-feather="log-out" class="me-2"></i>
+                      Log out
+                    </a>
                   </li>
+
                 </ul>
               </li>
             </ul>

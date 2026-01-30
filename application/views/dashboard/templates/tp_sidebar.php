@@ -2,7 +2,7 @@
        <div class="sidebar-content js-simplebar">
            <a class="sidebar-brand d-block text-center" href="/">
            <img class="img-fluid" src="/assets/images/boyscouts_logofinal.png" width="90" alt="NGSI Logo">
-           <span class="d-block mt-2"><span style="color: #056433;">SCOUTS</span> Dashboard Monitoring</span>
+           <span class="d-block mt-2">SCOUTS Dashboard Monitoring</span>
          </a>
 
          <ul class="sidebar-nav">

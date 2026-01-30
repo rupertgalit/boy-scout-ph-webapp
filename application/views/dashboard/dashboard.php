@@ -5,7 +5,7 @@
                 <h3><strong>Boy Scouts of the Philippines</strong> Manila Council Dashboard</h3>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-sm-6 col-xl-3">
                 <div class="card">
@@ -15,7 +15,7 @@
                                 <h5 class="card-title">Total Scouts</h5>
                             </div>
                             <div class="col-auto">
-                                <div class="stat" style="color: #7031a0;">
+                                <div class="stat text-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle">
                                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="9" cy="7" r="4"></circle>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-sm-6 col-xl-3">
                 <div class="card">
                     <div class="card-body">
@@ -42,7 +42,7 @@
                                 <h5 class="card-title">Active Troops</h5>
                             </div>
                             <div class="col-auto">
-                                <div class="stat" style="color: #7031a0;">
+                                <div class="stat text-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag align-middle">
                                         <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
                                         <line x1="4" y1="22" x2="4" y2="15"></line>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-sm-6 col-xl-3">
                 <div class="card">
                     <div class="card-body">
@@ -67,7 +67,7 @@
                                 <h5 class="card-title">Badges Awarded</h5>
                             </div>
                             <div class="col-auto">
-                                <div class="stat" style="color: #7031a0;">
+                                <div class="stat text-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award align-middle">
                                         <circle cx="12" cy="8" r="7"></circle>
                                         <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-sm-6 col-xl-3">
                 <div class="card">
                     <div class="card-body">
@@ -92,7 +92,7 @@
                                 <h5 class="card-title">Activities Completed</h5>
                             </div>
                             <div class="col-auto">
-                                <div class="stat" style="color: #7031a0;">
+                                <div class="stat text-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar align-middle">
                                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                         <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -146,7 +146,7 @@
     $(document).ready(function() {
         // Wait for the page to fully load
         setTimeout(initializeCharts, 100);
-        
+
         function initializeCharts() {
             // Destroy existing charts if they exist
             if (window.myBarChart1) {
@@ -155,7 +155,7 @@
             if (window.myBarChart2) {
                 window.myBarChart2.destroy();
             }
-            
+
             // Chart 1: New Scout Registrations
             var ctx1 = document.getElementById('barChart');
             if (ctx1) {
@@ -238,7 +238,7 @@
                     }
                 });
             }
-            
+
             // Chart 2: Community Service Hours
             var ctx2 = document.getElementById('barChart2');
             if (ctx2) {
@@ -326,7 +326,7 @@
                     }
                 });
             }
-            
+
             // Handle window resize
             $(window).on('resize', function() {
                 if (window.myBarChart1) {
@@ -337,7 +337,7 @@
                 }
             });
         }
-        
+
         // Initialize charts
         initializeCharts();
     });
