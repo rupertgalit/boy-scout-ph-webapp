@@ -18,12 +18,17 @@ class Form extends CI_Controller
       $this->myServices = new MyServices();
       $this->load->library('form_validation');
 
-      if ($this->session->userdata('logged_in') === TRUE) {
-      } else {
-         redirect();
-      }
+      // if ($this->session->userdata('logged_in') === TRUE) {
+      // } else {
+      //    redirect();
+      // }
    }
 
 // ====================FOR FORM CONTROLLER========================
+
+	public function form_page(){
+
+		$this->load->view('form/form.php');
+	}
  
 }
