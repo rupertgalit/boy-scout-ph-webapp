@@ -398,27 +398,17 @@
             <!-- QR Ph Card -->
             <div class="qrph-container">
                 <div class="qrph-header">
-                    <div class="qrph-logo">
-                        <div class="qrph-icon">
-                            <i class="fas fa-qrcode"></i>
-                        </div>
-                        <div>
-                            <h3 class="qrph-title">QR Ph Payment</h3>
-                            <p class="qrph-subtitle">Scan to Pay via BSP QR Ph</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="success-message">
-                    <div class="success-icon">
+                      <div class="success-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <h2 class="text-success">QR Ph Generated Successfully!</h2>
                     <p class="text-muted">Scan this QR Ph code with your bank or e-wallet app to complete payment</p>
-                    
+                </div>
+
+                <div class="success-message">           
                     <div class="qrph-card">
                         <div class="qrph-merchant">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Boy_Scouts_of_the_Philippines.svg/1200px-Boy_Scouts_of_the_Philippines.svg.png" 
+                            <img src="assets\images\boyscouts_logofinal.png" 
                                  alt="BSP Logo" class="qrph-merchant-logo">
                             <div>
                                 <div class="qrph-merchant-name">Boy Scouts of the Philippines</div>
@@ -426,7 +416,6 @@
                             </div>
                         </div>
                         
-                        <div class="qrph-amount" id="qrphAmount">₱0.00</div>
                         
                         <div class="qrph-code-container">
                             <div class="qrph-overlay">

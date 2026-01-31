@@ -754,16 +754,14 @@
             text-align: center;
             box-shadow: var(--shadow-lg);
             border: 2px solid #e5e7eb;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .qrph-header {
-            background: linear-gradient(135deg, var(--qr-blue), #3B82F6);
             color: white;
             padding: 20px;
             border-radius: var(--radius-md) var(--radius-md) 0 0;
-            margin: -30px -30px 30px -30px;
             position: relative;
             overflow: hidden;
         }
@@ -814,18 +812,9 @@
         .qrph-card {
             background: white;
             border-radius: var(--radius-md);
-            padding: 30px;
+            padding: 20px;
             box-shadow: var(--shadow-md);
             border: 2px solid #e5e7eb;
-            margin: 20px 0;
-        }
-
-        .qrph-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--qr-blue);
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .qrph-merchant {
@@ -1067,9 +1056,6 @@
                 font-size: 1.2rem;
             }
 
-            .qrph-amount {
-                font-size: 2rem;
-            }
 
             .qrph-merchant {
                 flex-direction: column;
@@ -1132,7 +1118,6 @@
 
         .success-message {
             text-align: center;
-            padding: 30px;
         }
 
         .success-icon {
