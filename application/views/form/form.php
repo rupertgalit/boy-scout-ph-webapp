@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-     <link href="/assets/css/form.css" rel="stylesheet" />
-   
+    <!-- Update this path according to your folder structure -->
+    <link href="assets/css/form.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Main Container -->
@@ -34,7 +34,8 @@
                 </div>
                 
                 <div class="col-lg-2 col-md-3 text-center text-md-end">
-                    <img src="assets\images\boyscouts_logofinal.png" 
+                    <!-- Make sure this image exists in your assets/images folder -->
+                    <img src="assets/images/boyscouts_logofinal.png" 
                          alt="BSP Logo" 
                          class="header-logo float-animation">
                 </div>
@@ -398,7 +399,7 @@
             <!-- QR Ph Card -->
             <div class="qrph-container">
                 <div class="qrph-header">
-                      <div class="success-icon">
+                    <div class="success-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <h2 class="text-success">QR Ph Generated Successfully!</h2>
@@ -408,14 +409,14 @@
                 <div class="success-message">           
                     <div class="qrph-card">
                         <div class="qrph-merchant">
-                            <img src="assets\images\boyscouts_logofinal.png" 
+                            <!-- Make sure this image exists -->
+                            <img src="assets/images/boyscouts_logofinal.png" 
                                  alt="BSP Logo" class="qrph-merchant-logo">
                             <div>
                                 <div class="qrph-merchant-name">Boy Scouts of the Philippines</div>
                                 <div class="text-muted">Official Payment QR Ph</div>
                             </div>
                         </div>
-                        
                         
                         <div class="qrph-code-container">
                             <div class="qrph-overlay">
@@ -426,19 +427,6 @@
                             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHBhdGggZD0iTTAgMGgyNDB2MjQwSDB6IiBmaWxsPSIjMWQ0ZWQ4Ii8+PHBhdGggZD0iTTQwIDQwaDE2MHYxNjBINDB6TTgwIDgwaDgwdjgwSDgweiIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iMjAiIGZpbGw9IiNmNTllMGIiLz48L3N2Zz4=" 
                                  alt="QR Code" 
                                  style="width: 200px; height: 200px;">
-                        </div>
-                        
-                        <div class="transaction-details mt-4">
-                            <div class="row">
-                                <div class="col-md-6 text-start">
-                                    <small class="text-muted">Transaction ID:</small>
-                                    <div class="transaction-id" id="qrphTransactionIdText">BSP-1234567890</div>
-                                </div>
-                                <div class="col-md-6 text-end">
-                                    <small class="text-muted">Date & Time:</small>
-                                    <div class="fw-bold" id="qrphDateText">January 31, 2024 14:30:00</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -486,7 +474,6 @@
 
         <!-- Payment Methods Footer -->
         <div class="footer animate__animated animate__fadeInUp" id="footer">
-          
             <div class="powered-by">
                 <span class="text-muted">Payment processing powered by</span>
                 <img src="https://via.placeholder.com/150x40/1B5E20/FFFFFF?text=BSP+QR+Ph" alt="BSP QR Ph">
@@ -960,10 +947,7 @@
             document.getElementById('step2').classList.add('completed');
             document.getElementById('step3').classList.add('active');
             
-            // Update QR Ph details
-            document.getElementById('qrphAmount').textContent = '₱' + currentPaymentData.total.toFixed(2);
-            document.getElementById('qrphTransactionIdText').textContent = currentPaymentData.transactionId;
-            document.getElementById('qrphDateText').textContent = currentPaymentData.date;
+           
         }
 
         function showFormView() {
