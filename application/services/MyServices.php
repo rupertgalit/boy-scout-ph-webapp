@@ -70,7 +70,7 @@ class MyServices
 
 
 
-   public function admin_external_api_key($param, $endpoint_url)
+   public function external_api($param, $endpoint_url)
    {
 
       $generated_token = $this->generate_token();
@@ -98,15 +98,15 @@ class MyServices
 
       $response = curl_exec($curl);
 
-      $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+      // $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
       $curl_error = curl_error($curl);
 
       curl_close($curl);
 
 
-      $result['body'] = json_decode($response, true);
-      $result['body']['status_code'] =  $http_code;
+      // $result['body'] = json_decode($response, true);
+      // $result['body']['status_code'] =  $http_code;
       // Return as JSON
-      return $result;
+      return $response;
    }
 }
