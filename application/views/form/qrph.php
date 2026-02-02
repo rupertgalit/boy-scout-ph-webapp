@@ -61,12 +61,12 @@
             </div>
 
             <div class="qrph-code-container" id="qrCodeContainer">
-                <div class="qrph-overlay">
-                    <!-- <img src="assets\images\boyscouts_logofinal.png"
-                        alt="BSP Logo" class="qrph-logo-small"> -->
+                <!-- <div class="qrph-overlay">
+                    <img src="assets\images\boyscouts_logofinal.png"
+                        alt="BSP Logo" class="qrph-logo-small">
                 </div>
                 <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHBhdGggZD0iTTAgMGgyNDB2MjQwSDB6IiBmaWxsPSIjMWQ0ZWQ4Ii8+PHBhdGggZD0iTTQwIDQwaDE2MHYxNjBINDB6TTgwIDgwaDgwdjgwSDgweiIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iMjAiIGZpbGw9IiNmNTllMGIiLz48L3N2Zz4="
-                    alt="QR Code" style="width: 200px; height: 200px;">
+                    alt="QR Code" style="width: 200px; height: 200px;"> -->
             </div>
             <div class="navigation-buttons">
 
@@ -112,6 +112,8 @@
         <i class="fas fa-check-circle toast-icon"></i>
         <span>QR Code downloaded successfully!</span>
     </div>
+
+    <script src="/assets/js/qrcode-lib/easy.qrcode.min.js"></script>
 
     <script>
 
@@ -186,6 +188,23 @@
             console.log('QR Data:', generateQRCodeData());
         });
     </script>
+
+
+<!-- for qr code -->
+    <script>
+        var qrcode = new QRCode(document.getElementById("qrCodeContainer"), {
+           
+            text: "00020101021228760011ph.ppmi.p2m0111OPDVPHM1XXX0315777148000000084041652948137257075730503001520460165303608540570.005802PH5909Netglobal6015City Of Mandalu62370010ph.allbank05194020262201-DST1Aq1288310012ph.ppmi.qrph0111OPDVPHM1XXX6304DD4E",
+            logo: "/assets/images/qr-logo.png",
+            logoWidth: 40,
+            logoHeight: 40,
+            logoBackgroundColor: 'black',
+            logoBackgroundTransparent: true,
+        });
+    </script>
+
+
+
 </body>
 
 </html>
