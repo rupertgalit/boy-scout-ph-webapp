@@ -30,5 +30,14 @@ class Form extends CI_Controller
 
 		$this->load->view('form/form.php');
 	}
+   public function qr_page(){
+
+		$this->load->view('form/qrph.php');
+	}
+   public function success_page(){
+
+		$this->load->view('form/success_payment.php');
+	}
+ 
  
 }
