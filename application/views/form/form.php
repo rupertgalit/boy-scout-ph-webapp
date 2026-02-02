@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BSP Payment Portal | Boy Scouts of the Philippines</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Update this path according to your folder structure -->
-    <link href="assets/css/form.css" rel="stylesheet" />
+    <link href="/assets/css/form.css" rel="stylesheet" />
+    <link href="/assets/css/modal.css" rel="stylesheet" />
 </head>
+
 <body>
-    <!-- Main Container -->
+
     <div class="main-panel">
-     
+
         <div class="header-container animate__animated animate__fadeInDown">
             <div class="header-row row align-items-center">
                 <div class="col-lg-2 col-md-3 text-center text-md-start">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg" 
-                         alt="Philippine Flag" 
-                         class="header-flag float-animation">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg"
+                        alt="Philippine Flag" class="header-flag float-animation">
                 </div>
-                
+
                 <div class="col-lg-8 col-md-6 header-center">
                     <h1>BOY SCOUTS OF THE PHILIPPINES</h1>
                     <p class="subtitle">National Headquarters</p>
@@ -32,35 +35,16 @@
                         <span>Official Payment Portal</span>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-2 col-md-3 text-center text-md-end">
-                    <!-- Make sure this image exists in your assets/images folder -->
-                    <img src="assets/images/boyscouts_logofinal.png" 
-                         alt="BSP Logo" 
-                         class="header-logo float-animation">
+                    <img src="assets\images\boyscouts_logofinal.png" alt="BSP Logo" class="header-logo float-animation">
                 </div>
             </div>
         </div>
 
-        <!-- Progress Indicator -->
-        <div class="progress-indicator animate__animated animate__fadeIn">
-            <div class="progress-step active" id="step1">
-                <div class="step-number">1</div>
-                <div class="step-label">Payment Details</div>
-            </div>
-            <div class="progress-step" id="step2">
-                <div class="step-number">2</div>
-                <div class="step-label">Review & Confirm</div>
-            </div>
-            <div class="progress-step" id="step3">
-                <div class="step-number">3</div>
-                <div class="step-label">QR Ph Code</div>
-            </div>
-        </div>
 
-        <!-- Main Content - Form View -->
         <div class="content-wrapper" id="formView">
-            <!-- Form Card -->
+
             <div class="form-card animate__animated animate__fadeInLeft">
                 <div class="form-header">
                     <h2><i class="fas fa-qrcode me-2"></i>QR Ph Payment Portal</h2>
@@ -68,16 +52,18 @@
                 </div>
 
                 <form id="paymentForm" novalidate>
-                    <!-- Payment Type Section -->
+
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse" data-bs-target="#paymentTypeCollapse" aria-expanded="false">
+                        <div class="section-header collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#paymentTypeCollapse" aria-expanded="false">
                             <div>
-                                <h3 class="section-title"><i class="fas fa-money-check-alt me-2"></i>Payment Destination</h3>
+                                <h3 class="section-title"><i class="fas fa-money-check-alt me-2"></i>Payment Destination
+                                </h3>
                                 <p class="section-subtitle">Select where your payment will be directed</p>
                             </div>
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
-                        
+
                         <div class="collapse" id="paymentTypeCollapse">
                             <div class="section-content">
                                 <div class="payment-options">
@@ -91,7 +77,7 @@
                                             </div>
                                         </label>
                                     </div>
-                                    
+
                                     <div class="payment-option">
                                         <label class="payment-card">
                                             <input type="radio" name="payment_type" value="regional">
@@ -102,7 +88,7 @@
                                             </div>
                                         </label>
                                     </div>
-                                    
+
                                     <div class="payment-option">
                                         <label class="payment-card">
                                             <input type="radio" name="payment_type" value="local">
@@ -124,14 +110,16 @@
 
                     <!-- Personal Information Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse" data-bs-target="#personalCollapse">
+                        <div class="section-header collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#personalCollapse">
                             <div>
-                                <h3 class="section-title"><i class="fas fa-user-circle me-2"></i>Personal Information</h3>
+                                <h3 class="section-title"><i class="fas fa-user-circle me-2"></i>Personal Information
+                                </h3>
                                 <p class="section-subtitle">Enter your personal details</p>
                             </div>
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
-                        
+
                         <div class="collapse" id="personalCollapse">
                             <div class="section-content">
                                 <div class="row g-3">
@@ -140,29 +128,29 @@
                                             <i class="fas fa-user"></i>
                                             Full Name <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="name" id="fullName" 
-                                               placeholder="Enter your full name" required>
+                                        <input type="text" class="form-control" name="name" id="fullName"
+                                            placeholder="Enter your full name" required>
                                         <div class="error-message d-none" id="nameError"></div>
                                     </div>
-                                    
+
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-mobile-alt"></i>
                                             Mobile Number <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="mobile" id="mobileNumber" 
-                                               placeholder="09123456789" maxlength="11" required
-                                               oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                        <input type="text" class="form-control" name="mobile" id="mobileNumber"
+                                            placeholder="09123456789" maxlength="11" required
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                         <div class="error-message d-none" id="mobileError"></div>
                                     </div>
-                                    
+
                                     <div class="col-12">
                                         <label class="form-label">
                                             <i class="fas fa-envelope"></i>
                                             Email Address <span class="required">*</span>
                                         </label>
-                                        <input type="email" class="form-control" name="email" id="email" 
-                                               placeholder="your.email@example.com" required>
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            placeholder="your.email@example.com" required>
                                         <div class="error-message d-none" id="emailError"></div>
                                     </div>
                                 </div>
@@ -179,7 +167,7 @@
                             </div>
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
-                        
+
                         <div class="collapse" id="scoutCollapse">
                             <div class="section-content">
                                 <div class="row g-3">
@@ -210,7 +198,7 @@
                                         </select>
                                         <div class="error-message d-none" id="regionError"></div>
                                     </div>
-                                    
+
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-school"></i>
@@ -226,7 +214,7 @@
                                         </select>
                                         <div class="error-message d-none" id="districtError"></div>
                                     </div>
-                                    
+
                                     <div class="col-12">
                                         <label class="form-label">
                                             <i class="fas fa-building"></i>
@@ -243,7 +231,7 @@
                                         </select>
                                         <div class="error-message d-none" id="districtUnitError"></div>
                                     </div>
-                                    
+
                                     <div class="col-12">
                                         <label class="form-label">
                                             <i class="fas fa-bullseye"></i>
@@ -265,14 +253,14 @@
                                         </select>
                                         <div class="error-message d-none" id="schoolError"></div>
                                     </div>
-                                    
+
                                     <div class="col-12" id="otherSchoolFields" style="display: none;">
                                         <label class="form-label">
                                             <i class="fas fa-edit"></i>
                                             Specify School Purpose
                                         </label>
-                                        <input type="text" class="form-control" name="other_school" 
-                                               placeholder="Please specify the school payment purpose">
+                                        <input type="text" class="form-control" name="other_school"
+                                            placeholder="Please specify the school payment purpose">
                                     </div>
                                 </div>
                             </div>
@@ -281,14 +269,15 @@
 
                     <!-- Scout Details Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse" data-bs-target="#scoutDetailsCollapse">
+                        <div class="section-header collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#scoutDetailsCollapse">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-scroll me-2"></i>Scout Details</h3>
                                 <p class="section-subtitle">Additional scout information</p>
                             </div>
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
-                        
+
                         <div class="collapse" id="scoutDetailsCollapse">
                             <div class="section-content">
                                 <div class="row g-3">
@@ -308,7 +297,7 @@
                                         </select>
                                         <div class="error-message d-none" id="scoutTypeError"></div>
                                     </div>
-                                    
+
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-file-alt"></i>
@@ -327,7 +316,7 @@
                                         </select>
                                         <div class="error-message d-none" id="descriptionError"></div>
                                     </div>
-                                    
+
                                     <div class="col-12">
                                         <label class="form-label">
                                             <i class="fas fa-box"></i>
@@ -353,14 +342,15 @@
 
                     <!-- Amount Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse" data-bs-target="#amountCollapse">
+                        <div class="section-header collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#amountCollapse">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-money-bill-wave me-2"></i>Payment Amount</h3>
                                 <p class="section-subtitle">Enter the payment amount</p>
                             </div>
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
-                        
+
                         <div class="collapse" id="amountCollapse">
                             <div class="section-content">
                                 <div class="row g-3 align-items-end">
@@ -371,13 +361,13 @@
                                         </label>
                                         <div class="input-group">
                                             <span class="input-group-text">₱</span>
-                                            <input type="number" class="form-control" name="amount" id="amount" 
-                                                   placeholder="0.00" min="1" step="0.01" required
-                                                   onkeydown="if(event.key === 'e' || event.key === 'E' || event.key === '-' ) event.preventDefault()">
+                                            <input type="number" class="form-control" name="amount" id="amount"
+                                                placeholder="0.00" min="1" step="0.01" required
+                                                onkeydown="if(event.key === 'e' || event.key === 'E' || event.key === '-' ) event.preventDefault()">
                                         </div>
                                         <div class="error-message d-none" id="amountError"></div>
                                     </div>
-                                    
+
                                     <div class="col-md-4">
                                         <div class="d-grid">
                                             <button type="button" class="btn-submit" id="previewBtn">
@@ -394,84 +384,6 @@
             </div>
         </div>
 
-        <!-- QR Ph Display View (Hidden Initially) -->
-        <div id="qrView" class="animate__animated animate__fadeIn" style="display: none;">
-            <!-- QR Ph Card -->
-            <div class="qrph-container">
-                <div class="qrph-header">
-                    <div class="success-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h2 class="text-success">QR Ph Generated Successfully!</h2>
-                    <p class="text-muted">Scan this QR Ph code with your bank or e-wallet app to complete payment</p>
-                </div>
-
-                <div class="success-message">           
-                    <div class="qrph-card">
-                        <div class="qrph-merchant">
-                            <!-- Make sure this image exists -->
-                            <img src="assets/images/boyscouts_logofinal.png" 
-                                 alt="BSP Logo" class="qrph-merchant-logo">
-                            <div>
-                                <div class="qrph-merchant-name">Boy Scouts of the Philippines</div>
-                                <div class="text-muted">Official Payment QR Ph</div>
-                            </div>
-                        </div>
-                        
-                        <div class="qrph-code-container">
-                            <div class="qrph-overlay">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Boy_Scouts_of_the_Philippines.svg/1200px-Boy_Scouts_of_the_Philippines.svg.png" 
-                                     alt="BSP Logo" class="qrph-logo-small">
-                            </div>
-                            <!-- Static QR Code Image -->
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHBhdGggZD0iTTAgMGgyNDB2MjQwSDB6IiBmaWxsPSIjMWQ0ZWQ4Ii8+PHBhdGggZD0iTTQwIDQwaDE2MHYxNjBINDB6TTgwIDgwaDgwdjgwSDgweiIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iMjAiIGZpbGw9IiNmNTllMGIiLz48L3N2Zz4=" 
-                                 alt="QR Code" 
-                                 style="width: 200px; height: 200px;">
-                        </div>
-                    </div>
-
-                    <!-- Instructions -->
-                    <div class="qrph-instructions">
-                        <h6><i class="fas fa-info-circle me-2"></i>How to Pay using QR Ph:</h6>
-                        <ul class="qrph-instruction-list">
-                            <li class="qrph-instruction-item">
-                                <div class="qrph-instruction-number">1</div>
-                                <div>Open your bank or e-wallet app</div>
-                            </li>
-                            <li class="qrph-instruction-item">
-                                <div class="qrph-instruction-number">2</div>
-                                <div>Tap "Scan QR" or "QR Ph" in the app</div>
-                            </li>
-                            <li class="qrph-instruction-item">
-                                <div class="qrph-instruction-number">3</div>
-                                <div>Point your camera at the QR code above</div>
-                            </li>
-                            <li class="qrph-instruction-item">
-                                <div class="qrph-instruction-number">4</div>
-                                <div>Verify payment details and confirm</div>
-                            </li>
-                            <li class="qrph-instruction-item">
-                                <div class="qrph-instruction-number">5</div>
-                                <div>Wait for payment confirmation</div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Navigation Buttons -->
-                    <div class="navigation-buttons">
-                        <button class="nav-btn nav-btn-primary" onclick="window.location.reload()">
-                            <i class="fas fa-plus-circle me-1"></i>
-                            New Payment
-                        </button>
-                        <button class="nav-btn nav-btn-secondary" onclick="showFormView()">
-                            <i class="fas fa-arrow-left me-1"></i>
-                            Back to Form
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Payment Methods Footer -->
         <div class="footer animate__animated animate__fadeInUp" id="footer">
             <div class="powered-by">
@@ -482,8 +394,9 @@
     </div>
 
     <!-- Preview Modal -->
-    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" id="previewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
@@ -493,71 +406,110 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <h6 class="text-secondary mb-3">Personal Information</h6>
-                    <table class="summary-table mb-4">
-                        <tr>
-                            <td class="label">Full Name</td>
-                            <td class="value" id="previewName">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Mobile</td>
-                            <td class="value" id="previewMobile">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Email</td>
-                            <td class="value" id="previewEmail">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Payment To</td>
-                            <td class="value" id="previewPaymentType">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Region</td>
-                            <td class="value" id="previewRegion">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">District</td>
-                            <td class="value" id="previewDistrict">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">District Unit</td>
-                            <td class="value" id="previewDistrictUnit">-</td>
-                        </tr>
-                    </table>
-                    
-                    <h6 class="text-secondary mb-3">Scout Details</h6>
-                    <table class="summary-table mb-4">
-                        <tr>
-                            <td class="label">Scout Type</td>
-                            <td class="value" id="previewScoutType">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Description</td>
-                            <td class="value" id="previewDescription">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">Item Category</td>
-                            <td class="value" id="previewItemCategory">-</td>
-                        </tr>
-                        <tr>
-                            <td class="label">School</td>
-                            <td class="value" id="previewSchool">-</td>
-                        </tr>
-                    </table>
-                    
-                    <h6 class="text-secondary mb-3">Payment Details</h6>
+                    <div class="row ">
+                        <div class="col-md-12 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Payment Destination:</span>
+                                <span class="preview-value" id="previewPaymentType">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Personal Information Section -->
+                    <h6 class="text-secondary mb-2">
+                        <i class="fas fa-user-circle me-2"></i>Personal Information
+                    </h6>
+                    <div class="row ">
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Full Name:</span>
+                                <span class="preview-value" id="previewName">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Mobile Number:</span>
+                                <span class="preview-value" id="previewMobile">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Email Address:</span>
+                                <span class="preview-value" id="previewEmail">-</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <h6 class="text-secondary mb-2">
+                        <i class="fas fa-scroll me-2"></i>Scout Details
+                    </h6>
+                    <div class="row ">
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Region</span>
+                                <span class="preview-value" id="previewRegion">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">District</span>
+                                <span class="preview-value" id="previewDistrict">-</span>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">District Unit:</span>
+                                <span class="preview-value" id="previewDistrictUnit">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">School:</span>
+                                <span class="preview-value" id="previewSchool">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scout Details Section -->
+                    <h6 class="text-secondary mb-2">
+                        <i class="fas fa-scroll me-2"></i>Scout Details
+                    </h6>
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Scout Type:</span>
+                                <span class="preview-value" id="previewScoutType">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Description:</span>
+                                <span class="preview-value" id="previewDescription">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Item Category:</span>
+                                <span class="preview-value" id="previewItemCategory">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Details Section -->
+                    <h6 class="text-secondary mb-2">
+                        <i class="fas fa-money-bill-wave me-2"></i>Payment Details
+                    </h6>
                     <div class="payment-summary">
                         <div class="payment-row">
-                            <span>Amount</span>
-                            <span id="previewAmount">₱0.00</span>
+                            <span class="payment-label">Amount:</span>
+                            <span class="payment-value" id="previewAmount">₱0.00</span>
                         </div>
                         <div class="payment-row">
-                            <span>Service Fee</span>
-                            <span id="previewFee">₱20.00</span>
+                            <span class="payment-label">Service Fee:</span>
+                            <span class="payment-value" id="previewFee">₱20.00</span>
                         </div>
-                        <div class="payment-row">
-                            <span>Total Amount</span>
-                            <span class="total-amount" id="previewTotal">₱0.00</span>
+                        <div class="payment-row total-row">
+                            <span class="payment-label">Total Amount</span>
+                            <span class="payment-value total-amount" id="previewTotal">₱0.00</span>
                         </div>
                     </div>
                 </div>
@@ -572,30 +524,29 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Global variables
         let currentPaymentData = {};
-        
+
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize Bootstrap collapse
             const collapses = document.querySelectorAll('.collapse');
             collapses.forEach(collapse => {
-                collapse.addEventListener('show.bs.collapse', function() {
+                collapse.addEventListener('show.bs.collapse', function () {
                     this.closest('.form-section').querySelector('.section-header').classList.remove('collapsed');
                 });
-                collapse.addEventListener('hide.bs.collapse', function() {
+                collapse.addEventListener('hide.bs.collapse', function () {
                     this.closest('.form-section').querySelector('.section-header').classList.add('collapsed');
                 });
             });
 
             // Initialize Bootstrap Modal
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-            
+
             // Preview button event listener
-            document.getElementById('previewBtn').addEventListener('click', function() {
+            document.getElementById('previewBtn').addEventListener('click', function () {
                 if (validateForm()) {
                     updatePreview();
                     previewModal.show();
@@ -603,15 +554,15 @@
             });
 
             // Confirm payment button event listener
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
                 if (validateForm()) {
-                    showQRPhCode();
+
                     previewModal.hide();
                 }
             });
 
             // School select change handler
-            document.getElementById('school').addEventListener('change', function() {
+            document.getElementById('school').addEventListener('change', function () {
                 const otherFields = document.getElementById('otherSchoolFields');
                 if (this.value === 'other') {
                     otherFields.style.display = 'block';
@@ -619,34 +570,31 @@
                     otherFields.style.display = 'none';
                     document.querySelector('input[name="other_school"]').value = '';
                 }
-                updateProgress();
             });
 
             // Payment card click handlers
             document.querySelectorAll('.payment-card').forEach(card => {
                 const input = card.querySelector('input[type="radio"]');
-                card.addEventListener('click', function(e) {
+                card.addEventListener('click', function (e) {
                     if (e.target !== input) {
                         input.checked = true;
                         updateCardStates();
-                        updateProgress();
-                        
+
                         // Clear error state
                         document.getElementById('paymentTypeError').classList.add('d-none');
                         document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('border-danger'));
                     }
                 });
-                
-                input.addEventListener('change', function() {
+
+                input.addEventListener('change', function () {
                     updateCardStates();
-                    updateProgress();
                 });
             });
 
             // Real-time validation on blur
             document.querySelectorAll('input, select').forEach(element => {
                 element.addEventListener('blur', validateField);
-                element.addEventListener('input', function() {
+                element.addEventListener('input', function () {
                     // Clear error when user starts typing
                     const errorId = this.id + 'Error';
                     const errorElement = document.getElementById(errorId);
@@ -654,14 +602,8 @@
                         errorElement.classList.add('d-none');
                         this.classList.remove('is-invalid');
                     }
-                    
-                    // Update progress indicator
-                    updateProgress();
                 });
             });
-
-            // Initialize progress indicator
-            updateProgress();
         });
 
         function updateCardStates() {
@@ -677,12 +619,12 @@
 
         function validateForm() {
             let isValid = true;
-            
+
             // Reset errors
             document.querySelectorAll('.error-message').forEach(el => el.classList.add('d-none'));
             document.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-invalid'));
             document.querySelectorAll('.payment-card').forEach(el => el.classList.remove('border-danger'));
-            
+
             // Validate payment type
             const paymentTypeSelected = document.querySelector('input[name="payment_type"]:checked');
             if (!paymentTypeSelected) {
@@ -690,7 +632,7 @@
                 document.querySelectorAll('.payment-card').forEach(el => el.classList.add('border-danger'));
                 isValid = false;
             }
-            
+
             // Validate name
             const name = document.getElementById('fullName').value.trim();
             if (!name) {
@@ -699,7 +641,7 @@
                 document.getElementById('fullName').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate mobile
             const mobile = document.getElementById('mobileNumber').value.trim();
             if (!/^09\d{9}$/.test(mobile)) {
@@ -708,7 +650,7 @@
                 document.getElementById('mobileNumber').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate email
             const email = document.getElementById('email').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -718,7 +660,7 @@
                 document.getElementById('email').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate region
             const region = document.getElementById('region').value;
             if (!region) {
@@ -727,7 +669,7 @@
                 document.getElementById('region').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate district
             const district = document.getElementById('district').value;
             if (!district) {
@@ -736,7 +678,7 @@
                 document.getElementById('district').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate district unit
             const districtUnit = document.getElementById('districtUnit').value;
             if (!districtUnit) {
@@ -745,7 +687,7 @@
                 document.getElementById('districtUnit').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate school
             const school = document.getElementById('school').value;
             if (!school) {
@@ -761,7 +703,7 @@
                     isValid = false;
                 }
             }
-            
+
             // Validate scout type
             const scoutType = document.getElementById('scoutType').value;
             if (!scoutType) {
@@ -770,7 +712,7 @@
                 document.getElementById('scoutType').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate description
             const description = document.getElementById('description').value;
             if (!description) {
@@ -779,7 +721,7 @@
                 document.getElementById('description').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate item category
             const itemCategory = document.getElementById('itemCategory').value;
             if (!itemCategory) {
@@ -788,7 +730,7 @@
                 document.getElementById('itemCategory').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Validate amount
             const amount = parseFloat(document.getElementById('amount').value);
             if (isNaN(amount) || amount <= 0) {
@@ -797,12 +739,12 @@
                 document.getElementById('amount').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Store payment data if valid
             if (isValid) {
                 const paymentTypeElement = document.querySelector('input[name="payment_type"]:checked');
                 const paymentTypeCard = paymentTypeElement?.closest('.payment-card');
-                
+
                 currentPaymentData = {
                     name: name,
                     mobile: mobile,
@@ -828,10 +770,10 @@
                     total: amount + 20.00,
                     transactionId: 'BSP-' + Date.now().toString().slice(-10),
                     reference: 'BSP-QRPH-' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'),
-                    date: new Date().toLocaleString('en-PH', { 
+                    date: new Date().toLocaleString('en-PH', {
                         timeZone: 'Asia/Manila',
-                        year: 'numeric', 
-                        month: 'long', 
+                        year: 'numeric',
+                        month: 'long',
                         day: 'numeric',
                         hour: '2-digit',
                         minute: '2-digit',
@@ -839,15 +781,15 @@
                     })
                 };
             }
-            
+
             return isValid;
         }
 
         function validateField(e) {
             const field = e.target;
             let isValid = true;
-            
-            switch(field.id) {
+
+            switch (field.id) {
                 case 'fullName':
                     isValid = field.value.trim().length > 0;
                     break;
@@ -871,14 +813,12 @@
                     isValid = !isNaN(parseFloat(field.value)) && parseFloat(field.value) > 0;
                     break;
             }
-            
+
             if (!isValid && field.id) {
                 field.classList.add('is-invalid');
             } else {
                 field.classList.remove('is-invalid');
             }
-            
-            updateProgress();
         }
 
         function updatePreview() {
@@ -886,7 +826,7 @@
             document.getElementById('previewName').textContent = document.getElementById('fullName').value;
             document.getElementById('previewMobile').textContent = document.getElementById('mobileNumber').value;
             document.getElementById('previewEmail').textContent = document.getElementById('email').value;
-            
+
             // Payment type
             const paymentType = document.querySelector('input[name="payment_type"]:checked');
             let paymentTypeText = '-';
@@ -895,27 +835,27 @@
                 paymentTypeText = card.querySelector('.card-title').textContent;
             }
             document.getElementById('previewPaymentType').textContent = paymentTypeText;
-            
+
             // Region
-            document.getElementById('previewRegion').textContent = 
+            document.getElementById('previewRegion').textContent =
                 document.getElementById('region').selectedOptions[0]?.text || '-';
-            
+
             // District
-            document.getElementById('previewDistrict').textContent = 
+            document.getElementById('previewDistrict').textContent =
                 document.getElementById('district').selectedOptions[0]?.text || '-';
-            
+
             // District Unit
-            document.getElementById('previewDistrictUnit').textContent = 
+            document.getElementById('previewDistrictUnit').textContent =
                 document.getElementById('districtUnit').selectedOptions[0]?.text || '-';
-            
+
             // Scout details
-            document.getElementById('previewScoutType').textContent = 
+            document.getElementById('previewScoutType').textContent =
                 document.getElementById('scoutType').selectedOptions[0]?.text || '-';
-            document.getElementById('previewDescription').textContent = 
+            document.getElementById('previewDescription').textContent =
                 document.getElementById('description').selectedOptions[0]?.text || '-';
-            document.getElementById('previewItemCategory').textContent = 
+            document.getElementById('previewItemCategory').textContent =
                 document.getElementById('itemCategory').selectedOptions[0]?.text || '-';
-            
+
             // School
             const school = document.getElementById('school').value;
             let schoolText = document.getElementById('school').selectedOptions[0]?.text || '-';
@@ -923,82 +863,18 @@
                 schoolText = document.querySelector('input[name="other_school"]').value || 'Other (Not Specified)';
             }
             document.getElementById('previewSchool').textContent = schoolText;
-            
+
             // Amount
             const amount = parseFloat(document.getElementById('amount').value) || 0;
             const fee = 20.00;
             const total = amount + fee;
-            
+
             document.getElementById('previewAmount').textContent = '₱' + amount.toFixed(2);
             document.getElementById('previewFee').textContent = '₱' + fee.toFixed(2);
             document.getElementById('previewTotal').textContent = '₱' + total.toFixed(2);
         }
 
-        function showQRPhCode() {
-            // Show QR view and hide form view
-            document.getElementById('formView').style.display = 'none';
-            document.getElementById('qrView').style.display = 'block';
-            document.getElementById('footer').style.display = 'none';
-            
-            // Update progress indicator
-            document.getElementById('step1').classList.remove('active');
-            document.getElementById('step1').classList.add('completed');
-            document.getElementById('step2').classList.remove('active');
-            document.getElementById('step2').classList.add('completed');
-            document.getElementById('step3').classList.add('active');
-            
-           
-        }
-
-        function showFormView() {
-            // Show form view and hide QR view
-            document.getElementById('formView').style.display = 'block';
-            document.getElementById('qrView').style.display = 'none';
-            document.getElementById('footer').style.display = 'block';
-            
-            // Reset progress indicator
-            document.getElementById('step1').classList.remove('completed');
-            document.getElementById('step1').classList.add('active');
-            document.getElementById('step2').classList.remove('completed');
-            document.getElementById('step3').classList.remove('active');
-        }
-
-        function updateProgress() {
-            const step2 = document.getElementById('step2');
-            const step3 = document.getElementById('step3');
-            
-            const name = document.getElementById('fullName').value.trim();
-            const mobile = document.getElementById('mobileNumber').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const region = document.getElementById('region').value;
-            const district = document.getElementById('district').value;
-            const districtUnit = document.getElementById('districtUnit').value;
-            const school = document.getElementById('school').value;
-            const scoutType = document.getElementById('scoutType').value;
-            const description = document.getElementById('description').value;
-            const itemCategory = document.getElementById('itemCategory').value;
-            const amount = document.getElementById('amount').value;
-            const paymentType = document.querySelector('input[name="payment_type"]:checked');
-            
-            const step1Complete = name && mobile && email && region && district && 
-                                 districtUnit && school && scoutType && description && 
-                                 itemCategory && amount && paymentType;
-            
-            if (step1Complete) {
-                step2.classList.add('active');
-            } else {
-                step2.classList.remove('active');
-                step2.classList.remove('completed');
-                step3.classList.remove('active');
-                step3.classList.remove('completed');
-            }
-            
-            // Update step 3 based on view
-            if (document.getElementById('qrView').style.display === 'block') {
-                step2.classList.add('completed');
-                step3.classList.add('active');
-            }
-        }
     </script>
 </body>
+
 </html>
