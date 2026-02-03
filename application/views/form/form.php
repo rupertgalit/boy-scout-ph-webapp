@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="/assets/css/form.css" rel="stylesheet" />
     <link href="/assets/css/modal.css" rel="stylesheet" />
+
+    <style>
+        .loading-select {
+            background:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='%23666' stroke-width='5' stroke-linecap='round' stroke-dasharray='31.4 31.4'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='1s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E") no-repeat right 8px center;
+            background-size: 20px 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -175,27 +183,10 @@
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-map-marker-alt"></i>
-                                            Region <span class="required">*</span>
+                                            Council <span class="required">*</span>
                                         </label>
                                         <select class="form-control" name="region" id="region" required>
                                             <option value="" disabled selected>Select Region</option>
-                                            <option value="NCR">National Capital Region (NCR)</option>
-                                            <option value="CAR">Cordillera Administrative Region (CAR)</option>
-                                            <option value="Region1">Region I - Ilocos Region</option>
-                                            <option value="Region2">Region II - Cagayan Valley</option>
-                                            <option value="Region3">Region III - Central Luzon</option>
-                                            <option value="Region4A">Region IV-A - CALABARZON</option>
-                                            <option value="Region4B">Region IV-B - MIMAROPA</option>
-                                            <option value="Region5">Region V - Bicol Region</option>
-                                            <option value="Region6">Region VI - Western Visayas</option>
-                                            <option value="Region7">Region VII - Central Visayas</option>
-                                            <option value="Region8">Region VIII - Eastern Visayas</option>
-                                            <option value="Region9">Region IX - Zamboanga Peninsula</option>
-                                            <option value="Region10">Region X - Northern Mindanao</option>
-                                            <option value="Region11">Region XI - Davao Region</option>
-                                            <option value="Region12">Region XII - SOCCSKSARGEN</option>
-                                            <option value="Region13">Region XIII - Caraga</option>
-                                            <option value="BARMM">Bangsamoro Autonomous Region</option>
                                         </select>
                                         <div class="error-message d-none" id="regionError"></div>
                                     </div>
@@ -207,11 +198,6 @@
                                         </label>
                                         <select class="form-control" name="district" id="district" required>
                                             <option value="" disabled selected>Select District</option>
-                                            <option value="public_school">Public School District</option>
-                                            <option value="private_school">Private School District</option>
-                                            <option value="state_univ">State University District</option>
-                                            <option value="local_school">Local School District</option>
-                                            <option value="special_school">Special Education District</option>
                                         </select>
                                         <div class="error-message d-none" id="districtError"></div>
                                     </div>
@@ -223,12 +209,6 @@
                                         </label>
                                         <select class="form-control" name="district_unit" id="districtUnit" required>
                                             <option value="" disabled selected>Select District Unit</option>
-                                            <option value="elementary">Elementary School Unit</option>
-                                            <option value="high_school">High School Unit</option>
-                                            <option value="college">College/University Unit</option>
-                                            <option value="integrated">Integrated School Unit</option>
-                                            <option value="vocational">Vocational School Unit</option>
-                                            <option value="special_unit">Special School Unit</option>
                                         </select>
                                         <div class="error-message d-none" id="districtUnitError"></div>
                                     </div>
@@ -240,17 +220,6 @@
                                         </label>
                                         <select class="form-control" name="school" id="school" required>
                                             <option value="" disabled selected>Select School</option>
-                                            <option value="tuition_fee">School Tuition Fee</option>
-                                            <option value="membership">BSP Membership Fee</option>
-                                            <option value="registration">School Registration</option>
-                                            <option value="uniform">School Uniform & Scout Uniform</option>
-                                            <option value="books">School Books & Scout Handbook</option>
-                                            <option value="activity_fee">School Activity & Scout Camping</option>
-                                            <option value="training">Scout Training & School Seminar</option>
-                                            <option value="merit_badges">Scout Merit Badges</option>
-                                            <option value="library_fee">School Library Fee</option>
-                                            <option value="laboratory_fee">School Laboratory Fee</option>
-                                            <option value="other">Other School/Scout Related</option>
                                         </select>
                                         <div class="error-message d-none" id="schoolError"></div>
                                     </div>
@@ -534,7 +503,7 @@
 
         const amountInput = document.getElementById('amount');
 
-        amountInput.addEventListener('input', function () {
+        amountInput.addEventListener('input', function() {
             let value = this.value;
 
             if (/^9{4,}$/.test(value)) {
@@ -553,14 +522,14 @@
 
 
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize Bootstrap collapse
             const collapses = document.querySelectorAll('.collapse');
             collapses.forEach(collapse => {
-                collapse.addEventListener('show.bs.collapse', function () {
+                collapse.addEventListener('show.bs.collapse', function() {
                     this.closest('.form-section').querySelector('.section-header').classList.remove('collapsed');
                 });
-                collapse.addEventListener('hide.bs.collapse', function () {
+                collapse.addEventListener('hide.bs.collapse', function() {
                     this.closest('.form-section').querySelector('.section-header').classList.add('collapsed');
                 });
             });
@@ -569,7 +538,7 @@
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
             // Preview button  With SweetAlert
-            document.getElementById('previewBtn').addEventListener('click', function () {
+            document.getElementById('previewBtn').addEventListener('click', function() {
                 if (validateForm()) {
                     // Build SweetAlert HTML content
                     const previewHTML = `
@@ -619,7 +588,7 @@
             });
 
             // Confirm payment button With SweetAlert
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
                 if (validateForm()) {
                     // Hide the modal
                     const previewModal = bootstrap.Modal.getInstance(document.getElementById('previewModal'));
@@ -647,7 +616,7 @@
 
 
             // School select change handler
-            document.getElementById('school').addEventListener('change', function () {
+            document.getElementById('school').addEventListener('change', function() {
                 const otherFields = document.getElementById('otherSchoolFields');
                 if (this.value === 'other') {
                     otherFields.style.display = 'block';
@@ -660,7 +629,7 @@
             // Payment card click handlers
             document.querySelectorAll('.payment-card').forEach(card => {
                 const input = card.querySelector('input[type="radio"]');
-                card.addEventListener('click', function (e) {
+                card.addEventListener('click', function(e) {
                     if (e.target !== input) {
                         input.checked = true;
                         updateCardStates();
@@ -671,7 +640,7 @@
                     }
                 });
 
-                input.addEventListener('change', function () {
+                input.addEventListener('change', function() {
                     updateCardStates();
                 });
             });
@@ -681,7 +650,7 @@
                 element.addEventListener('blur', validateField);
                 // Only for input fields, hide errors on typing
                 if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function () {
+                    element.addEventListener('keyup', function() {
                         const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -691,7 +660,7 @@
                 }
 
                 if (element.tagName.toLowerCase() === 'select') {
-                    element.addEventListener('change', function () {
+                    element.addEventListener('change', function() {
                         const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -840,8 +809,7 @@
                 document.getElementById('amountError').classList.remove('d-none');
                 amountField.classList.add('is-invalid');
                 isValid = false;
-            }
-            else if (isNaN(amount) || amount <= 0 || amount > 100000) {
+            } else if (isNaN(amount) || amount <= 0 || amount > 100000) {
                 document.getElementById('amountError').textContent =
                     'Amount must be between ₱1 and ₱100,000 only';
                 document.getElementById('amountError').classList.remove('d-none');
@@ -1024,8 +992,163 @@
             document.getElementById('previewFee').textContent = '₱' + fee.toFixed(2);
             document.getElementById('previewTotal').textContent = '₱' + total.toFixed(2);
         }
-
     </script>
+
+
+
+
+
+<!-- =============================FOR DROPDOWN API=========================================== -->
+    
+    <script>
+        const baseUrl = "<?= base_url('form'); ?>";
+
+         console.log(baseUrl);           
+
+        /* ===== UTILITIES ===== */
+        function setLoading(id, isLoading) {
+            const el = document.getElementById(id);
+
+            if (isLoading)
+                el.classList.add("loading-select");
+            else
+                el.classList.remove("loading-select");
+        }
+
+        function resetSelect(id, placeholder) {
+            document.getElementById(id).innerHTML =
+                `<option value="" selected disabled>${placeholder}</option>`;
+        }
+
+        function showError(id, msg) {
+            const err = document.getElementById(id + "Error");
+            err.innerText = msg;
+            err.classList.remove("d-none");
+        }
+
+        /* ===== COUNCILS ===== */
+        function loadCouncils() {
+
+            setLoading("region", true);
+            const council_api = baseUrl + "/council_list";
+            console.log (council_api );
+            fetch(council_api)
+                .then(r => r.json())
+                .then(res => {
+
+                    setLoading("region", false);
+
+                    let opt = `<option value="" selected disabled>Select Council</option>`;
+
+                    res.data.forEach(c => {
+                        opt += `<option value="${c.council_code}">
+                        ${c.council_name}
+                    </option>`;
+                    });
+
+                    document.getElementById("region").innerHTML = opt;
+                })
+                .catch(() => showError("region", "Failed to load councils"));
+        }
+
+        /* ===== DISTRICT ===== */
+        document.getElementById("region").addEventListener("change", function() {
+
+            let council = this.value;
+
+            resetSelect("district", "Select District");
+            resetSelect("districtUnit", "Select District Unit");
+            resetSelect("school", "Select School");
+
+            setLoading("district", true);
+
+            fetch(baseUrl + "/district_list?council_code=" + council)
+                .then(r => r.json())
+                .then(res => {
+
+                    setLoading("district", false);
+
+                    let opt = `<option value="" selected disabled>Select District</option>`;
+
+                    res.data.forEach(d => {
+                        opt += `<option value="${d.district_code}">
+                        ${d.district_name}
+                    </option>`;
+                    });
+
+                    document.getElementById("district").innerHTML = opt;
+                })
+                .catch(() => showError("district", "Failed to load districts"));
+        });
+
+        /* ===== SUB DISTRICT ===== */
+        document.getElementById("district").addEventListener("change", function() {
+
+            let district = this.value;
+
+            resetSelect("districtUnit", "Select District Unit");
+            resetSelect("school", "Select School");
+
+            setLoading("districtUnit", true);
+
+            fetch(baseUrl + "/sub_district_list?district_code=" + district)
+                .then(r => r.json())
+                .then(res => {
+
+                    setLoading("districtUnit", false);
+
+                    let opt = `<option value="" selected disabled>Select District Unit</option>`;
+
+                    res.data.forEach(s => {
+                        opt += `<option value="${s.sub_district_code}">
+                        ${s.sub_district_name}
+                    </option>`;
+                    });
+
+                    document.getElementById("districtUnit").innerHTML = opt;
+                })
+                .catch(() => showError("districtUnit", "Failed to load units"));
+        });
+
+        /* ===== SCHOOL ===== */
+        document.getElementById("districtUnit").addEventListener("change", function() {
+
+            let council = document.getElementById("region").value;
+            let district = document.getElementById("district").value;
+            let sub = this.value;
+
+            setLoading("school", true);
+
+            let url =
+                `${baseUrl}/school_list?council_code=${council}` +
+                `&district_code=${district}` +
+                `&sub_district_code=${sub}`;
+
+            fetch(url)
+                .then(r => r.json())
+                .then(res => {
+
+                    setLoading("school", false);
+
+                    let opt = `<option value="" selected disabled>Select School</option>`;
+
+                    res.data.forEach(s => {
+                        opt += `<option value="${s.school_code}">
+                        ${s.school_name}
+                    </option>`;
+                    });
+
+                    document.getElementById("school").innerHTML = opt;
+                })
+                .catch(() => showError("school", "Failed to load schools"));
+        });
+
+     
+        loadCouncils();
+    </script>
+
+
+
 </body>
 
 </html>

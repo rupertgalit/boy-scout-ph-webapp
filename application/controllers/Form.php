@@ -18,6 +18,8 @@ class Form extends CI_Controller
       $this->myServices = new MyServices();
       $this->load->library('form_validation');
 
+
+
       // if ($this->session->userdata('logged_in') === TRUE) {
       // } else {
       //    redirect();
@@ -45,15 +47,15 @@ class Form extends CI_Controller
 
       try {
 
-        
+
          $council = $this->input->get('council_code', TRUE);
 
          // remove on production
-         // if (empty($council)) {
-         //    $council = "M0012";
-         // }
+         if (empty($council)) {
+            $council = "M001";
+         }
 
-      
+
          if (empty($council)) {
             http_response_code(400);
             echo json_encode([
@@ -70,7 +72,7 @@ class Form extends CI_Controller
             "council_code" => $council
          ];
 
-         $endpoint_url = '/v1/district-lis';
+         $endpoint_url = '/v1/district-list';
 
          $api_response = $this->myServices->external_api($param, $endpoint_url);
 
@@ -121,13 +123,13 @@ class Form extends CI_Controller
       }
    }
 
-    public function get_subdistrict_by_district()
+   public function get_subdistrict_by_district()
    {
       header('Content-Type: application/json; charset=utf-8');
 
       try {
 
-        
+
          $district_code = $this->input->get('district_code', TRUE);
 
          // remove on production
@@ -135,7 +137,7 @@ class Form extends CI_Controller
             $district_code = "DST001";
          }
 
-      
+
          if (empty($district_code)) {
             http_response_code(400);
             echo json_encode([
@@ -202,15 +204,149 @@ class Form extends CI_Controller
          ]);
       }
    }
-		
-   public function qr_page(){
 
-		$this->load->view('form/qrph.php');
-	}
-   public function success_page(){
 
-		$this->load->view('form/success_payment.php');
-	}
- 
- 
+
+
+
+   /* ===============================
+       GENERIC API WRAPPER
+    =============================== */
+   private function call_api($endpoint, $param = [], $method = 'POST')
+   {
+      header('Content-Type: application/json; charset=utf-8');
+      try {
+
+         $api_response = $this->myServices->external_api($param, $endpoint, $method);
+
+         if (!$api_response) {
+            throw new Exception("Empty response from API");
+         }
+
+         $decoded = json_decode($api_response, true);
+
+         if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception("Invalid JSON from API");
+         }
+
+         return [
+            'status'      => $decoded['status'] ?? false,
+            'status_code' => $decoded['status_code'] ?? 500,
+            'message'     => $decoded['message'] ?? '',
+            'data'        => $decoded['data'] ?? []
+         ];
+      } catch (Exception $e) {
+
+         log_message('error', 'Scout API: ' . $e->getMessage());
+
+         return [
+            'status' => false,
+            'message' => $e->getMessage(),
+            'data' => []
+         ];
+      }
+   }
+
+   /* ===============================
+       COUNCIL (GET)
+    =============================== */
+   public function council_list()
+   {
+      $result = $this->call_api('/v1/council-list', [], 'GET');
+
+      // normalize to array
+      if (!empty($result['data']) && !isset($result['data'][0])) {
+         $result['data'] = [$result['data']];
+      }
+
+      echo json_encode($result);
+   }
+
+   /* ===============================
+       DISTRICT (POST)
+    =============================== */
+   public function district_list()
+   {
+      $council = $this->input->get('council_code', TRUE);
+
+      if (!$council) {
+         echo json_encode([
+            'status' => false,
+            'message' => 'council_code required',
+            'data' => []
+         ]);
+         return;
+      }
+
+      echo json_encode(
+         $this->call_api('/v1/district-list', [
+            "council_code" => $council
+         ])
+      );
+   }
+
+   /* ===============================
+       SUB DISTRICT
+    =============================== */
+   public function sub_district_list()
+   {
+      $district = $this->input->get('district_code', TRUE);
+
+      if (!$district) {
+         echo json_encode([
+            'status' => false,
+            'message' => 'district_code required',
+            'data' => []
+         ]);
+         return;
+      }
+
+      echo json_encode(
+         $this->call_api('/v1/sub-district-list', [
+            "district_code" => $district
+         ])
+      );
+   }
+
+   /* ===============================
+       SCHOOL
+    =============================== */
+   public function school_list()
+   {
+      $council  = $this->input->get('council_code', TRUE);
+      $district = $this->input->get('district_code', TRUE);
+      $sub      = $this->input->get('sub_district_code', TRUE);
+
+      if (!$council || !$district || !$sub) {
+         echo json_encode([
+            'status' => false,
+            'message' => 'All parameters required',
+            'data' => []
+         ]);
+         return;
+      }
+
+      echo json_encode(
+         $this->call_api('/v1/school-list', [
+            "council_code"      => $council,
+            "district_code"     => $district,
+            "sub_district_code" => $sub
+         ])
+      );
+   }
+
+
+
+
+
+   public function qr_page()
+   {
+
+      $this->load->view('form/qrph.php');
+   }
+   public function success_page()
+   {
+
+      $this->load->view('form/success_payment.php');
+   }
 }

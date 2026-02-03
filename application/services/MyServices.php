@@ -67,17 +67,13 @@ class MyServices
    }
 
 
-
-
-
-   public function external_api($param, $endpoint_url)
+   public function external_api($param, $endpoint_url, $method = 'POST')
    {
-
       $generated_token = $this->generate_token();
 
       $curl = curl_init();
 
-      curl_setopt_array($curl, array(
+      $options = [
          CURLOPT_URL => $_ENV['ENDPOINT_BASE_URL'] . $endpoint_url,
          CURLOPT_RETURNTRANSFER => true,
          CURLOPT_ENCODING => '',
@@ -85,28 +81,88 @@ class MyServices
          CURLOPT_TIMEOUT => 0,
          CURLOPT_FOLLOWLOCATION => true,
          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-         CURLOPT_CUSTOMREQUEST => 'POST',
-         CURLOPT_POSTFIELDS => json_encode($param),
-         CURLOPT_HTTPHEADER => array(
+
+         CURLOPT_HTTPHEADER => [
             'X-API-KEY: ' . $_ENV['API_KEY'],
             'X-API-USERNAME: ' . $_ENV['API_USERNAME'],
             'X-API-PASSWORD: ' . $_ENV['API_PASSWORD'],
             'Authorization: Bearer ' . $generated_token,
             'Content-Type: application/json'
-         ),
-      ));
+         ],
+      ];
 
-      $response = curl_exec($curl);
+      if ($method === 'GET') {
 
-      // $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+         $options[CURLOPT_CUSTOMREQUEST] = 'GET';
+
+         if (!empty($param)) {
+            $options[CURLOPT_URL] .= '?' . http_build_query($param);
+         }
+      } else {
+
+         $options[CURLOPT_CUSTOMREQUEST] = 'POST';
+         $options[CURLOPT_POSTFIELDS]    = json_encode($param);
+      }
+
+      curl_setopt_array($curl, $options);
+
+      $response   = curl_exec($curl);
       $curl_error = curl_error($curl);
 
       curl_close($curl);
 
+      if ($curl_error) {
+         log_message('error', 'CURL Error: ' . $curl_error);
 
-      // $result['body'] = json_decode($response, true);
-      // $result['body']['status_code'] =  $http_code;
-      // Return as JSON
+         return json_encode([
+            'status' => false,
+            'message' => 'CURL Error: ' . $curl_error,
+            'data' => []
+         ]);
+      }
+
       return $response;
    }
+
+
+
+   // public function external_api($param, $endpoint_url)
+   // {
+
+   //    $generated_token = $this->generate_token();
+
+   //    $curl = curl_init();
+
+   //    curl_setopt_array($curl, array(
+   //       CURLOPT_URL => $_ENV['ENDPOINT_BASE_URL'] . $endpoint_url,
+   //       CURLOPT_RETURNTRANSFER => true,
+   //       CURLOPT_ENCODING => '',
+   //       CURLOPT_MAXREDIRS => 10,
+   //       CURLOPT_TIMEOUT => 0,
+   //       CURLOPT_FOLLOWLOCATION => true,
+   //       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+   //       CURLOPT_CUSTOMREQUEST => 'POST',
+   //       CURLOPT_POSTFIELDS => json_encode($param),
+   //       CURLOPT_HTTPHEADER => array(
+   //          'X-API-KEY: ' . $_ENV['API_KEY'],
+   //          'X-API-USERNAME: ' . $_ENV['API_USERNAME'],
+   //          'X-API-PASSWORD: ' . $_ENV['API_PASSWORD'],
+   //          'Authorization: Bearer ' . $generated_token,
+   //          'Content-Type: application/json'
+   //       ),
+   //    ));
+
+   //    $response = curl_exec($curl);
+
+   //    // $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+   //    $curl_error = curl_error($curl);
+
+   //    curl_close($curl);
+
+
+   //    // $result['body'] = json_decode($response, true);
+   //    // $result['body']['status_code'] =  $http_code;
+   //    // Return as JSON
+   //    return $response;
+   // }
 }
