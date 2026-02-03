@@ -548,7 +548,7 @@
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
             // Preview button event listener
-            document.getElementById('previewBtn').addEventListener('click', function () {
+            document.getElementById('previewBtn').addEventListener('click', function() {
                 if (validateForm()) {
                     updatePreview();
                     previewModal.show();
@@ -556,7 +556,7 @@
             });
 
             // Confirm payment button event listener
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
                 if (validateForm()) {
 
                     previewModal.hide();
@@ -598,7 +598,7 @@
                 element.addEventListener('blur', validateField);
 
                 if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function () {
+                    element.addEventListener('keyup', function() {
                         const errorElement = this.closest('.col-md-6, .col-12, .col-md-8')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -898,12 +898,12 @@
 
 
 
-<!-- =============================FOR DROPDOWN API=========================================== -->
-    
+    <!-- =============================FOR DROPDOWN API=========================================== -->
+
     <script>
         const baseUrl = "<?= base_url('form'); ?>";
 
-         console.log(baseUrl);           
+        console.log(baseUrl);
 
         /* ===== UTILITIES ===== */
         function setLoading(id, isLoading) {
@@ -926,12 +926,19 @@
             err.classList.remove("d-none");
         }
 
+        function setDisabled(id, state) {
+            document.getElementById(id).disabled = state;
+        }
+
+
         /* ===== COUNCILS ===== */
         function loadCouncils() {
 
             setLoading("region", true);
+            setDisabled("region", true);
+
             const council_api = baseUrl + "/council_list";
-            console.log (council_api );
+
             fetch(council_api)
                 .then(r => r.json())
                 .then(res => {
@@ -940,16 +947,30 @@
 
                     let opt = `<option value="" selected disabled>Select Council</option>`;
 
-                    res.data.forEach(c => {
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        document.getElementById("region").innerHTML = opt;
+                        setDisabled("region", true);
+                        showError("region", "No councils available");
+                        return;
+                    }
+
+                    list.forEach(c => {
                         opt += `<option value="${c.council_code}">
-                        ${c.council_name}
-                    </option>`;
+                            ${c.council_name}
+                        </option>`;
                     });
 
                     document.getElementById("region").innerHTML = opt;
+                    setDisabled("region", false);
                 })
-                .catch(() => showError("region", "Failed to load councils"));
+                .catch(() => {
+                    setDisabled("region", true);
+                    showError("region", "Failed to load councils");
+                });
         }
+
 
         /* ===== DISTRICT ===== */
         document.getElementById("region").addEventListener("change", function() {
@@ -959,6 +980,10 @@
             resetSelect("district", "Select District");
             resetSelect("districtUnit", "Select District Unit");
             resetSelect("school", "Select School");
+
+            setDisabled("district", true);
+            setDisabled("districtUnit", true);
+            setDisabled("school", true);
 
             setLoading("district", true);
 
@@ -970,16 +995,30 @@
 
                     let opt = `<option value="" selected disabled>Select District</option>`;
 
-                    res.data.forEach(d => {
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        document.getElementById("district").innerHTML = opt;
+                        setDisabled("district", true);
+                        showError("district", "No districts found");
+                        return;
+                    }
+
+                    list.forEach(d => {
                         opt += `<option value="${d.district_code}">
                         ${d.district_name}
                     </option>`;
                     });
 
                     document.getElementById("district").innerHTML = opt;
+                    setDisabled("district", false);
                 })
-                .catch(() => showError("district", "Failed to load districts"));
+                .catch(() => {
+                    setDisabled("district", true);
+                    showError("district", "Failed to load districts");
+                });
         });
+
 
         /* ===== SUB DISTRICT ===== */
         document.getElementById("district").addEventListener("change", function() {
@@ -988,6 +1027,9 @@
 
             resetSelect("districtUnit", "Select District Unit");
             resetSelect("school", "Select School");
+
+            setDisabled("districtUnit", true);
+            setDisabled("school", true);
 
             setLoading("districtUnit", true);
 
@@ -999,16 +1041,30 @@
 
                     let opt = `<option value="" selected disabled>Select District Unit</option>`;
 
-                    res.data.forEach(s => {
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        document.getElementById("districtUnit").innerHTML = opt;
+                        setDisabled("districtUnit", true);
+                        showError("districtUnit", "No units found");
+                        return;
+                    }
+
+                    list.forEach(s => {
                         opt += `<option value="${s.sub_district_code}">
                         ${s.sub_district_name}
                     </option>`;
                     });
 
                     document.getElementById("districtUnit").innerHTML = opt;
+                    setDisabled("districtUnit", false);
                 })
-                .catch(() => showError("districtUnit", "Failed to load units"));
+                .catch(() => {
+                    setDisabled("districtUnit", true);
+                    showError("districtUnit", "Failed to load units");
+                });
         });
+
 
         /* ===== SCHOOL ===== */
         document.getElementById("districtUnit").addEventListener("change", function() {
@@ -1016,6 +1072,9 @@
             let council = document.getElementById("region").value;
             let district = document.getElementById("district").value;
             let sub = this.value;
+
+            resetSelect("school", "Select School");
+            setDisabled("school", true);
 
             setLoading("school", true);
 
@@ -1032,18 +1091,32 @@
 
                     let opt = `<option value="" selected disabled>Select School</option>`;
 
-                    res.data.forEach(s => {
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        document.getElementById("school").innerHTML = opt;
+                        setDisabled("school", true);
+                        showError("school", "No schools found");
+                        return;
+                    }
+
+                    list.forEach(s => {
                         opt += `<option value="${s.school_code}">
                         ${s.school_name}
                     </option>`;
                     });
 
                     document.getElementById("school").innerHTML = opt;
+                    setDisabled("school", false);
                 })
-                .catch(() => showError("school", "Failed to load schools"));
+                .catch(() => {
+                    setDisabled("school", true);
+                    showError("school", "Failed to load schools");
+                });
         });
 
-     
+
+
         loadCouncils();
     </script>
 
