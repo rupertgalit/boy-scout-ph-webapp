@@ -9,7 +9,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="/assets/css/form.css" rel="stylesheet" />
@@ -56,7 +55,7 @@
 
                     <div class="form-section">
                         <div class="section-header collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#paymentTypeCollapse" aria-expanded="false">
+                            data-bs-target="#paymentTypeCollapse" aria-expanded="true">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-money-check-alt me-2"></i>Payment Destination
                                 </h3>
@@ -65,7 +64,7 @@
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
 
-                        <div class="collapse" id="paymentTypeCollapse">
+                        <div class="collapse show" id="paymentTypeCollapse">
                             <div class="section-content">
                                 <div class="payment-options">
                                     <div class="payment-option">
@@ -121,7 +120,7 @@
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
 
-                        <div class="collapse" id="personalCollapse">
+                        <div class="collapse show" id="personalCollapse">
                             <div class="section-content">
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -133,6 +132,7 @@
                                             placeholder="Enter your full name" required>
                                         <div class="error-message d-none" id="nameError"></div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-mobile-alt"></i>
@@ -143,8 +143,7 @@
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                         <div class="error-message d-none" id="mobileError"></div>
                                     </div>
-                                </div>
-                                <div class="row g-3">
+
                                     <div class="col-12">
                                         <label class="form-label">
                                             <i class="fas fa-envelope"></i>
@@ -169,7 +168,7 @@
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
 
-                        <div class="collapse" id="scoutCollapse">
+                        <div class="collapse show" id="scoutCollapse">
                             <div class="section-content">
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -216,7 +215,7 @@
                                         <div class="error-message d-none" id="districtError"></div>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <label class="form-label">
                                             <i class="fas fa-building"></i>
                                             District Unit<span class="required">*</span>
@@ -233,7 +232,7 @@
                                         <div class="error-message d-none" id="districtUnitError"></div>
                                     </div>
 
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <label class="form-label">
                                             <i class="fas fa-bullseye"></i>
                                             School <span class="required">*</span>
@@ -279,7 +278,7 @@
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
 
-                        <div class="collapse" id="scoutDetailsCollapse">
+                        <div class="collapse show" id="scoutDetailsCollapse">
                             <div class="section-content">
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -298,26 +297,8 @@
                                         </select>
                                         <div class="error-message d-none" id="scoutTypeError"></div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">
-                                            <i class="fas fa-box"></i>
-                                            Item Category <span class="required">*</span>
-                                        </label>
-                                        <select class="form-control" name="item_category" id="itemCategory" required>
-                                            <option value="" disabled selected>Select Item Category</option>
-                                            <option value="membership">Scout Membership Fees</option>
-                                            <option value="school_fees">School Tuition Fees</option>
-                                            <option value="uniform">School & Scout Uniforms</option>
-                                            <option value="badges">Scout Badges & Patches</option>
-                                            <option value="books">School Books & Scout Handbooks</option>
-                                            <option value="equipment">Camping Equipment</option>
-                                            <option value="activity">School & Scout Activities</option>
-                                            <option value="others">Other School/Scout Items</option>
-                                        </select>
-                                        <div class="error-message d-none" id="itemCategoryError"></div>
-                                    </div>
 
-                                    <div class="col-12">
+                                    <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-file-alt"></i>
                                             Description <span class="required">*</span>
@@ -336,7 +317,24 @@
                                         <div class="error-message d-none" id="descriptionError"></div>
                                     </div>
 
-
+                                    <div class="col-12">
+                                        <label class="form-label">
+                                            <i class="fas fa-box"></i>
+                                            Item Category <span class="required">*</span>
+                                        </label>
+                                        <select class="form-control" name="item_category" id="itemCategory" required>
+                                            <option value="" disabled selected>Select Item Category</option>
+                                            <option value="membership">Scout Membership Fees</option>
+                                            <option value="school_fees">School Tuition Fees</option>
+                                            <option value="uniform">School & Scout Uniforms</option>
+                                            <option value="badges">Scout Badges & Patches</option>
+                                            <option value="books">School Books & Scout Handbooks</option>
+                                            <option value="equipment">Camping Equipment</option>
+                                            <option value="activity">School & Scout Activities</option>
+                                            <option value="others">Other School/Scout Items</option>
+                                        </select>
+                                        <div class="error-message d-none" id="itemCategoryError"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +351,7 @@
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
 
-                        <div class="collapse" id="amountCollapse">
+                        <div class="collapse show" id="amountCollapse">
                             <div class="section-content">
                                 <div class="row g-3 align-items-end">
                                     <div class="col-md-8">
@@ -364,7 +362,7 @@
                                         <div class="input-group">
                                             <span class="input-group-text">₱</span>
                                             <input type="number" class="form-control" name="amount" id="amount"
-                                                placeholder="0.00" min="1" max="100000" step="0.01" required
+                                                placeholder="0.00" min="1" step="0.01" required
                                                 onkeydown="if(event.key === 'e' || event.key === 'E' || event.key === '-' ) event.preventDefault()">
                                         </div>
                                         <div class="error-message d-none" id="amountError"></div>
@@ -389,7 +387,7 @@
         <!-- Payment Methods Footer -->
         <div class="footer animate__animated animate__fadeInUp" id="footer">
             <div class="powered-by">
-                <span class="text-muted">Payment processing powered by</span>
+                <span class="text-muted">powered by</span>
                 <img src="https://via.placeholder.com/150x40/1B5E20/FFFFFF?text=BSP+QR+Ph" alt="BSP QR Ph">
             </div>
         </div>
@@ -409,7 +407,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row ">
-                        <div class="col-12 mb-2">
+                        <div class="col-md-12 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">Payment Destination:</span>
                                 <span class="preview-value" id="previewPaymentType">-</span>
@@ -433,7 +431,7 @@
                                 <span class="preview-value" id="previewMobile">-</span>
                             </div>
                         </div>
-                        <div class="col-12 mb-2">
+                        <div class="col-md-12 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">Email Address:</span>
                                 <span class="preview-value" id="previewEmail">-</span>
@@ -457,7 +455,7 @@
                                 <span class="preview-value" id="previewDistrict">-</span>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
+                        <div class="col-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">District Unit:</span>
                                 <span class="preview-value" id="previewDistrictUnit">-</span>
@@ -475,7 +473,7 @@
                     <h6 class="text-secondary mb-2">
                         <i class="fas fa-scroll me-2"></i>Scout Details
                     </h6>
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">Scout Type:</span>
@@ -488,7 +486,7 @@
                                 <span class="preview-value" id="previewDescription">-</span>
                             </div>
                         </div>
-                        <div class="col-12 mb-2">
+                        <div class="col-md-12 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">Item Category:</span>
                                 <span class="preview-value" id="previewItemCategory">-</span>
@@ -526,31 +524,21 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // SweetAlert Error
+        function showError(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+        confirmButtonColor: '#d33'
+    });
+}
+
         // Global variables
         let currentPaymentData = {};
-
-        const amountInput = document.getElementById('amount');
-
-        amountInput.addEventListener('input', function () {
-            let value = this.value;
-
-            if (/^9{4,}$/.test(value)) {
-                this.value = 1000;
-                return;
-            }
-            let num = parseFloat(value);
-
-            if (num > 100000) {
-                this.value = 100000;
-            }
-            if (num < 0) {
-                this.value = '';
-            }
-        });
-
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function () {
@@ -568,83 +556,21 @@
             // Initialize Bootstrap Modal
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
-            // Preview button  With SweetAlert
+            // Preview button event listener
             document.getElementById('previewBtn').addEventListener('click', function () {
                 if (validateForm()) {
-                    // Build SweetAlert HTML content
-                    const previewHTML = `
-            <h5>Payment Summary</h5>
-            <p><strong>Payment Destination:</strong> ${currentPaymentData.paymentTypeText}</p>
-            
-            <h6>Personal Information</h6>
-            <p><strong>Full Name:</strong> ${currentPaymentData.name}</p>
-            <p><strong>Mobile Number:</strong> ${currentPaymentData.mobile}</p>
-            <p><strong>Email:</strong> ${currentPaymentData.email}</p>
-            
-            <h6>Scout Information</h6>
-            <p><strong>Region:</strong> ${currentPaymentData.regionText}</p>
-            <p><strong>District:</strong> ${currentPaymentData.districtText}</p>
-            <p><strong>District Unit:</strong> ${currentPaymentData.districtUnitText}</p>
-            <p><strong>School:</strong> ${currentPaymentData.schoolText}</p>
-            
-            <p><strong>Scout Type:</strong> ${currentPaymentData.scoutTypeText}</p>
-            <p><strong>Item Category:</strong> ${currentPaymentData.itemCategoryText}</p>
-            <p><strong>Description:</strong> ${currentPaymentData.descriptionText}</p>
-            
-            <h6>Payment Details</h6>
-            <p><strong>Amount:</strong> ₱${currentPaymentData.amount.toFixed(2)}</p>
-            <p><strong>Service Fee:</strong> ₱${currentPaymentData.fee.toFixed(2)}</p>
-            <p><strong>Total:</strong> ₱${currentPaymentData.total.toFixed(2)}</p>
-        `;
-
-                    // Show SweetAlert
-                    Swal.fire({
-                        title: 'Payment Preview',
-                        html: previewHTML,
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonText: 'Generate QR Ph',
-                        cancelButtonText: 'Edit Details',
-                        width: '600px',
-                        customClass: {
-                            popup: 'animate__animated animate__fadeIn'
-                        }
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Trigger QR Ph generation
-                            console.log('Generate QR Ph now!');
-                        }
-                    });
+                    updatePreview();
+                    previewModal.show();
                 }
             });
 
-            // Confirm payment button With SweetAlert
+            // Confirm payment button event listener
             document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
                 if (validateForm()) {
-                    // Hide the modal
-                    const previewModal = bootstrap.Modal.getInstance(document.getElementById('previewModal'));
-                    previewModal.hide();
 
-                    // SweetAlert2 popup
-                    Swal.fire({
-                        title: 'Payment Ready!',
-                        html: `
-                <p><strong>Transaction ID:</strong> ${currentPaymentData.transactionId}</p>
-                <p><strong>Payment Destination:</strong> ${currentPaymentData.paymentTypeText}</p>
-                <p><strong>Total Amount:</strong> ₱${currentPaymentData.total.toFixed(2)}</p>
-            `,
-                        icon: 'success',
-                        confirmButtonText: 'Proceed to QR Ph',
-                        showCloseButton: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Here you can redirect or trigger QR Ph generation
-                            console.log('Generate QR Ph now!');
-                        }
-                    });
+                    previewModal.hide();
                 }
             });
-
 
             // School select change handler
             document.getElementById('school').addEventListener('change', function () {
@@ -675,33 +601,20 @@
                     updateCardStates();
                 });
             });
+
+            // Real-time validation on blur
             document.querySelectorAll('input, select').forEach(element => {
-                // Real-time validation
-                element.addEventListener('input', validateField);
                 element.addEventListener('blur', validateField);
-                // Only for input fields, hide errors on typing
-                if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function () {
-                        const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
-                        if (errorElement) {
-                            errorElement.classList.add('d-none');
-                        }
+                element.addEventListener('input', function () {
+                    // Clear error when user starts typing
+                    const errorId = this.id + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.classList.add('d-none');
                         this.classList.remove('is-invalid');
-                    });
-                }
-
-                if (element.tagName.toLowerCase() === 'select') {
-                    element.addEventListener('change', function () {
-                        const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
-                        if (errorElement) {
-                            errorElement.classList.add('d-none');
-                        }
-                        this.classList.remove('is-invalid');
-                    });
-                }
+                    }
+                });
             });
-
-
         });
 
         function updateCardStates() {
@@ -830,22 +743,11 @@
             }
 
             // Validate amount
-            const amountField = document.getElementById('amount');
-            const amount = parseFloat(amountField.value);
-
-
-            if (/^9{3,}$/.test(amountField.value)) {
-                document.getElementById('amountError').textContent =
-                    'Invalid amount entered';
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById('amountError').textContent = 'Please enter a valid amount greater than 0';
                 document.getElementById('amountError').classList.remove('d-none');
-                amountField.classList.add('is-invalid');
-                isValid = false;
-            }
-            else if (isNaN(amount) || amount <= 0 || amount > 100000) {
-                document.getElementById('amountError').textContent =
-                    'Amount must be between ₱1 and ₱100,000 only';
-                document.getElementById('amountError').classList.remove('d-none');
-                amountField.classList.add('is-invalid');
+                document.getElementById('amount').classList.add('is-invalid');
                 isValid = false;
             }
 
@@ -896,56 +798,14 @@
 
         function validateField(e) {
             const field = e.target;
-            const value = field.value.trim();
             let isValid = true;
 
             switch (field.id) {
                 case 'fullName':
-                    isValid = value.length > 0;
-                    break;
-
-                case 'mobileNumber':
-                    isValid = /^09\d{9}$/.test(value);
-                    break;
-
-                case 'email':
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    isValid = emailRegex.test(value);
-                    break;
-
-                case 'region':
-                case 'district':
-                case 'districtUnit':
-                case 'school':
-                case 'scoutType':
-                case 'description':
-                case 'itemCategory':
-                    isValid = value !== '';
-                    break;
-
-                case 'amount':
-                    isValid = !isNaN(parseFloat(value)) && parseFloat(value) > 0;
-                    break;
-            }
-
-            if (!isValid && field.id) {
-                field.classList.add('is-invalid');
-            } else {
-                field.classList.remove('is-invalid');
-            }
-        }
-
-        function validateField(e) {
-            const field = e.target;
-            let isValid = true;
-
-            switch (field.id) {
-
-                case 'fullName':
-                    isValid = value.length > 0;
+                    isValid = field.value.trim().length > 0;
                     break;
                 case 'mobileNumber':
-                    isValid = /^09?\d{0,9}$/.test(value);
+                    isValid = /^09\d{9}$/.test(field.value.trim());
                     break;
                 case 'email':
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
