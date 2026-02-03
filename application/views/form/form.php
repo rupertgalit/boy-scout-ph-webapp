@@ -215,7 +215,7 @@
                                         <div class="error-message d-none" id="districtError"></div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-building"></i>
                                             District Unit<span class="required">*</span>
@@ -232,7 +232,7 @@
                                         <div class="error-message d-none" id="districtUnitError"></div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-bullseye"></i>
                                             School <span class="required">*</span>
@@ -403,7 +403,7 @@
                         <i class="fas fa-file-invoice-dollar me-2"></i>
                         Payment Summary
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">x</button>
                 </div>
                 <div class="modal-body">
                     <div class="row ">
@@ -455,7 +455,9 @@
                                 <span class="preview-value" id="previewDistrict">-</span>
                             </div>
                         </div>
-                        <div class="col-6 mb-2">
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">District Unit:</span>
                                 <span class="preview-value" id="previewDistrictUnit">-</span>
@@ -529,13 +531,13 @@
     <script>
         // SweetAlert Error
         function showError(message) {
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: message,
-        confirmButtonColor: '#d33'
-    });
-}
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+                confirmButtonColor: '#d33'
+            });
+        }
 
         // Global variables
         let currentPaymentData = {};
@@ -601,19 +603,30 @@
                     updateCardStates();
                 });
             });
-
-            // Real-time validation on blur
             document.querySelectorAll('input, select').forEach(element => {
+                // Real-time validation
+                element.addEventListener('input', validateField);
                 element.addEventListener('blur', validateField);
-                element.addEventListener('input', function () {
-                    // Clear error when user starts typing
-                    const errorId = this.id + 'Error';
-                    const errorElement = document.getElementById(errorId);
-                    if (errorElement) {
-                        errorElement.classList.add('d-none');
+
+                if (element.tagName.toLowerCase() === 'input') {
+                    element.addEventListener('keyup', function () {
+                        const errorElement = this.closest('.col-md-6, .col-12, .col-md-8')?.querySelector('.error-message');
+                        if (errorElement) {
+                            errorElement.classList.add('d-none');
+                        }
+
+                    });
+                }
+
+                if (element.tagName.toLowerCase() === 'select') {
+                    element.addEventListener('change', function () {
+                        const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
+                        if (errorElement) {
+                            errorElement.classList.add('d-none');
+                        }
                         this.classList.remove('is-invalid');
-                    }
-                });
+                    });
+                }
             });
         });
 
