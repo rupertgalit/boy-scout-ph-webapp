@@ -257,12 +257,7 @@
                                         </label>
                                         <select class="form-control" name="scout_type" id="scoutType" required>
                                             <option value="" disabled selected>Select Scout Type</option>
-                                            <option value="kabataan">Kabataan Scout (6-9 yrs)</option>
-                                            <option value="junior">Junior Scout (10-12 yrs)</option>
-                                            <option value="senior">Senior Scout (13-16 yrs)</option>
-                                            <option value="rover">Rover Scout (17-24 yrs)</option>
-                                            <option value="adult">Adult Leader/Teacher</option>
-                                            <option value="school_scout">School-Sponsored Scout</option>
+
                                         </select>
                                         <div class="error-message d-none" id="scoutTypeError"></div>
                                     </div>
@@ -274,14 +269,7 @@
                                         </label>
                                         <select class="form-control" name="description" id="description" required>
                                             <option value="" disabled selected>Select Description</option>
-                                            <option value="new_member">New Scout Registration</option>
-                                            <option value="renewal">Scout Membership Renewal</option>
-                                            <option value="school_registration">School Registration</option>
-                                            <option value="upgrade">Rank Upgrade</option>
-                                            <option value="badge_award">Badge Award</option>
-                                            <option value="camp_fee">Camp Participation Fee</option>
-                                            <option value="training_fee">Training Program Fee</option>
-                                            <option value="school_fee">School Fee Payment</option>
+
                                         </select>
                                         <div class="error-message d-none" id="descriptionError"></div>
                                     </div>
@@ -293,14 +281,7 @@
                                         </label>
                                         <select class="form-control" name="item_category" id="itemCategory" required>
                                             <option value="" disabled selected>Select Item Category</option>
-                                            <option value="membership">Scout Membership Fees</option>
-                                            <option value="school_fees">School Tuition Fees</option>
-                                            <option value="uniform">School & Scout Uniforms</option>
-                                            <option value="badges">Scout Badges & Patches</option>
-                                            <option value="books">School Books & Scout Handbooks</option>
-                                            <option value="equipment">Camping Equipment</option>
-                                            <option value="activity">School & Scout Activities</option>
-                                            <option value="others">Other School/Scout Items</option>
+
                                         </select>
                                         <div class="error-message d-none" id="itemCategoryError"></div>
                                     </div>
@@ -453,13 +434,13 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">Description:</span>
+                                <span class="preview-label">Scout Payment Type:</span>
                                 <span class="preview-value" id="previewDescription">-</span>
                             </div>
                         </div>
                         <div class="col-md-12 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">Item Category:</span>
+                                <span class="preview-label">Payment Description:</span>
                                 <span class="preview-value" id="previewItemCategory">-</span>
                             </div>
                         </div>
@@ -898,7 +879,7 @@
 
 
 
-    <!-- =============================FOR DROPDOWN API=========================================== -->
+    <!-- =============================FOR SCOUT INFORMATION DROPDOWN API=========================================== -->
 
     <script>
         const baseUrl = "<?= base_url('form'); ?>";
@@ -1119,6 +1100,178 @@
 
         loadCouncils();
     </script>
+
+
+    <script>
+        /* ===================== HELPERS ===================== */
+
+        function setSkeleton(id, text) {
+            document.getElementById(id).innerHTML =
+                `<option disabled selected>${text}</option>`;
+        }
+
+        function setDisabled(id, bool) {
+            document.getElementById(id).disabled = bool;
+        }
+
+        function resetSelect(id, placeholder) {
+            document.getElementById(id).innerHTML =
+                `<option disabled selected>${placeholder}</option>`;
+        }
+
+        function autoSelectIfSingle(id) {
+            let el = document.getElementById(id);
+            if (el.options.length === 2) {
+                el.selectedIndex = 1;
+                el.dispatchEvent(new Event("change"));
+            }
+        }
+
+        
+
+
+        /*SCOUT TYPE*/
+
+        function loadScoutTypes() {
+
+            setSkeleton("scoutType", "Loading scout types...");
+            setDisabled("scoutType", true);
+
+          
+
+            fetch(baseUrl + "/scout_list")
+                .then(r => r.json())
+                .then(res => {
+
+                    let opt = `<option disabled selected>Select Scout Type</option>`;
+
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        setSkeleton("scoutType", "No scout types available");
+                        return;
+                    }
+
+                    list.forEach(s => {
+                        opt += `<option value="${s.scout_code}">
+        ${s.scout_level}
+      </option>`;
+                    });
+
+                    document.getElementById("scoutType").innerHTML = opt;
+                    setDisabled("scoutType", false);
+
+                    autoSelectIfSingle("scoutType");
+
+                })
+                .catch(() => {
+                    setSkeleton("scoutType", "Failed to load scout types");
+                });
+
+        }
+
+
+        /*  SCOUT TYPE  */
+
+        document.getElementById("scoutType").addEventListener("change", function() {
+
+            let scout = this.value;
+
+            resetSelect("description", "Select Description");
+            resetSelect("itemCategory", "Select Item Category");
+
+            setDisabled("description", true);
+            setDisabled("itemCategory", true);
+
+            setSkeleton("description", "Loading descriptions...");
+
+            fetch(baseUrl + "/scout_payment_type")
+                .then(r => r.json())
+                .then(res => {
+
+                    let opt = `<option disabled selected>Select Description</option>`;
+
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        setSkeleton("description", "No descriptions available");
+                        return;
+                    }
+
+                    list.forEach(p => {
+                        opt += `<option value="${p.payment_type_code}">
+        ${p.category_name}
+      </option>`;
+                    });
+
+                    document.getElementById("description").innerHTML = opt;
+                    setDisabled("description", false);
+
+                    autoSelectIfSingle("description");
+
+                })
+                .catch(() => {
+                    setSkeleton("description", "Failed to load");
+                });
+
+        });
+
+
+        
+          /*  ON DESCRIPTION */
+
+        document.getElementById("description").addEventListener("change", function() {
+
+            let scout = document.getElementById("scoutType").value;
+            let type = this.value;
+
+            resetSelect("itemCategory", "Select Item Category");
+            setDisabled("itemCategory", true);
+
+            setSkeleton("itemCategory", "Loading items...");
+
+            let url =
+                `${baseUrl}/scout_payment_description?scout_code=${scout}&payment_type_code=${type}`;
+
+            fetch(url)
+                .then(r => r.json())
+                .then(res => {
+
+                    let opt = `<option disabled selected>Select Item Category</option>`;
+
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        setSkeleton("itemCategory", "No items available");
+                        return;
+                    }
+
+                    list.forEach(d => {
+                        opt += `<option value="${d.description_code}"
+        data-amount="${d.amount}"
+        data-fee="${d.ngsi_fee}">
+        ${d.description_name}
+      </option>`;
+                    });
+
+                    document.getElementById("itemCategory").innerHTML = opt;
+                    setDisabled("itemCategory", false);
+
+                    autoSelectIfSingle("itemCategory");
+
+                })
+                .catch(() => {
+                    setSkeleton("itemCategory", "Failed to load");
+                });
+
+        });
+
+
+       
+
+        loadScoutTypes();
+    </script>
+
 
 
 

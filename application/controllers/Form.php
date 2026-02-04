@@ -209,9 +209,7 @@ class Form extends CI_Controller
 
 
 
-   /* ===============================
-       GENERIC API WRAPPER
-    =============================== */
+   /* GENERIC API WRAPPER*/
    private function call_api($endpoint, $param = [], $method = 'POST')
    {
       header('Content-Type: application/json; charset=utf-8');
@@ -247,9 +245,7 @@ class Form extends CI_Controller
       }
    }
 
-   /* ===============================
-       COUNCIL (GET)
-    =============================== */
+   /*COUNCIL (GET)*/
    public function council_list()
    {
       $result = $this->call_api('/v1/council-list', [], 'GET');
@@ -262,9 +258,7 @@ class Form extends CI_Controller
       echo json_encode($result);
    }
 
-   /* ===============================
-       DISTRICT (POST)
-    =============================== */
+   /*DISTRICT (POST) */
    public function district_list()
    {
       $council = $this->input->get('council_code', TRUE);
@@ -285,12 +279,15 @@ class Form extends CI_Controller
       );
    }
 
-   /* ===============================
-       SUB DISTRICT
-    =============================== */
+   /*SUB DISTRICT */
    public function sub_district_list()
    {
       $district = $this->input->get('district_code', TRUE);
+
+      // for test
+      if (!$district){
+         $district = "DST001";
+      }
 
       if (!$district) {
          echo json_encode([
@@ -308,9 +305,7 @@ class Form extends CI_Controller
       );
    }
 
-   /* ===============================
-       SCHOOL
-    =============================== */
+   /* SCHOOL */
    public function school_list()
    {
       $council  = $this->input->get('council_code', TRUE);
@@ -331,6 +326,71 @@ class Form extends CI_Controller
             "council_code"      => $council,
             "district_code"     => $district,
             "sub_district_code" => $sub
+         ])
+      );
+   }
+
+
+
+
+   /* =========================================================
+   SCOUT TYPE – GET /v1/scout-list
+========================================================= */
+   public function scout_list()
+   {
+      $result = $this->call_api('/v1/scout-list', [], 'GET');
+
+      // normalize to array
+      if (!empty($result['data']) && !isset($result['data'][0])) {
+         $result['data'] = [$result['data']];
+      }
+
+      echo json_encode($result);
+   }
+
+
+   /* =========================================================
+   PAYMENT TYPE – GET /v1/scout-payment-type
+========================================================= */
+   public function scout_payment_type()
+   {
+      $result = $this->call_api('/v1/scout-payment-type', [], 'GET');
+
+      // normalize to array
+      if (!empty($result['data']) && !isset($result['data'][0])) {
+         $result['data'] = [$result['data']];
+      }
+
+      echo json_encode($result);
+   }
+
+
+   /* =========================================================
+   ITEM CATEGORY – POST /v1/scout-payment-description
+========================================================= */
+   public function scout_payment_description()
+   {
+      header('Content-Type: application/json');
+
+      $scout = $this->input->get('scout_code', TRUE);
+      $type  = $this->input->get('payment_type_code', TRUE);
+
+
+
+      if (!$scout|| !$type) {
+         echo json_encode([
+            'status' => false,
+            'message' => 'All parameters required',
+            'data' => []
+         ]);
+         return;
+      }
+
+      echo json_encode(
+         $this->call_api('/v1/scout-payment-description', [
+            "scout_code"            => $scout,
+            "payment_type_code"     => $type
+           
          ])
       );
    }
