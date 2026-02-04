@@ -77,7 +77,7 @@
                                 <div class="payment-options">
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment_type" value="national" required>
+                                            <input type="radio" name="payment_type" value="national" required style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-landmark"></i></div>
@@ -88,7 +88,7 @@
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment_type" value="regional">
+                                            <input type="radio" name="payment_type" value="regional" style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
@@ -99,7 +99,7 @@
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment_type" value="local">
+                                            <input type="radio" name="payment_type" value="local" style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-users"></i></div>
