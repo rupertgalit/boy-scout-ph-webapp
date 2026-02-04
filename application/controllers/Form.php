@@ -39,169 +39,127 @@ class Form extends CI_Controller
    // 	echo  $this->myServices->generate_token();
    // }
 
-
-
-   public function get_district_by_council()
+   private function generate_id_with_datetime()
    {
-      header('Content-Type: application/json; charset=utf-8');
 
-      try {
+      $month = date('m');
 
+      $day = date('d');
 
-         $council = $this->input->get('council_code', TRUE);
+      // Seconds since midnight (0–86399) → keep last 4 digits
+      $seconds = date('H') * 3600 + date('i') * 60 + date('s');
+      $seconds = str_pad($seconds % 10000, 4, '0', STR_PAD_LEFT);
 
-         // remove on production
-         if (empty($council)) {
-            $council = "M001";
-         }
+      $random = mt_rand(10, 99);
 
-
-         if (empty($council)) {
-            http_response_code(400);
-            echo json_encode([
-               'status'  => false,
-               'status_code' => 400,
-               'message' => 'council_code is required',
-               'data'    => []
-            ]);
-            return;
-         }
-
-
-         $param = [
-            "council_code" => $council
-         ];
-
-         $endpoint_url = '/v1/district-list';
-
-         $api_response = $this->myServices->external_api($param, $endpoint_url);
-
-         if (!$api_response) {
-            throw new Exception("No response from external API");
-         }
-
-         $response_decoded = json_decode($api_response, true);
-
-         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception("Invalid JSON response from API");
-         }
-
-         // Safe checks to avoid undefined index
-         $status      = $response_decoded['status'] ?? false;
-         $status_code = $response_decoded['status_code'] ?? 500;
-         $message     = $response_decoded['message'] ?? 'Unknown error';
-         $data        = $response_decoded['data'] ?? [];
-
-         if ($status) {
-            http_response_code(200);
-            echo json_encode([
-               'status'      => true,
-               'status_code' => $status_code,
-               'message'     => 'Success',
-               'data'        => $data
-            ]);
-         } else {
-            http_response_code(200);
-            echo json_encode([
-               'status'      => false,
-               'status_code' => $status_code,
-               'message'     => $message,
-               'data'        => []
-            ]);
-         }
-      } catch (Exception $e) {
-
-         log_message('error', 'get_district_by_council: ' . $e->getMessage());
-
-         http_response_code(500);
-         echo json_encode([
-            'status'  => false,
-            'status_code' => 500,
-            'message' => 'Internal server error ',
-            'data'    => []
-         ]);
-      }
+      return $month . $day . $seconds . $random;
    }
 
-   public function get_subdistrict_by_district()
+
+   public function generate_qr()
    {
-      header('Content-Type: application/json; charset=utf-8');
+
+
+      $reference_number    = 'BSP-' . $this->generate_id_with_datetime();
+      $redirect_url        = $this->security->xss_clean($this->input->post("mobile-number"));
+      
+      $payment_for         = $this->security->xss_clean($this->input->post("amount"));
+      $council_code        = $this->security->xss_clean($this->input->post("email"));
+      $district_code       = $this->security->xss_clean($this->input->post("name"));
+      $sub_district_code   = $this->security->xss_clean($this->input->post("mobile-number"));
+      $shool_code          = $this->security->xss_clean($this->input->post("mobile-number"));
+      $description_code    = $this->security->xss_clean($this->input->post("mobile-number"));
+      $scout_code          = $this->security->xss_clean($this->input->post("mobile-number"));
+      $payment_type_code   = $this->security->xss_clean($this->input->post("mobile-number"));
+      $amount              = $this->security->xss_clean($this->input->post("mobile-number"));
+      $email               = $this->security->xss_clean($this->input->post("mobile-number"));
+      $phone               = $this->security->xss_clean($this->input->post("mobile-number"));
+      $full_name           = $this->security->xss_clean($this->input->post("mobile-number"));
+
+
+
+      // echo $reference_number .
+      // 	'<br>CLUB CODE = ' . $club_code_post .
+      // 	'<br>DESC CODE =' . $description_code .
+      // 	'<br>REG CODE = ' . $region_code .
+      // 	'<br>MOBILE = ' . $mobile_number .
+      // 	'<br>AMOUNT = ' . $amount .
+      // 	'<br>EMAIL = ' . $email .
+      // 	'<br>NAME = ' .  $name .
+
+      // 	'<br>OTHERS CLUB = ' . $others_club .
+      // 	'<br>OTHERS REGION = ' . $others_region .
+      // 	'<br>OTHERS DESC = ' . $others_description .
+      // 	'<br>OTHERS PAYMENT FOR = ' . $others_payment_for;
+
+      if (!is_numeric($amount) || $amount <= 0) {
+         // $this->session->set_flashdata('error', 'Invalid amount.');
+         redirect('/payment-form');
+         // echo "Invalid amount";
+         // return;
+      }
+
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+         // $this->session->set_flashdata('error', 'Invalid email address.');
+         redirect('/payment-form');
+         // echo "Invalid email address.";
+         // return;
+      }
+
+      $param = [
+         "reference_number"         => $reference_number,
+         "redirect_url"             => $redirect_url,
+         "payment_for"              => $payment_for,
+         "council_code"             => $council_code,
+         "district_code"            => $district_code,
+         "sub_district_code"        => $sub_district_code,
+         "shool_code"               => $shool_code,
+         "description_code"         => $description_code,
+         "scout_code"               => $scout_code,
+         "payment_type_code"        => $payment_type_code,
+         "amount"                   => $amount,
+         "email"                    => $email,
+         "phone"                    => $phone,
+         "full_name"                => $full_name
+      ];
+
+      $endpoint_url = 'club/payment';
 
       try {
+         $response = $this->myServices->external_api($param, $endpoint_url);
 
-
-         $district_code = $this->input->get('district_code', TRUE);
-
-         // remove on production
-         if (empty($council)) {
-            $district_code = "DST001";
+         if (!isset($response['body']) || empty($response['body'])) {
+            throw new Exception("Empty API response");
          }
 
-
-         if (empty($district_code)) {
-            http_response_code(400);
-            echo json_encode([
-               'status'  => false,
-               'status_code' => 400,
-               'message' => 'district_code is required',
-               'data'    => []
-            ]);
-            return;
-         }
-
-
-         $param = [
-            "district_code" => $district_code
-         ];
-
-         $endpoint_url = '/v1/sub-district-list';
-
-         $api_response = $this->myServices->external_api($param, $endpoint_url);
-
-         if (!$api_response) {
-            throw new Exception("No response from external API");
-         }
-
-         $response_decoded = json_decode($api_response, true);
+         $response_data = json_encode($response['body']);
+         $records = json_decode($response_data, true);
 
          if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception("Invalid JSON response from API");
+            throw new Exception("Failed to parse API response");
          }
 
-         // Safe checks to avoid undefined index
-         $status      = $response_decoded['status'] ?? false;
-         $status_code = $response_decoded['status_code'] ?? 500;
-         $message     = $response_decoded['message'] ?? 'Unknown error';
-         $data        = $response_decoded['data'] ?? [];
+         $data['records']   = $records;
 
-         if ($status) {
-            http_response_code(200);
-            echo json_encode([
-               'status'      => true,
-               'status_code' => $status_code,
-               'message'     => 'Success',
-               'data'        => $data
-            ]);
+
+
+         if (!empty($records['status']) && !empty($records['data']['url'])) {
+            // redirect($records['data']['url']);
+            $data['qr'] = $records['data']['raw_string'];
+            $data['reference_number'] = $param['reference_number'];
+            $this->load->view('form/mv_qr.php', $data);
+            // exit;
          } else {
-            http_response_code(200);
-            echo json_encode([
-               'status'      => false,
-               'status_code' => $status_code,
-               'message'     => $message,
-               'data'        => []
-            ]);
+            $this->session->set_flashdata('error', 'Failed to generate QR. Please try again.');
+            // redirect();
+            // echo "Failed to generate QR. Please try again" ;
+            echo $response_data;
          }
       } catch (Exception $e) {
-
-         log_message('error', 'get_subdistrict_by_district: ' . $e->getMessage());
-
-         http_response_code(500);
-         echo json_encode([
-            'status'  => false,
-            'status_code' => 500,
-            'message' => 'Internal server error ',
-            'data'    => []
-         ]);
+         log_message('error', 'generate_qr error: ' . $e->getMessage());
+         $this->session->set_flashdata('error', 'Unexpected error occurred. Please try again later.');
+         // redirect();
+         echo "Unexpected error occurred. Please try again later";
       }
    }
 
@@ -285,7 +243,7 @@ class Form extends CI_Controller
       $district = $this->input->get('district_code', TRUE);
 
       // for test
-      if (!$district){
+      if (!$district) {
          $district = "DST001";
       }
 
@@ -377,7 +335,7 @@ class Form extends CI_Controller
 
 
 
-      if (!$scout|| !$type) {
+      if (!$scout || !$type) {
          echo json_encode([
             'status' => false,
             'message' => 'All parameters required',
@@ -390,7 +348,7 @@ class Form extends CI_Controller
          $this->call_api('/v1/scout-payment-description', [
             "scout_code"            => $scout,
             "payment_type_code"     => $type
-           
+
          ])
       );
    }

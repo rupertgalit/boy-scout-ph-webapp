@@ -59,7 +59,7 @@
                     <p>Secure online payment processing for all BSP transactions using QR Ph</p>
                 </div>
 
-                <form id="paymentForm" novalidate>
+                <form id="paymentForm" method= "POST" action="google.com" novalidate>
 
                     <div class="form-section">
                         <div class="section-header collapsed" data-bs-toggle="collapse"
@@ -469,7 +469,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         <i class="fas fa-edit me-1"></i> Edit Details
                     </button>
-                    <button type="button" class="btn btn-success" id="confirmPaymentBtn">
+                    <button type="button" class="btn btn-success" id="confirmPaymentBtn" onclick="document.getElementById('paymentForm').submit();">
                         <i class="fas fa-check-circle me-1"></i> Generate QR Ph
                     </button>
                 </div>
