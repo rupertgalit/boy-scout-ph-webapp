@@ -395,7 +395,7 @@
                     <div class="row ">
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">Region</span>
+                                <span class="preview-label">Council</span>
                                 <span class="preview-value" id="previewRegion">-</span>
                             </div>
                         </div>
@@ -407,16 +407,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-2">
+                       <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">District:</span>
-                                <span class="preview-value" id="previewDistrict">-</span>
+                                <span class="preview-label">District Unit:</span>
+                                <span class="preview-value" id="previewDistrictUnit">-</span>
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">District Unit:</span>
-                                <span class="preview-value" id="previewDistrictUnit">-</span>
+                                <span class="preview-label">School:</span>
+                                <span class="preview-value" id="previewSchool">-</span>
                             </div>
                         </div>
                     </div>
