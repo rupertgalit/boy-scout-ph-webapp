@@ -7,42 +7,42 @@
 
          <ul class="sidebar-nav">
            <li class="sidebar-header">Navigation</li>
-           <li class="sidebar-item">
+           <!-- <li class="sidebar-item">
              <a class="sidebar-link" href="/dashboard">
                <i class="align-middle" data-feather="sliders"></i>
                <span class="align-middle">Dashboard</span>
              </a>
-           </li>
+           </li> -->
            <li class="sidebar-item">
              <a
                data-bs-target="#pages"
                data-bs-toggle="collapse"
                class="sidebar-link collapsed">
                <i class="align-middle" data-feather="layout"></i>
-               <span class="align-middle">Tables</span>
+               <span class="align-middle">Transactions</span>
              </a>
              <ul
                id="pages"
                class="sidebar-dropdown list-unstyled collapse"
                data-bs-parent="#sidebar">
                <li class="sidebar-item">
-                 <a class="sidebar-link" href="/transactions">Transactions</a>
+                 <a class="sidebar-link" href="/transactions">Payment</a>
                </li>
-               <li class="sidebar-item">
+               <!-- <li class="sidebar-item">
                  <a class="sidebar-link" href="/transactions-summary">Transactions Summary </a>
-               </li>
-               <li class="sidebar-item">
+               </li> -->
+               <!-- <li class="sidebar-item">
                  <a class="sidebar-link" href="/blank-page">Blank Page </a>
-               </li>
+               </li> -->
              </ul>
            </li>
-
+<!-- 
            <li class="sidebar-item">
              <a class="sidebar-link" href="/accounts">
                <i class="align-middle" data-feather="users"></i>
                <span class="align-middle">Accounts</span>
              </a>
-           </li>
+           </li> -->
 
          </ul>
        </div>

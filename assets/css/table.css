@@ -21,4 +21,6 @@
   table.dataTable thead th {
     white-space: nowrap;
   }
-  
+  div.dt-buttons>.dt-button.disabled, div.dt-buttons>div.dt-button-split .dt-button.disabled{
+    cursor: not-allowed!important;
+  }
