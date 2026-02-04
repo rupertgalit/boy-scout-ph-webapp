@@ -63,34 +63,37 @@ class Form extends CI_Controller
       $reference_number    = 'BSP-' . $this->generate_id_with_datetime();
       $redirect_url        = $this->security->xss_clean($this->input->post("mobile-number"));
 
-      $payment_for         = $this->security->xss_clean($this->input->post("amount"));
-      $council_code        = $this->security->xss_clean($this->input->post("email"));
-      $district_code       = $this->security->xss_clean($this->input->post("name"));
-      $sub_district_code   = $this->security->xss_clean($this->input->post("mobile-number"));
-      $shool_code          = $this->security->xss_clean($this->input->post("mobile-number"));
-      $description_code    = $this->security->xss_clean($this->input->post("mobile-number"));
-      $scout_code          = $this->security->xss_clean($this->input->post("mobile-number"));
-      $payment_type_code   = $this->security->xss_clean($this->input->post("mobile-number"));
-      $amount              = $this->security->xss_clean($this->input->post("mobile-number"));
-      $email               = $this->security->xss_clean($this->input->post("mobile-number"));
-      $phone               = $this->security->xss_clean($this->input->post("mobile-number"));
-      $full_name           = $this->security->xss_clean($this->input->post("mobile-number"));
+      $payment_for         = $this->security->xss_clean($this->input->post("payment-for"));
+      $council_code        = $this->security->xss_clean($this->input->post("council-code"));
+      $district_code       = $this->security->xss_clean($this->input->post("district-code"));
+      $sub_district_code   = $this->security->xss_clean($this->input->post("sub-district-code"));
+      $shool_code          = $this->security->xss_clean($this->input->post("shool-code"));
+      $description_code    = $this->security->xss_clean($this->input->post("description-code"));
+      $scout_code          = $this->security->xss_clean($this->input->post("scout-code"));
+      $payment_type_code   = $this->security->xss_clean($this->input->post("payment-type-code"));
+      $amount              = $this->security->xss_clean($this->input->post("amount"));
+      $email               = $this->security->xss_clean($this->input->post("email"));
+      $phone               = $this->security->xss_clean($this->input->post("phone"));
+      $full_name           = $this->security->xss_clean($this->input->post("fullname"));
 
 
 
-      // echo $reference_number .
-      // 	'<br>CLUB CODE = ' . $club_code_post .
-      // 	'<br>DESC CODE =' . $description_code .
-      // 	'<br>REG CODE = ' . $region_code .
-      // 	'<br>MOBILE = ' . $mobile_number .
-      // 	'<br>AMOUNT = ' . $amount .
-      // 	'<br>EMAIL = ' . $email .
-      // 	'<br>NAME = ' .  $name .
+      echo $reference_number .
+      	'<br>REF = ' . $reference_number .
+      	'<br>URL =' . $redirect_url .
+      	'<br>PAYMENT FOR = ' . $payment_for .
+      	'<br>COUNCIL CODE = ' . $council_code .
+      	'<br>DISTRICT CODE = ' . $district_code .
+      	'<br>SUB DIST CODE = ' . $sub_district_code .
+      	'<br>SCHOOL CODE = ' .  $shool_code .
 
-      // 	'<br>OTHERS CLUB = ' . $others_club .
-      // 	'<br>OTHERS REGION = ' . $others_region .
-      // 	'<br>OTHERS DESC = ' . $others_description .
-      // 	'<br>OTHERS PAYMENT FOR = ' . $others_payment_for;
+      	'<br>DESC CODE = ' . $description_code .
+      	'<br>SCOUT CODE = ' . $scout_code .
+      	'<br>AMOUNT = ' . $amount .
+      	'<br>EMAIL = ' . $email.
+      	'<br>PHONE = ' . $phone.
+      	'<br>NAME = ' . $full_name;
+
 
       if (!is_numeric($amount) || $amount <= 0) {
          // $this->session->set_flashdata('error', 'Invalid amount.');

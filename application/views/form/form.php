@@ -59,7 +59,7 @@
                     <p>Secure online payment processing for all BSP transactions using QR Ph</p>
                 </div>
 
-                <form id="paymentForm" method= "POST" action="google.com" novalidate>
+                <form id="paymentForm" method= "POST" action="generate-qr" novalidate>
 
                     <div class="form-section">
                         <div class="section-header collapsed" data-bs-toggle="collapse"
@@ -77,29 +77,29 @@
                                 <div class="payment-options">
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment_type" value="national" required>
+                                            <input type="radio" name="payment-for" value="BSP-COUNCIL" required>
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-landmark"></i></div>
-                                                <div class="card-title">National Headquarters</div>
+                                                <div class="card-title">COUNCIL Headquarters</div>
                                             </div>
                                         </label>
                                     </div>
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment_type" value="regional">
+                                            <input type="radio" name="payment-for" value="BSP-DISTRICT">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
-                                                <div class="card-title">Regional Council</div>
+                                                <div class="card-title">DISTRICT</div>
                                             </div>
                                         </label>
                                     </div>
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment_type" value="local">
+                                            <input type="radio" name="payment-for" value="BSP-SCHOOL">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-users"></i></div>
@@ -136,7 +136,7 @@
                                             <i class="fas fa-user"></i>
                                             Full Name <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="name" id="fullName"
+                                        <input type="text" class="form-control" name="fullname" id="fullName"
                                             placeholder="Enter your full name" required>
                                         <div class="error-message d-none" id="nameError"></div>
                                     </div>
@@ -146,7 +146,7 @@
                                             <i class="fas fa-mobile-alt"></i>
                                             Mobile Number <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="mobile" id="mobileNumber"
+                                        <input type="text" class="form-control" name="phone" id="mobileNumber"
                                             placeholder="09123456789" maxlength="11" required
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                         <div class="error-message d-none" id="mobileError"></div>
@@ -184,7 +184,7 @@
                                             <i class="fas fa-map-marker-alt"></i>
                                             Council <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="region" id="region" required>
+                                        <select class="form-control" name="council-code" id="region" required>
                                             <option value="" disabled selected>Select Region</option>
                                         </select>
                                         <div class="error-message d-none" id="regionError"></div>
@@ -195,7 +195,7 @@
                                             <i class="fas fa-school"></i>
                                             District <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="district" id="district" required>
+                                        <select class="form-control" name="district-code" id="district" required>
                                             <option value="" disabled selected>Select District</option>
                                         </select>
                                         <div class="error-message d-none" id="districtError"></div>
@@ -206,7 +206,7 @@
                                             <i class="fas fa-building"></i>
                                             District Unit<span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="district_unit" id="districtUnit" required>
+                                        <select class="form-control" name="sub-district-code" id="districtUnit" required>
                                             <option value="" disabled selected>Select District Unit</option>
                                         </select>
                                         <div class="error-message d-none" id="districtUnitError"></div>
@@ -217,7 +217,7 @@
                                             <i class="fas fa-bullseye"></i>
                                             School <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="school" id="school" required>
+                                        <select class="form-control" name="shool-code" id="school" required>
                                             <option value="" disabled selected>Select School</option>
                                         </select>
                                         <div class="error-message d-none" id="schoolError"></div>
@@ -255,7 +255,7 @@
                                             <i class="fas fa-user-shield"></i>
                                             Scout Type <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="scout_type" id="scoutType" required>
+                                        <select class="form-control" name="scout-code" id="scoutType" required>
                                             <option value="" disabled selected>Select Scout Type</option>
 
                                         </select>
@@ -265,9 +265,9 @@
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-file-alt"></i>
-                                            Description <span class="required">*</span>
+                                            Payment Type <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="description" id="description" required>
+                                        <select class="form-control" name="payment-type-code" id="description" required>
                                             <option value="" disabled selected>Select Description</option>
 
                                         </select>
@@ -277,9 +277,9 @@
                                     <div class="col-12">
                                         <label class="form-label">
                                             <i class="fas fa-box"></i>
-                                            Item Category <span class="required">*</span>
+                                            Payment Description <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="item_category" id="itemCategory" required>
+                                        <select class="form-control" name="description-code" id="itemCategory" required>
                                             <option value="" disabled selected>Select Item Category</option>
 
                                         </select>

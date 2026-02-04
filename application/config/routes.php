@@ -66,6 +66,9 @@ $route['qr'] = 'form/qr_page';
 $route['success'] = 'form/success_page';
 
 $route['scout'] = 'form/call_api';
+$route['generate-qr'] = 'form/generate_qr';
+
+
 
 
 
