@@ -77,7 +77,7 @@
                                 <div class="payment-options">
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment-for" value="BSP-COUNCIL" required>
+                                            <input type="radio" name="payment-for" value="BSP-COUNCIL" required style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-landmark"></i></div>
@@ -88,7 +88,7 @@
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment-for" value="BSP-DISTRICT">
+                                            <input type="radio" name="payment-for" value="BSP-DISTRICT" style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
@@ -99,7 +99,7 @@
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment-for" value="BSP-SCHOOL">
+                                            <input type="radio" name="payment-for" value="BSP-SCHOOL" style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-users"></i></div>
@@ -620,7 +620,7 @@
             document.querySelectorAll('.payment-card').forEach(el => el.classList.remove('border-danger'));
 
             // Validate payment type
-            const paymentTypeSelected = document.querySelector('input[name="payment_type"]:checked');
+            const paymentTypeSelected = document.querySelector('input[name="payment-for"]:checked');
             if (!paymentTypeSelected) {
                 document.getElementById('paymentTypeError').classList.remove('d-none');
                 document.querySelectorAll('.payment-card').forEach(el => el.classList.add('border-danger'));
@@ -742,7 +742,7 @@
 
             // Store payment data if valid
             if (isValid) {
-                const paymentTypeElement = document.querySelector('input[name="payment_type"]:checked');
+                const paymentTypeElement = document.querySelector('input[name="payment-for"]:checked');
                 const paymentTypeCard = paymentTypeElement?.closest('.payment-card');
 
                 currentPaymentData = {
@@ -828,7 +828,7 @@
             document.getElementById('previewEmail').textContent = document.getElementById('email').value;
 
             // Payment type
-            const paymentType = document.querySelector('input[name="payment_type"]:checked');
+            const paymentType = document.querySelector('input[name="payment-for"]:checked');
             let paymentTypeText = '-';
             if (paymentType) {
                 const card = paymentType.closest('.payment-card');
