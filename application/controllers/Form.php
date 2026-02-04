@@ -62,7 +62,7 @@ class Form extends CI_Controller
 
       $reference_number    = 'BSP-' . $this->generate_id_with_datetime();
       $redirect_url        = $this->security->xss_clean($this->input->post("mobile-number"));
-      
+
       $payment_for         = $this->security->xss_clean($this->input->post("amount"));
       $council_code        = $this->security->xss_clean($this->input->post("email"));
       $district_code       = $this->security->xss_clean($this->input->post("name"));
@@ -291,9 +291,7 @@ class Form extends CI_Controller
 
 
 
-   /* =========================================================
-   SCOUT TYPE – GET /v1/scout-list
-========================================================= */
+   /* SCOUT TYPE – GET  */
    public function scout_list()
    {
       $result = $this->call_api('/v1/scout-list', [], 'GET');
@@ -307,9 +305,7 @@ class Form extends CI_Controller
    }
 
 
-   /* =========================================================
-   PAYMENT TYPE – GET /v1/scout-payment-type
-========================================================= */
+   /* PAYMENT TYPE –GET  */
    public function scout_payment_type()
    {
       $result = $this->call_api('/v1/scout-payment-type', [], 'GET');
@@ -323,9 +319,7 @@ class Form extends CI_Controller
    }
 
 
-   /* =========================================================
-   ITEM CATEGORY – POST /v1/scout-payment-description
-========================================================= */
+   /* ITEM CATEGORY – POST  */
    public function scout_payment_description()
    {
       header('Content-Type: application/json');
