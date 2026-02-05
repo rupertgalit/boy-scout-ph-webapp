@@ -193,8 +193,9 @@
 <!-- for qr code -->
     <script>
         var qrcode = new QRCode(document.getElementById("qrCodeContainer"), {
-           
-            text: "00020101021228760011ph.ppmi.p2m0111OPDVPHM1XXX0315777148000000084041652948137257075730503001520460165303608540570.005802PH5909Netglobal6015City Of Mandalu62370010ph.allbank05194020262201-DST1Aq1288310012ph.ppmi.qrph0111OPDVPHM1XXX6304DD4E",
+
+            text : "<?=  $qr ?>",
+            // text: "00020101021228760011ph.ppmi.p2m0111OPDVPHM1XXX0315777148000000084041652948137257075730503001520460165303608540570.005802PH5909Netglobal6015City Of Mandalu62370010ph.allbank05194020262201-DST1Aq1288310012ph.ppmi.qrph0111OPDVPHM1XXX6304DD4E",
             logo: "/assets/images/qr-logo.png",
             logoWidth: 40,
             logoHeight: 40,

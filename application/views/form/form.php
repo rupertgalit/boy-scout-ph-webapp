@@ -14,6 +14,7 @@
     <link href="/assets/css/form.css" rel="stylesheet" />
     <link href="/assets/css/modal.css" rel="stylesheet" />
 
+
     <style>
         .loading-select {
             background:
@@ -59,7 +60,7 @@
                     <p>Secure online payment processing for all BSP transactions using QR Ph</p>
                 </div>
 
-                <form id="paymentForm" method= "POST" action="generate-qr" novalidate>
+                <form id="paymentForm" method="POST" action="/generate-qr" novalidate>
 
                     <div class="form-section">
                         <div class="section-header collapsed" data-bs-toggle="collapse"
@@ -217,7 +218,7 @@
                                             <i class="fas fa-bullseye"></i>
                                             School <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="shool-code" id="school" required>
+                                        <select class="form-control" name="school-code" id="school" required>
                                             <option value="" disabled selected>Select School</option>
                                         </select>
                                         <div class="error-message d-none" id="schoolError"></div>
@@ -407,7 +408,7 @@
                         </div>
                     </div>
                     <div class="row">
-                       <div class="col-md-6 mb-2">
+                        <div class="col-md-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">District Unit:</span>
                                 <span class="preview-value" id="previewDistrictUnit">-</span>
@@ -468,8 +469,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         <i class="fas fa-edit me-1"></i> Edit Details
                     </button>
-                    <button type="button" class="btn btn-success" id="confirmPaymentBtn"
-                        onclick="document.getElementById('paymentForm').submit();">
+                    <button type="button" class="btn btn-success" id="confirmPaymentBtn">
                         <i class="fas fa-check-circle me-1"></i> Generate QR Ph
                     </button>
                 </div>
@@ -478,6 +478,31 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            <?php if ($this->session->flashdata('error')): ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    html: `<?= $this->session->flashdata('error'); ?>`,
+                    confirmButtonColor: '#3085d6'
+                });
+            <?php endif; ?>
+
+            <?php if ($this->session->flashdata('success')): ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    html: `<?= $this->session->flashdata('success'); ?>`,
+                    confirmButtonColor: '#3085d6'
+                });
+            <?php endif; ?>
+
+        });
+    </script>
     <script>
         // SweetAlert Error
         function showError(message) {
@@ -494,7 +519,7 @@
 
         const amountInput = document.getElementById('amount');
 
-        amountInput.addEventListener('input', function () {
+        amountInput.addEventListener('input', function() {
             let value = this.value;
 
             if (/^9{4,}$/.test(value)) {
@@ -513,14 +538,14 @@
 
 
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize Bootstrap collapse
             const collapses = document.querySelectorAll('.collapse');
             collapses.forEach(collapse => {
-                collapse.addEventListener('show.bs.collapse', function () {
+                collapse.addEventListener('show.bs.collapse', function() {
                     this.closest('.form-section').querySelector('.section-header').classList.remove('collapsed');
                 });
-                collapse.addEventListener('hide.bs.collapse', function () {
+                collapse.addEventListener('hide.bs.collapse', function() {
                     this.closest('.form-section').querySelector('.section-header').classList.add('collapsed');
                 });
             });
@@ -529,15 +554,34 @@
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
             // Preview button event listener
-            document.getElementById('previewBtn').addEventListener('click', function () {
+            document.getElementById('previewBtn').addEventListener('click', function() {
                 if (validateForm()) {
                     updatePreview();
+
+                    const itemCat = document.getElementById("itemCategory");
+                    const errorDiv = document.getElementById("itemCategoryError");
+
+                    // 1. Check if disabled or no valid value
+                    if (itemCat.disabled || !itemCat.value) {
+
+                        errorDiv.classList.remove("d-none");
+                        errorDiv.innerText = "Please select a valid item category.";
+
+                        itemCat.classList.add("is-invalid");
+
+                        return; // STOP – do not proceed
+                    }
+
+                    // 2. Passed validation
+                    errorDiv.classList.add("d-none");
+                    itemCat.classList.remove("is-invalid");
+
                     previewModal.show();
                 }
             });
 
             // Confirm payment button event listener
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
                 if (validateForm()) {
 
                     previewModal.hide();
@@ -545,7 +589,7 @@
             });
 
             // School select change handler
-            document.getElementById('school').addEventListener('change', function () {
+            document.getElementById('school').addEventListener('change', function() {
                 const otherFields = document.getElementById('otherSchoolFields');
                 if (this.value === 'other') {
                     otherFields.style.display = 'block';
@@ -558,7 +602,7 @@
             // Payment card click handlers
             document.querySelectorAll('.payment-card').forEach(card => {
                 const input = card.querySelector('input[type="radio"]');
-                card.addEventListener('click', function (e) {
+                card.addEventListener('click', function(e) {
                     if (e.target !== input) {
                         input.checked = true;
                         updateCardStates();
@@ -569,7 +613,7 @@
                     }
                 });
 
-                input.addEventListener('change', function () {
+                input.addEventListener('change', function() {
                     updateCardStates();
                 });
             });
@@ -579,7 +623,7 @@
                 element.addEventListener('blur', validateField);
 
                 if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function () {
+                    element.addEventListener('keyup', function() {
                         const errorElement = this.closest('.col-md-6, .col-12, .col-md-8')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -589,7 +633,7 @@
                 }
 
                 if (element.tagName.toLowerCase() === 'select') {
-                    element.addEventListener('change', function () {
+                    element.addEventListener('change', function() {
                         const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -954,7 +998,7 @@
 
 
         /* ===== DISTRICT ===== */
-        document.getElementById("region").addEventListener("change", function () {
+        document.getElementById("region").addEventListener("change", function() {
 
             let council = this.value;
 
@@ -1002,7 +1046,7 @@
 
 
         /* ===== SUB DISTRICT ===== */
-        document.getElementById("district").addEventListener("change", function () {
+        document.getElementById("district").addEventListener("change", function() {
 
             let district = this.value;
 
@@ -1048,7 +1092,7 @@
 
 
         /* ===== SCHOOL ===== */
-        document.getElementById("districtUnit").addEventListener("change", function () {
+        document.getElementById("districtUnit").addEventListener("change", function() {
 
             let council = document.getElementById("region").value;
             let district = document.getElementById("district").value;
@@ -1088,6 +1132,7 @@
                     });
 
                     document.getElementById("school").innerHTML = opt;
+
                     setDisabled("school", false);
                 })
                 .catch(() => {
@@ -1173,7 +1218,7 @@
 
         /*  SCOUT TYPE  */
 
-        document.getElementById("scoutType").addEventListener("change", function () {
+        document.getElementById("scoutType").addEventListener("change", function() {
 
             let scout = this.value;
 
@@ -1200,8 +1245,8 @@
 
                     list.forEach(p => {
                         opt += `<option value="${p.payment_type_code}">
-        ${p.category_name}
-      </option>`;
+                        ${p.category_name}
+                        </option>`;
                     });
 
                     document.getElementById("description").innerHTML = opt;
@@ -1220,10 +1265,16 @@
 
         /*  ON DESCRIPTION */
 
-        document.getElementById("description").addEventListener("change", function () {
+        document.getElementById("description").addEventListener("change", function() {
+
 
             let scout = document.getElementById("scoutType").value;
             let type = this.value;
+
+            // CLEAR AMOUNT ON NEW PAYMENT TYPE
+            const amountInput = document.getElementById("amount");
+            amountInput.value = "";
+            amountInput.removeAttribute("readonly");
 
             resetSelect("itemCategory", "Select Item Category");
             setDisabled("itemCategory", true);
@@ -1241,23 +1292,65 @@
 
                     let list = Array.isArray(res.data) ? res.data : [res.data];
 
-                    if (!res.data || list.length === 0) {
+                    if (
+                        !res.data ||
+                        res.data === "" ||
+                        (Array.isArray(res.data) && res.data.length === 0) ||
+                        list.length === 0
+                    ) {
+
+
                         setSkeleton("itemCategory", "No items available");
+
+                        const itemCat = document.getElementById("itemCategory");
+                        const amountInput = document.getElementById("amount");
+
+                        itemCat.setAttribute("required", true);
+                        itemCat.setAttribute("disabled", true);
+
+
+                        //  CLEAR AMOUNT
+                        amountInput.value = "";
+                        amountInput.removeAttribute("readonly");
+
+                        document.getElementById("itemCategoryError").classList.remove("d-none");
+                        document.getElementById("itemCategoryError").innerText =
+                            "No available items for selected payment type.";
+
                         return;
                     }
 
+
                     list.forEach(d => {
-                        opt += `<option value="${d.description_code}"
-        data-amount="${d.amount}"
-        data-fee="${d.ngsi_fee}">
-        ${d.description_name}
-      </option>`;
+
+                        const code = d.description_code || '';
+                        const name = d.description_name || '';
+                        const amount_fix = d.is_fix; // 1 or 0
+                        const amount = d.amount;
+                        const amount_display = d.amount ? '(₱' + parseFloat(d.amount).toFixed(2) + ')' : '';
+                        const fee = d.ngsi_fee || '';
+
+
+                        opt += `<option 
+                            value="${code}" 
+                            data-amount="${amount}" 
+                            data-fee="${fee}"
+                            data-fix="${amount_fix}">
+                            ${name} ${amount_display}
+                        </option>`;
+
                     });
 
+                    let input_amount = document.getElementById('amount').value
+
                     document.getElementById("itemCategory").innerHTML = opt;
+
                     setDisabled("itemCategory", false);
 
                     autoSelectIfSingle("itemCategory");
+                    const itemCat = document.getElementById("itemCategory");
+                    itemCat.removeAttribute("disabled");
+                    itemCat.setAttribute("required", true);
 
                 })
                 .catch(() => {
@@ -1270,7 +1363,74 @@
 
 
         loadScoutTypes();
+
+        /*  ON DESCRIPTION ITEM CATEGORY */
+        document.getElementById("itemCategory").addEventListener("change", function() {
+
+            const selected = this.options[this.selectedIndex];
+
+            const fix = selected.getAttribute("data-fix");
+            const amount = selected.getAttribute("data-amount");
+
+            const amountInput = document.getElementById("amount");
+
+            if (fix == "1") {
+
+                amountInput.value = amount;
+                amountInput.setAttribute("readonly", true);
+
+                //  Remove hover & cursor
+                amountInput.style.pointerEvents = "none";
+                amountInput.style.cursor = "default";
+
+
+                amountInput.style.backgroundColor = "#e9ecef";
+
+
+            } else {
+
+                //  CLEAR IF NOT FIX
+                amountInput.value = "";
+                amountInput.removeAttribute("readonly");
+
+
+                amountInput.style.pointerEvents = "";
+                amountInput.style.cursor = "";
+
+                amountInput.style.backgroundColor = "";
+
+            }
+
+        });
     </script>
+
+
+
+    <script>
+        document.getElementById("confirmPaymentBtn").addEventListener("click", function() {
+
+            const btn = this;
+
+
+            if (btn.disabled) return;
+
+            btn.disabled = true;
+
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Processing...';
+
+
+            document.getElementById("paymentForm").submit();
+
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle me-1"></i> Generate QR Ph';
+            }, 5000);
+        });
+    </script>
+
+
 
 
 

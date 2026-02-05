@@ -49,7 +49,7 @@ class MyServices
          $error_message = 'Token generation failed. cURL error: ' . ($curl_error ?: 'No response from server.');
          log_message('error', $error_message);
          $CI->session->set_flashdata('error', $error_message);
-         redirect();
+         redirect('form');
          exit;
       }
       $message = json_decode($response, true);
@@ -59,7 +59,7 @@ class MyServices
          $error_message = 'Token generation failed. Invalid JSON or missing token. Response: ' .  $message['message'];
          log_message('error', $error_message);
          $CI->session->set_flashdata('error', $error_message);
-         redirect();
+         redirect('form');
          exit;
       }
 

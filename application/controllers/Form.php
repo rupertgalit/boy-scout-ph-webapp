@@ -56,115 +56,230 @@ class Form extends CI_Controller
    }
 
 
+   // public function generate_qr_old()
+   // {
+
+
+   //    $reference_number    = 'BSP-' . $this->generate_id_with_datetime();
+   //    $redirect_url        = base_url('form');
+
+   //    $payment_for         = $this->security->xss_clean($this->input->post("payment-for"));
+   //    $council_code        = $this->security->xss_clean($this->input->post("council-code"));
+   //    $district_code       = $this->security->xss_clean($this->input->post("district-code"));
+   //    $sub_district_code   = $this->security->xss_clean($this->input->post("sub-district-code"));
+   //    $school_code         = $this->security->xss_clean($this->input->post("school-code"));
+   //    $description_code    = $this->security->xss_clean($this->input->post("description-code"));
+   //    $scout_code          = $this->security->xss_clean($this->input->post("scout-code"));
+   //    $payment_type_code   = $this->security->xss_clean($this->input->post("payment-type-code"));
+   //    $amount              = $this->security->xss_clean($this->input->post("amount"));
+   //    $email               = $this->security->xss_clean($this->input->post("email"));
+   //    $phone               = $this->security->xss_clean($this->input->post("phone"));
+   //    $full_name           = $this->security->xss_clean($this->input->post("fullname"));
+
+
+
+   //    // echo $reference_number .
+   //    // 	'<br>REF = ' . $reference_number .
+   //    // 	'<br>URL =' . $redirect_url .
+   //    // 	'<br>PAYMENT FOR = ' . $payment_for .
+   //    // 	'<br>COUNCIL CODE = ' . $council_code .
+   //    // 	'<br>DISTRICT CODE = ' . $district_code .
+   //    // 	'<br>SUB DIST CODE = ' . $sub_district_code .
+   //    // 	'<br>SCHOOL CODE = ' .  $school_code .
+
+   //    // 	'<br>DESC CODE = ' . $description_code .
+   //    // 	'<br>SCOUT CODE = ' . $scout_code .
+   //    //    '<br>PAYMENT TYPE CODE = ' . $payment_type_code. 
+   //    // 	'<br>AMOUNT = ' . $amount .
+   //    // 	'<br>EMAIL = ' . $email.
+   //    // 	'<br>PHONE = ' . $phone.
+   //    // 	'<br>NAME = ' . $full_name;
+
+
+   //    // if (!is_numeric($amount) || $amount <= 0) {
+   //    //    // $this->session->set_flashdata('error', 'Invalid amount.');
+   //    //    redirect('/payment-form');
+   //    //    // echo "Invalid amount";
+   //    //    // return;
+   //    // }
+
+   //    // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+   //    //    // $this->session->set_flashdata('error', 'Invalid email address.');
+   //    //    redirect('/payment-form');
+   //    //    // echo "Invalid email address.";
+   //    //    // return;
+   //    // }
+
+   //    $param = [
+   //       "reference_number"         => $reference_number,
+   //       "redirect_url"             => $redirect_url,
+   //       "payment_for"              => $payment_for,
+   //       "council_code"             => $council_code,
+   //       "district_code"            => $district_code,
+   //       "sub_district_code"        => $sub_district_code,
+   //       "school_code"              => $school_code,
+   //       "description_code"         => $description_code,
+   //       "scout_code"               => $scout_code,
+   //       "payment_type_code"        => $payment_type_code,
+   //       "amount"                   => $amount,
+   //       "email"                    => $email,
+   //       "phone"                    => $phone,
+   //       "full_name"                => $full_name
+   //    ];
+
+   //    $endpoint_url = '/v1/bsp-payment';
+
+   //    try {
+   //       $response = $this->myServices->external_api($param, $endpoint_url);
+
+   //       if (!$response) {
+   //          throw new Exception("Empty response from API");
+   //       }
+
+
+   //       $records = json_decode($response, true);
+
+   //       if (json_last_error() !== JSON_ERROR_NONE) {
+   //          throw new Exception("Failed to parse API response");
+   //       }
+
+   //       $data['records']   = $records;
+
+
+
+   //       if (!empty($records['status']) && !empty($records['data']['url'])) {
+   //          // redirect($records['data']['url']);
+   //          $data['qr'] = $records['data']['raw_string'];
+   //          $data['reference_number'] = $param['reference_number'];
+   //          $this->load->view('form/qrph.php', $data);
+   //          // exit;
+   //       } else {
+   //          $this->session->set_flashdata('error', 'Failed to generate QR. Please try again.');
+   //          // redirect();
+   //          // echo "Failed to generate QR. Please try again" ;
+   //          echo $response;
+   //       }
+   //    } catch (Exception $e) {
+   //       log_message('error', 'generate_qr error: ' . $e->getMessage());
+   //       $this->session->set_flashdata('error', 'Unexpected error occurred. Please try again later.');
+   //       // redirect();
+   //       echo "Unexpected error occurred. Please try again later";
+   //    }
+   // }
+
+
    public function generate_qr()
    {
+      
+      $this->load->library('form_validation');
 
+ 
 
-      $reference_number    = 'BSP-' . $this->generate_id_with_datetime();
-      $redirect_url        = $this->security->xss_clean($this->input->post("mobile-number"));
+      $this->form_validation->set_rules('payment-for', 'Payment For', 'required|trim');
+      $this->form_validation->set_rules('council-code', 'Council', 'required|trim');
+      $this->form_validation->set_rules('district-code', 'District', 'required|trim');
+      $this->form_validation->set_rules('description-code', 'Description', 'required|trim');
+      $this->form_validation->set_rules('scout-code', 'Scout Type', 'required|trim');
+      $this->form_validation->set_rules('payment-type-code', 'Payment Type', 'required|trim');
 
-      $payment_for         = $this->security->xss_clean($this->input->post("payment-for"));
-      $council_code        = $this->security->xss_clean($this->input->post("council-code"));
-      $district_code       = $this->security->xss_clean($this->input->post("district-code"));
-      $sub_district_code   = $this->security->xss_clean($this->input->post("sub-district-code"));
-      $shool_code          = $this->security->xss_clean($this->input->post("shool-code"));
-      $description_code    = $this->security->xss_clean($this->input->post("description-code"));
-      $scout_code          = $this->security->xss_clean($this->input->post("scout-code"));
-      $payment_type_code   = $this->security->xss_clean($this->input->post("payment-type-code"));
-      $amount              = $this->security->xss_clean($this->input->post("amount"));
-      $email               = $this->security->xss_clean($this->input->post("email"));
-      $phone               = $this->security->xss_clean($this->input->post("phone"));
-      $full_name           = $this->security->xss_clean($this->input->post("fullname"));
+      $this->form_validation->set_rules('amount', 'Amount', 'required|numeric|greater_than[0]');
+      $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+      $this->form_validation->set_rules('phone', 'Phone', 'required|min_length[7]|max_length[15]');
+      $this->form_validation->set_rules('fullname', 'Full Name', 'required|min_length[3]');
 
+      if ($this->form_validation->run() == FALSE) {
 
-
-      echo $reference_number .
-      	'<br>REF = ' . $reference_number .
-      	'<br>URL =' . $redirect_url .
-      	'<br>PAYMENT FOR = ' . $payment_for .
-      	'<br>COUNCIL CODE = ' . $council_code .
-      	'<br>DISTRICT CODE = ' . $district_code .
-      	'<br>SUB DIST CODE = ' . $sub_district_code .
-      	'<br>SCHOOL CODE = ' .  $shool_code .
-
-      	'<br>DESC CODE = ' . $description_code .
-      	'<br>SCOUT CODE = ' . $scout_code .
-      	'<br>AMOUNT = ' . $amount .
-      	'<br>EMAIL = ' . $email.
-      	'<br>PHONE = ' . $phone.
-      	'<br>NAME = ' . $full_name;
-
-
-      if (!is_numeric($amount) || $amount <= 0) {
-         // $this->session->set_flashdata('error', 'Invalid amount.');
-         redirect('/payment-form');
-         // echo "Invalid amount";
-         // return;
+         // Return validation errors
+         $this->session->set_flashdata('error', validation_errors());
+         redirect('form');
+         return;
       }
 
-      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         // $this->session->set_flashdata('error', 'Invalid email address.');
-         redirect('/payment-form');
-         // echo "Invalid email address.";
-         // return;
-      }
+
+      $reference_number = 'BSP-' . $this->generate_id_with_datetime();
+      $redirect_url     = base_url('form');
 
       $param = [
-         "reference_number"         => $reference_number,
-         "redirect_url"             => $redirect_url,
-         "payment_for"              => $payment_for,
-         "council_code"             => $council_code,
-         "district_code"            => $district_code,
-         "sub_district_code"        => $sub_district_code,
-         "shool_code"               => $shool_code,
-         "description_code"         => $description_code,
-         "scout_code"               => $scout_code,
-         "payment_type_code"        => $payment_type_code,
-         "amount"                   => $amount,
-         "email"                    => $email,
-         "phone"                    => $phone,
-         "full_name"                => $full_name
+         "reference_number"  => $reference_number,
+         "redirect_url"      => $redirect_url,
+
+         "payment_for"       => $this->security->xss_clean($this->input->post("payment-for")),
+         "council_code"      => $this->security->xss_clean($this->input->post("council-code")),
+         "district_code"     => $this->security->xss_clean($this->input->post("district-code")),
+         "sub_district_code" => $this->security->xss_clean($this->input->post("sub-district-code")),
+         "school_code"       => $this->security->xss_clean($this->input->post("school-code")),
+
+         "description_code"  => $this->security->xss_clean($this->input->post("description-code")),
+         "scout_code"        => $this->security->xss_clean($this->input->post("scout-code")),
+         "payment_type_code" => $this->security->xss_clean($this->input->post("payment-type-code")),
+
+         "amount"            => number_format((float)$this->input->post("amount"), 2, '.', ''),
+
+         "email"             => $this->security->xss_clean($this->input->post("email")),
+         "phone"             => $this->security->xss_clean($this->input->post("phone")),
+         "full_name"         => $this->security->xss_clean($this->input->post("fullname"))
       ];
 
-      $endpoint_url = 'club/payment';
+      $endpoint_url = '/v1/bsp-payment';
+
+
 
       try {
+
          $response = $this->myServices->external_api($param, $endpoint_url);
 
-         if (!isset($response['body']) || empty($response['body'])) {
-            throw new Exception("Empty API response");
+         if (empty($response)) {
+            throw new Exception("Empty response from API");
          }
 
-         $response_data = json_encode($response['body']);
-         $records = json_decode($response_data, true);
+         $records = json_decode($response, true);
 
          if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception("Failed to parse API response");
+            log_message('error', 'API raw response: ' . $response);
+            throw new Exception("Invalid JSON response from API");
          }
 
-         $data['records']   = $records;
 
 
+         if (
+            isset($records['status']) &&
+            $records['status'] == true &&
+            !empty($records['data']['url'])
+         ) {
 
-         if (!empty($records['status']) && !empty($records['data']['url'])) {
-            // redirect($records['data']['url']);
-            $data['qr'] = $records['data']['raw_string'];
-            $data['reference_number'] = $param['reference_number'];
-            $this->load->view('form/mv_qr.php', $data);
-            // exit;
-         } else {
-            $this->session->set_flashdata('error', 'Failed to generate QR. Please try again.');
-            // redirect();
-            // echo "Failed to generate QR. Please try again" ;
-            echo $response_data;
+            $data = [
+               'records'          => $records,
+               'qr'               => $records['data']['raw_string'],
+               'reference_number' => $reference_number
+            ];
+
+            $this->load->view('form/qrph.php', $data);
+            return;
          }
+
+
+
+         $message = isset($records['message'])
+            ? $records['message']
+            : 'Failed to generate QR. Please try again.';
+
+         $this->session->set_flashdata('error', $message);
+         redirect('/form');
+         return;
       } catch (Exception $e) {
+
          log_message('error', 'generate_qr error: ' . $e->getMessage());
-         $this->session->set_flashdata('error', 'Unexpected error occurred. Please try again later.');
-         // redirect();
-         echo "Unexpected error occurred. Please try again later";
+
+         $this->session->set_flashdata(
+            'error',
+            'Unexpected error occurred. Please try again later.'
+         );
+
+         redirect('/form');
+         return;
       }
    }
+
 
 
 
