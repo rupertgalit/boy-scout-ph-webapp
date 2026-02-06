@@ -43,7 +43,7 @@ A CodeIgniter 3 web application for processing BSP payments and generating QRPh 
 ## 📄 Author
 
 Developed for BSP Payment Integration
-NGSI Dev Team
+-NGSI Dev Team
 © 2026
 
 ---
