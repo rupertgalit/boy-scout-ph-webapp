@@ -195,8 +195,8 @@
          searching: true,
          responsive: true,
          autoWidth: false,
-         pageLength: 25,
-         order: [[0, 'asc']],
+         pageLength: 10,
+         order: [[14, 'asc']],
          dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6"f>>' +
             '<"row"<"col-sm-12"tr>>' +
             '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
