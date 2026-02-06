@@ -28,17 +28,13 @@
                      <select class="form-select" id="statusSelect" name="status">
 
                         <option value="ALL">ALL</option>
+                        <option value="SUCCESS">SUCCESS</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="FAILED">FAILED</option>
 
                      </select>
 
                   </div>
-
-
-
-
-
-
-
                   <div class="col-auto d-flex align-items-end">
                      <button type="submit" class="btn btn-primary" id="filterBtn">Submit</button>
                   </div>
@@ -50,57 +46,121 @@
          </div>
 
 
-
          <table id="myTable" class="table table-hover">
             <thead>
                <tr>
+                  <th>#</th>
                   <th>Reference #</th>
-                  <th>Status</th>
                   <th>Full Name</th>
-                  <th>Mobile #</th>
-                  <th>Email</th>
-                  <th>Council</th>
-                  <th>District</th>
-                  <th>Sub-district</th>
-                  <th>School</th>
-                  <th>Description</th>
-                  <th>Scout Level</th>
-                  <th>Category</th>
-                  <th>Created date</th>
-                  <th>Modified date</th>
-                  <th>Destination</th>
-                  <th>Transaction #</th>
+                  <th>Status</th>
                   <th>Amount</th>
                   <th>Fees</th>
-                  <th>Total</th>
-                  <th>Remarks</th>
+                  <th>Txn Amount</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Scout Level</th>
+                  <th>School</th>
+                  <th>Sub District</th>
+                  <th>District</th>
+                  <th>Council</th>
+                  <th>Scout Level</th>
+                  <th>Created</th>
+                  <th>Modified</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Payment For</th>
+
                </tr>
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td>REF-2026-00123</td>
-                  <td><span class="badge bg-success">Success</span></td>
-                  <td>Juan Dela Cruz</td>
-                  <td>09171234567</td>
-                  <td>juan.delacruz@email.com</td>
-                  <td>Metro Manila Council</td>
-                  <td>District 1</td>
-                  <td>Sub-district A</td>
-                  <td>Rizal High School</td>
-                  <td>Registration payment</td>
-                  <td>Senior Scout</td>
-                  <td>Membership</td>
-                  <td>2026-01-10</td>
-                  <td>2026-01-12</td>
-                  <td>National HQ</td>
-                  <td>TXN-987654321</td>
-                  <td>₱1,000.00</td>
-                  <td>₱50.00</td>
-                  <td>₱1,050.00</td>
-                  <td>Paid in full</td>
-               </tr>
+
+               <?php if (!empty($transactions)): ?>
+
+                  <?php $i = 1;
+                  foreach ($transactions as $row): ?>
+
+                     <?php
+
+                     $badge = 'secondary';
+
+                     switch (strtoupper($row['status'])) {
+                        case 'PENDING':
+                           $badge = 'warning';
+                           break;
+                        case 'SUCCESS':
+                           $badge = 'success';
+                           break;
+                        case 'FAILED':
+                           $badge = 'danger';
+                           break;
+                     }
+
+                     $amount     = number_format($row['amount'], 2);
+                     $fee        = number_format($row['ngsi_fee'], 2);
+                     $txn_amount = number_format($row['txn_amount'], 2);
+                     ?>
+
+                     <tr>
+                        <td><?= $i++; ?></td>
+
+                        <td><?= htmlspecialchars($row['reference_number']); ?></td>
+
+                        <td><?= htmlspecialchars($row['full_name']); ?></td>
+
+                        <td>
+                           <span class="badge bg-<?= $badge; ?>">
+                              <?= htmlspecialchars($row['status']); ?>
+                           </span>
+                        </td>
+
+                        <td>₱<?= $amount; ?></td>
+
+                        <td>₱<?= $fee; ?></td>
+
+                        <td>₱<?= $txn_amount; ?></td>
+
+                        <td><?= htmlspecialchars($row['description_name']); ?></td>
+
+                        <td><?= htmlspecialchars($row['category_name']); ?></td>
+
+                        <td><?= htmlspecialchars($row['scout_level']); ?></td>
+
+                        <td><?= htmlspecialchars($row['school_name']); ?></td>
+
+                        <td><?= htmlspecialchars($row['sub_district_name']); ?></td>
+
+                        <td><?= htmlspecialchars($row['district_name']); ?></td>
+
+                        <td><?= htmlspecialchars($row['council_name']); ?></td>
+
+                        <td><?= htmlspecialchars($row['scout_level']); ?></td>
+
+                        <td><?= htmlspecialchars($row['created_at']); ?></td>
+
+                        <td><?= htmlspecialchars($row['modified_at'] ?? ''); ?></td>
+
+                        <td><?= htmlspecialchars($row['phone']); ?></td>
+
+                        <td><?= htmlspecialchars($row['email']); ?></td>
+
+                        <td><?= htmlspecialchars($row['payment_for']); ?></td>
+                     </tr>
+
+                  <?php endforeach; ?>
+
+               <?php else: ?>
+
+                  <tr>
+                     <td colspan="19" class="text-center text-muted">
+                        No records found
+                     </td>
+                  </tr>
+
+               <?php endif; ?>
+
             </tbody>
+
          </table>
       </div>
    </div>
@@ -120,7 +180,7 @@
          scrollX: true,
          searching: true,
          responsive: false,
-         autoWidth: false,
+         autoWidth: true,
          dom: 'Bfrtip',
          buttons: [{
                extend: 'csvHtml5',
@@ -156,3 +216,23 @@
       }
    });
 </script>
+
+
+
+<?php if (!empty($session_denied)): ?>
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <script>
+      Swal.fire({
+         icon: 'warning',
+         title: 'Session Expired',
+         text: '<?= $denied_message; ?>',
+         allowOutsideClick: false,
+         confirmButtonText: 'OK'
+      }).then(() => {
+         window.location.href = "<?= base_url('auth/logout'); ?>";
+      });
+   </script>
+
+<?php endif; ?>

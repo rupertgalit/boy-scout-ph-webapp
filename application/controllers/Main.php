@@ -18,6 +18,12 @@ class Main extends CI_Controller
 		$this->load->view('test.php');
 	}
 
+	public function page_not_found()
+{
+    $this->output->set_status_header(404);
+    $this->load->view('404/404.php');
+}
+
 
 
 }

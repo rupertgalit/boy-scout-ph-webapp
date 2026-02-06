@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['404_override'] = 'main/page_not_found';
 
-$route['default_controller'] = 'auth/login';
+$route['default_controller'] = 'auth';
 /*dashboard pages*/
 $route['dashboard'] = 'dashboard/dashboard_page';
 $route['transactions'] = 'dashboard/transactions_page';
@@ -64,6 +64,10 @@ $route['blank-page'] = 'dashboard/blank_page';
 $route['form'] = 'form/form_page';
 $route['qr'] = 'form/qr_page';
 $route['success'] = 'form/success_page';
+
+$route['login'] = 'auth/login';
+$route['logout'] = 'auth/logout';
+
 
 $route['scout'] = 'form/call_api';
 $route['generate-qr'] = 'form/generate_qr';

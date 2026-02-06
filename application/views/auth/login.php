@@ -34,6 +34,7 @@
 
 						<div class="card">
 							<div class="card-body">
+								<?php if ($this->session->flashdata('error')): ?>
 								<div class="alert alert-danger alert-dismissible" role="alert">
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									<div class="alert-icon">
@@ -43,8 +44,11 @@
 										Invalid username or password
 									</div>
 								</div>
+								 <?php endif; ?>
+
+
 								<div class="m-sm-3">
-									<form>
+									<form method="POST" action="login">
 										<div class="mb-3">
 											<label class="form-label">Username</label>
 											<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter your username" />
@@ -56,7 +60,7 @@
 										</div>
 
 										<div class="d-grid gap-2 mt-3">
-											<a class='btn btn-lg btn-primary' href='/'>Sign in</a>
+											<button class='btn btn-lg btn-primary' type="submit" id="submit" value="Login">Sign in</button>
 										</div>
 									</form>
 								</div>
