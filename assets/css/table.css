@@ -19,8 +19,18 @@
   }
 
   table.dataTable thead th {
+    padding: 20px;
+    text-align: center;
     white-space: nowrap;
   }
   div.dt-buttons>.dt-button.disabled, div.dt-buttons>div.dt-button-split .dt-button.disabled{
     cursor: not-allowed!important;
   }
+  .date-col {
+   min-width: 160px !important;
+   white-space: nowrap;
+}
+.ref-col {
+   min-width: 200px !important;
+   white-space: nowrap;
+}

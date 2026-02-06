@@ -18,47 +18,31 @@
 <body>
     <div class="main-container">
 
-        <div class="header-container animate__animated animate__fadeInDown">
-            <div class="header-row row align-items-center">
-                <div class="col-lg-2 col-md-3 text-center text-md-start">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg"
-                        alt="Philippine Flag" class="header-flag float-animation">
-                </div>
+        <div class="qrph-container animate__animated animate__fadeIn">
+            <div class="header-container animate__animated animate__fadeInDown">
+                <div class="header-row row align-items-center">
+                    <div class="col-lg-2 col-md-3 text-center text-md-start">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg"
+                            alt="Philippine Flag" class="header-flag float-animation">
+                    </div>
 
-                <div class="col-lg-8 col-md-6 header-center">
-                    <h1>BOY SCOUTS OF THE PHILIPPINES</h1>
-                    <p class="subtitle">National Headquarters</p>
-                    <p class="tagline">"Be Prepared"</p>
-                    <div class="badge-container">
-                        <i class="fas fa-shield-alt me-2"></i>
-                        <span>Official Payment Portal</span>
+                    <div class="col-lg-8 col-md-6 header-center">
+                        <h3>BOY SCOUTS OF THE PHILIPPINES</h3>
+                        <p class="subtitle">National Headquarters</p>
+                        <p class="tagline">"Be Prepared"</p>
+                        <div class="badge-container">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            <span>Official Payment Portal</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 text-center text-md-end">
+                        <img src="assets\images\boyscouts_logofinal.png" alt="BSP Logo"
+                            class="header-logo float-animation">
                     </div>
                 </div>
-
-                <div class="col-lg-2 col-md-3 text-center text-md-end">
-                    <img src="assets\images\boyscouts_logofinal.png"
-                        alt="BSP Logo" class="header-logo float-animation">
-                </div>
             </div>
-        </div>
-
-        <div class="qrph-container animate__animated animate__fadeIn">
-            <div class="qrph-header">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="text-success">QR Ph Generated Successfully!</h2>
-                <p class="text-muted">Scan this QR Ph code with your bank or e-wallet app to complete payment</p>
-            </div>
-
-            <div class="qrph-merchant">
-                <img src="assets\images\boyscouts_logofinal.png"
-                    alt="BSP Logo" class="qrph-merchant-logo">
-                <div>
-                    <div class="qrph-merchant-name">Boy Scouts of the Philippines</div>
-                    <div class="text-muted">Official Payment QR Ph</div>
-                </div>
-            </div>
+            
 
             <div class="qrph-code-container" id="qrCodeContainer">
                 <!-- <div class="qrph-overlay">
@@ -108,10 +92,7 @@
     </div>
 
 
-    <div class="toast-notification" id="toastNotification">
-        <i class="fas fa-check-circle toast-icon"></i>
-        <span>QR Code downloaded successfully!</span>
-    </div>
+
 
     <script src="/assets/js/qrcode-lib/easy.qrcode.min.js"></script>
 
@@ -190,11 +171,11 @@
     </script>
 
 
-<!-- for qr code -->
+    <!-- for qr code -->
     <script>
         var qrcode = new QRCode(document.getElementById("qrCodeContainer"), {
 
-            text : "<?=  $qr ?>",
+            text: "<?= $qr ?>",
             // text: "00020101021228760011ph.ppmi.p2m0111OPDVPHM1XXX0315777148000000084041652948137257075730503001520460165303608540570.005802PH5909Netglobal6015City Of Mandalu62370010ph.allbank05194020262201-DST1Aq1288310012ph.ppmi.qrph0111OPDVPHM1XXX6304DD4E",
             logo: "/assets/images/qr-logo.png",
             logoWidth: 40,
