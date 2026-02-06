@@ -1,3 +1,38 @@
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<style>
+   /* SweetAlert Modern Theme */
+   .swal-modern {
+      border-radius: 14px !important;
+      padding: 1.5rem !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .2) !important;
+      font-family: 'Segoe UI', Arial;
+   }
+
+   .swal-btn-confirm {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff !important;
+      border: none !important;
+      padding: 10px 24px !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+      transition: all .2s ease;
+   }
+
+   .swal-btn-confirm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, .4);
+   }
+
+   /* Dark mode override */
+   .dark-mode .swal-modern {
+      background: #1e1e2f !important;
+      color: #eaeaea !important;
+   }
+</style>
+
+
+
 <main class="content">
    <div class="container-fluid p-0">
       <div class="row mb-2 mb-xl-3">
@@ -164,7 +199,7 @@
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 
 <script>
-   jQuery(document).ready(function ($) {
+   jQuery(document).ready(function($) {
 
       const today = new Date().toISOString().split('T')[0];
 
@@ -179,7 +214,7 @@
          $('#endDate').val(today);
       }
 
-      $('#startDate').on('change', function () {
+      $('#startDate').on('change', function() {
          const start = $(this).val();
          $('#endDate').attr('min', start);
 
@@ -196,12 +231,13 @@
          responsive: true,
          autoWidth: false,
          pageLength: 10,
-         order: [[14, 'desc']],
+         order: [
+            [14, 'desc']
+         ],
          dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6"f>>' +
             '<"row"<"col-sm-12"tr>>' +
             '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-         buttons: [
-            {
+         buttons: [{
                extend: 'csvHtml5',
                className: 'btn btn-sm btn-outline-secondary',
                title: 'Transactions_' + today,
@@ -230,7 +266,7 @@
             emptyTable: "No records available",
             zeroRecords: "No matching records found"
          },
-         initComplete: function () {
+         initComplete: function() {
             var api = this.api();
             var container = $('#exportButtonsContainer');
             container.empty();
@@ -246,7 +282,7 @@
       });
 
       // Adjust columns on resize
-      $(window).on('resize', function () {
+      $(window).on('resize', function() {
          table.columns.adjust().responsive.recalc();
       });
    });
@@ -256,7 +292,7 @@
 
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   <script>
+   <!-- <script>
       Swal.fire({
          icon: 'warning',
          title: 'Session Expired',
@@ -266,6 +302,43 @@
       }).then(() => {
          window.location.href = "<?= base_url('auth/logout'); ?>";
       });
+   </script> -->
+
+   <script>
+      const isDark = document.body.classList.contains('dark-mode') ||
+         window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      Swal.fire({
+         icon: 'warning',
+         title: 'Session Expired',
+         text: '<?= $denied_message; ?>',
+
+         background: isDark ? '#1e1e2f' : '#ffffff',
+         color: isDark ? '#eaeaea' : '#333333',
+
+         confirmButtonText: 'OK, Login Again',
+
+         buttonsStyling: false,
+
+         customClass: {
+            popup: 'swal-modern',
+            confirmButton: 'swal-btn-confirm'
+         },
+
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+
+         showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+         },
+         hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+         }
+
+      }).then(() => {
+         window.location.href = "<?= base_url('auth/logout'); ?>";
+      });
    </script>
+
 
 <?php endif; ?>
