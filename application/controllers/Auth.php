@@ -86,7 +86,8 @@ class Auth extends CI_Controller
 					'logged_in'     => $decoded_response['data']['logged_in'],
 					'session_id'    => $decoded_response['data']['session_id'],
 					'uid'     		=> $decoded_response['data']['user_id'],
-					'usertype'     	=> $decoded_response['data']['name']
+					'usertype'     	=> $decoded_response['data']['user_type'],
+					'name'     	=> $decoded_response['data']['name']
 
 				];
 
