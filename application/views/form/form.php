@@ -56,7 +56,7 @@
 
             <div class="form-card animate__animated animate__fadeInLeft">
                 <div class="form-header">
-                    <h2><i class="fas fa-qrcode me-2"></i>QR Ph Payment Portal</h2>
+                    <h2><i class="fas fa-qrcode me-2"></i>Payment Portal</h2>
                     <p>Secure online payment processing for all BSP transactions using QR Ph</p>
                 </div>
 
