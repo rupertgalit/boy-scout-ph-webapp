@@ -336,10 +336,10 @@
         </div>
 
         <!-- Payment Methods Footer -->
-        <div class="footer animate__animated animate__fadeInUp" id="footer">
-            <div class="powered-by">
-                <span class="text-muted">powered by</span>
-                <img src="https://via.placeholder.com/150x40/1B5E20/FFFFFF?text=BSP+QR+Ph" alt="BSP QR Ph">
+        <div class="footer " id="footer">
+            <div class="powered-by text-center">
+                <p class="m-0">Powered by:</p>
+                <img src="/assets/images/ngsiblack.png" alt="Powered By NGSI" />
             </div>
         </div>
     </div>
@@ -478,7 +478,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
