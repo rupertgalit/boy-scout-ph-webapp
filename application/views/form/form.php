@@ -38,11 +38,7 @@
                 <div class="col-lg-8 col-md-6 header-center">
                     <h1>BOY SCOUTS OF THE PHILIPPINES</h1>
                     <p class="subtitle">National Headquarters</p>
-                    <p class="tagline">"Be Prepared"</p>
-                    <div class="badge-container">
-                        <i class="fas fa-shield-alt me-2"></i>
-                        <span>Official Payment Portal</span>
-                    </div>
+
                 </div>
 
                 <div class="col-lg-2 col-md-3 text-center text-md-end">
@@ -63,8 +59,8 @@
                 <form id="paymentForm" method="POST" action="/generate-qr" novalidate>
 
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#paymentTypeCollapse" aria-expanded="true">
+                        <div class="section-header collapsed" data-bs-target="#paymentTypeCollapse"
+                            aria-expanded="true">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-money-check-alt me-2"></i>Payment Destination
                                 </h3>
@@ -78,7 +74,8 @@
                                 <div class="payment-options">
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment-for" value="BSP-COUNCIL" required style="display:none;">
+                                            <input type="radio" name="payment-for" value="BSP-COUNCIL" required
+                                                style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-landmark"></i></div>
@@ -89,7 +86,8 @@
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment-for" value="BSP-DISTRICT" style="display:none;">
+                                            <input type="radio" name="payment-for" value="BSP-DISTRICT"
+                                                style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
@@ -100,7 +98,8 @@
 
                                     <div class="payment-option">
                                         <label class="payment-card">
-                                            <input type="radio" name="payment-for" value="BSP-SCHOOL" style="display:none;">
+                                            <input type="radio" name="payment-for" value="BSP-SCHOOL"
+                                                style="display:none;">
                                             <div class="checkmark"><i class="fas fa-check"></i></div>
                                             <div class="card-content">
                                                 <div class="card-icon"><i class="fas fa-users"></i></div>
@@ -119,8 +118,7 @@
 
                     <!-- Personal Information Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#personalCollapse">
+                        <div class="section-header collapsed" data-bs-target="#personalCollapse">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-user-circle me-2"></i>Personal Information
                                 </h3>
@@ -169,7 +167,7 @@
 
                     <!-- Scout Information Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse" data-bs-target="#scoutCollapse">
+                        <div class="section-header collapsed" data-bs-target="#scoutCollapse">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-scroll me-2"></i>Scout Information</h3>
                                 <p class="section-subtitle">Select your region, council, and payment purpose</p>
@@ -207,7 +205,8 @@
                                             <i class="fas fa-building"></i>
                                             District Unit<span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="sub-district-code" id="districtUnit" required>
+                                        <select class="form-control" name="sub-district-code" id="districtUnit"
+                                            required>
                                             <option value="" disabled selected>Select District Unit</option>
                                         </select>
                                         <div class="error-message d-none" id="districtUnitError"></div>
@@ -239,8 +238,7 @@
 
                     <!-- Scout Details Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#scoutDetailsCollapse">
+                        <div class="section-header collapsed" data-bs-target="#scoutDetailsCollapse">
                             <div>
                                 <h3 class="section-title"><i class="fas fa-scroll me-2"></i>Scout Details</h3>
                                 <p class="section-subtitle">Additional scout information</p>
@@ -293,11 +291,11 @@
 
                     <!-- Amount Section -->
                     <div class="form-section">
-                        <div class="section-header collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#amountCollapse">
+                        <div class="section-header collapsed" data-bs-target="#amountCollapse">
                             <div>
-                                <h3 class="section-title"><i class="fas fa-money-bill-wave me-2"></i>Payment Amount</h3>
-                                <p class="section-subtitle">Enter the payment amount</p>
+                                <h3 class="section-title"><i class="fas fa-money-bill-wave me-2"></i>Payment Details
+                                </h3>
+                                <p class="section-subtitle">Enter the Payment Details</p>
                             </div>
                             <i class="fas fa-chevron-down section-icon"></i>
                         </div>
@@ -305,6 +303,31 @@
                         <div class="collapse show" id="amountCollapse">
                             <div class="section-content">
                                 <div class="row g-3 align-items-end">
+                                    <div class="col-md-6">
+                                        <label class="form-label">
+                                            <i class="fas fa-user-shield"></i>
+                                            Registration Type <span class="required">*</span>
+                                        </label>
+                                        <select class="form-control" name="registration_type" id="registrationType"
+                                            required>
+                                            <option value="" disabled selected>Select Registration Type</option>
+                                            <option value="AAR">AAR</option>
+                                            <option value="ASR">ASR</option>
+                                            <option value="SUR">ASR</option>
+                                        </select>
+                                        <div class="error-message d-none" id="registrationTypeError"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">
+                                            <i class="fas fa-id-card"></i>
+                                            Registration # <span class="required">*</span>
+                                        </label>
+
+                                        <input type="text" class="form-control" name="registration_no"
+                                            id="registrationNo" placeholder="Enter registration number" required>
+                                        <div class="error-message d-none" id="registrationError"></div>
+                                    </div>
+
                                     <div class="col-md-8">
                                         <label class="form-label">
                                             <i class="fas fa-peso-sign"></i>
@@ -357,19 +380,27 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">x</button>
                 </div>
                 <div class="modal-body">
-                    <div class="row ">
-                        <div class="col-md-12 mb-2">
+                    <!-- Header Section -->
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">Payment Destination:</span>
                                 <span class="preview-value" id="previewPaymentType">-</span>
                             </div>
                         </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="preview-item">
+                                <span class="preview-label">Registration:</span>
+                                <span class="preview-value" id="previewRegistrationFull">-</span>
+                            </div>
+                        </div>
                     </div>
+
                     <!-- Personal Information Section -->
                     <h6 class="text-secondary mb-2">
                         <i class="fas fa-user-circle me-2"></i>Personal Information
                     </h6>
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">Full Name:</span>
@@ -388,26 +419,25 @@
                                 <span class="preview-value" id="previewEmail">-</span>
                             </div>
                         </div>
-
                     </div>
+
+                    <!-- Scout Location Section -->
                     <h6 class="text-secondary mb-2">
-                        <i class="fas fa-scroll me-2"></i>Scout Details
+                        <i class="fas fa-map-marker-alt me-2"></i>Scout Location
                     </h6>
-                    <div class="row ">
+                    <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">Council</span>
+                                <span class="preview-label">Council:</span>
                                 <span class="preview-value" id="previewRegion">-</span>
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">District</span>
+                                <span class="preview-label">District:</span>
                                 <span class="preview-value" id="previewDistrict">-</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
                                 <span class="preview-label">District Unit:</span>
@@ -421,6 +451,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Scout Details Section -->
                     <h6 class="text-secondary mb-2">
                         <i class="fas fa-scroll me-2"></i>Scout Details
@@ -434,7 +465,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">Scout Payment Type:</span>
+                                <span class="preview-label">Payment Type:</span>
                                 <span class="preview-value" id="previewDescription">-</span>
                             </div>
                         </div>
@@ -460,7 +491,7 @@
                             <span class="payment-value" id="previewFee">₱20.00</span>
                         </div>
                         <div class="payment-row total-row">
-                            <span class="payment-label">Total Amount</span>
+                            <span class="payment-label">Total Amount:</span>
                             <span class="payment-value total-amount" id="previewTotal">₱0.00</span>
                         </div>
                     </div>
@@ -481,9 +512,9 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
 
-            <?php if ($this->session->flashdata('error')): ?>
+            <?php if ($this->session->flashdata('error')) : ?>
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops!',
@@ -492,7 +523,7 @@
                 });
             <?php endif; ?>
 
-            <?php if ($this->session->flashdata('success')): ?>
+            <?php if ($this->session->flashdata('success')) : ?>
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -504,6 +535,26 @@
         });
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            <?php if ($this->session->flashdata('error')) : ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    html: `<?= $this->session->flashdata('error'); ?>`,
+                    confirmButtonColor: '#3085d6'
+                });
+            <?php endif; ?>
+
+            <?php if ($this->session->flashdata('success')) : ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    html: `<?= $this->session->flashdata('success'); ?>`,
+                    confirmButtonColor: '#3085d6'
+                });
+            <?php endif; ?>
+        });
+
         // SweetAlert Error
         function showError(message) {
             Swal.fire({
@@ -518,8 +569,7 @@
         let currentPaymentData = {};
 
         const amountInput = document.getElementById('amount');
-
-        amountInput.addEventListener('input', function() {
+        amountInput.addEventListener('input', function () {
             let value = this.value;
 
             if (/^9{4,}$/.test(value)) {
@@ -536,25 +586,13 @@
             }
         });
 
-
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Bootstrap collapse
-            const collapses = document.querySelectorAll('.collapse');
-            collapses.forEach(collapse => {
-                collapse.addEventListener('show.bs.collapse', function() {
-                    this.closest('.form-section').querySelector('.section-header').classList.remove('collapsed');
-                });
-                collapse.addEventListener('hide.bs.collapse', function() {
-                    this.closest('.form-section').querySelector('.section-header').classList.add('collapsed');
-                });
-            });
-
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize Bootstrap Modal
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
             // Preview button event listener
-            document.getElementById('previewBtn').addEventListener('click', function() {
+            document.getElementById('previewBtn').addEventListener('click', function () {
                 if (validateForm()) {
                     updatePreview();
 
@@ -563,12 +601,9 @@
 
                     // 1. Check if disabled or no valid value
                     if (itemCat.disabled || !itemCat.value) {
-
                         errorDiv.classList.remove("d-none");
                         errorDiv.innerText = "Please select a valid item category.";
-
                         itemCat.classList.add("is-invalid");
-
                         return; // STOP – do not proceed
                     }
 
@@ -581,15 +616,14 @@
             });
 
             // Confirm payment button event listener
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
                 if (validateForm()) {
-
                     previewModal.hide();
                 }
             });
 
             // School select change handler
-            document.getElementById('school').addEventListener('change', function() {
+            document.getElementById('school').addEventListener('change', function () {
                 const otherFields = document.getElementById('otherSchoolFields');
                 if (this.value === 'other') {
                     otherFields.style.display = 'block';
@@ -602,7 +636,7 @@
             // Payment card click handlers
             document.querySelectorAll('.payment-card').forEach(card => {
                 const input = card.querySelector('input[type="radio"]');
-                card.addEventListener('click', function(e) {
+                card.addEventListener('click', function (e) {
                     if (e.target !== input) {
                         input.checked = true;
                         updateCardStates();
@@ -613,27 +647,27 @@
                     }
                 });
 
-                input.addEventListener('change', function() {
+                input.addEventListener('change', function () {
                     updateCardStates();
                 });
             });
+
+            // Real-time validation for all inputs and selects
             document.querySelectorAll('input, select').forEach(element => {
-                // Real-time validation
                 element.addEventListener('input', validateField);
                 element.addEventListener('blur', validateField);
 
                 if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function() {
+                    element.addEventListener('keyup', function () {
                         const errorElement = this.closest('.col-md-6, .col-12, .col-md-8')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
                         }
-
                     });
                 }
 
                 if (element.tagName.toLowerCase() === 'select') {
-                    element.addEventListener('change', function() {
+                    element.addEventListener('change', function () {
                         const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -641,6 +675,29 @@
                         this.classList.remove('is-invalid');
                     });
                 }
+            });
+
+            // Registration fields specific validation
+            document.getElementById('registrationType').addEventListener('change', validateField);
+            document.getElementById('registrationNo').addEventListener('input', validateField);
+            document.getElementById('registrationNo').addEventListener('blur', validateField);
+
+            // Clear error on input for registration number
+            document.getElementById('registrationNo').addEventListener('input', function () {
+                const errorElement = document.getElementById('registrationError');
+                if (errorElement) {
+                    errorElement.classList.add('d-none');
+                }
+                this.classList.remove('is-invalid');
+            });
+
+            // Clear error on change for registration type
+            document.getElementById('registrationType').addEventListener('change', function () {
+                const errorElement = document.getElementById('registrationTypeError');
+                if (errorElement) {
+                    errorElement.classList.add('d-none');
+                }
+                this.classList.remove('is-invalid');
             });
         });
 
@@ -769,16 +826,39 @@
                 isValid = false;
             }
 
+            // Validate registration type
+            const registrationType = document.getElementById('registrationType').value;
+            if (!registrationType) {
+                document.getElementById('registrationTypeError').textContent = 'Please select a registration type';
+                document.getElementById('registrationTypeError').classList.remove('d-none');
+                document.getElementById('registrationType').classList.add('is-invalid');
+                isValid = false;
+            }
+
+            // Validate registration number
+            const registrationNo = document.getElementById('registrationNo').value.trim();
+            if (!registrationNo) {
+                document.getElementById('registrationError').textContent = 'Please enter registration number';
+                document.getElementById('registrationError').classList.remove('d-none');
+                document.getElementById('registrationNo').classList.add('is-invalid');
+                isValid = false;
+            } else if (registrationNo.length > 50) {
+                document.getElementById('registrationError').textContent = 'Registration number must not exceed 50 characters';
+                document.getElementById('registrationError').classList.remove('d-none');
+                document.getElementById('registrationNo').classList.add('is-invalid');
+                isValid = false;
+            }
+
             // Validate amount
             const amount = parseFloat(document.getElementById('amount').value);
+            const amountField = document.getElementById('amount');
             if (isNaN(amount) || amount <= 0) {
                 document.getElementById('amountError').textContent = 'Please enter a valid amount greater than 0';
                 document.getElementById('amountError').classList.remove('d-none');
                 amountField.classList.add('is-invalid');
                 isValid = false;
-            } else if (isNaN(amount) || amount <= 0 || amount > 100000) {
-                document.getElementById('amountError').textContent =
-                    'Amount must be between ₱1 and ₱100,000 only';
+            } else if (amount > 100000) {
+                document.getElementById('amountError').textContent = 'Amount must not exceed ₱100,000';
                 document.getElementById('amountError').classList.remove('d-none');
                 amountField.classList.add('is-invalid');
                 isValid = false;
@@ -809,6 +889,9 @@
                     descriptionText: document.getElementById('description').selectedOptions[0]?.text || '-',
                     itemCategory: itemCategory,
                     itemCategoryText: document.getElementById('itemCategory').selectedOptions[0]?.text || '-',
+                    registrationType: registrationType,
+                    registrationTypeText: document.getElementById('registrationType').selectedOptions[0]?.text || '-',
+                    registrationNo: registrationNo,
                     amount: amount,
                     fee: 20.00,
                     total: amount + 20.00,
@@ -851,10 +934,15 @@
                 case 'scoutType':
                 case 'description':
                 case 'itemCategory':
+                case 'registrationType':
                     isValid = field.value !== '';
                     break;
+                case 'registrationNo':
+                    isValid = field.value.trim().length > 0 && field.value.trim().length <= 50;
+                    break;
                 case 'amount':
-                    isValid = !isNaN(parseFloat(field.value)) && parseFloat(field.value) > 0;
+                    const amount = parseFloat(field.value);
+                    isValid = !isNaN(amount) && amount > 0 && amount <= 100000;
                     break;
             }
 
@@ -892,6 +980,11 @@
             document.getElementById('previewDistrictUnit').textContent =
                 document.getElementById('districtUnit').selectedOptions[0]?.text || '-';
 
+            // Combine Registration Type and Registration # into one field
+            const registrationType = document.getElementById('registrationType').selectedOptions[0]?.text || '-';
+            const registrationNo = document.getElementById('registrationNo').value || '-';
+            document.getElementById('previewRegistrationFull').textContent = `${registrationType}: ${registrationNo}`;
+
             // Scout details
             document.getElementById('previewScoutType').textContent =
                 document.getElementById('scoutType').selectedOptions[0]?.text || '-';
@@ -918,10 +1011,6 @@
             document.getElementById('previewTotal').textContent = '₱' + total.toFixed(2);
         }
     </script>
-
-
-
-
 
     <!-- =============================FOR SCOUT INFORMATION DROPDOWN API=========================================== -->
 
@@ -998,7 +1087,7 @@
 
 
         /* ===== DISTRICT ===== */
-        document.getElementById("region").addEventListener("change", function() {
+        document.getElementById("region").addEventListener("change", function () {
 
             let council = this.value;
 
@@ -1046,7 +1135,7 @@
 
 
         /* ===== SUB DISTRICT ===== */
-        document.getElementById("district").addEventListener("change", function() {
+        document.getElementById("district").addEventListener("change", function () {
 
             let district = this.value;
 
@@ -1092,7 +1181,7 @@
 
 
         /* ===== SCHOOL ===== */
-        document.getElementById("districtUnit").addEventListener("change", function() {
+        document.getElementById("districtUnit").addEventListener("change", function () {
 
             let council = document.getElementById("region").value;
             let district = document.getElementById("district").value;
@@ -1218,7 +1307,7 @@
 
         /*  SCOUT TYPE  */
 
-        document.getElementById("scoutType").addEventListener("change", function() {
+        document.getElementById("scoutType").addEventListener("change", function () {
 
             let scout = this.value;
 
@@ -1265,7 +1354,7 @@
 
         /*  ON DESCRIPTION */
 
-        document.getElementById("description").addEventListener("change", function() {
+        document.getElementById("description").addEventListener("change", function () {
 
 
             let scout = document.getElementById("scoutType").value;
@@ -1365,7 +1454,7 @@
         loadScoutTypes();
 
         /*  ON DESCRIPTION ITEM CATEGORY */
-        document.getElementById("itemCategory").addEventListener("change", function() {
+        document.getElementById("itemCategory").addEventListener("change", function () {
 
             const selected = this.options[this.selectedIndex];
 
@@ -1407,7 +1496,7 @@
 
 
     <script>
-        document.getElementById("confirmPaymentBtn").addEventListener("click", function() {
+        document.getElementById("confirmPaymentBtn").addEventListener("click", function () {
 
             const btn = this;
 

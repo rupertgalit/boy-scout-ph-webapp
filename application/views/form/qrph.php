@@ -29,11 +29,7 @@
                     <div class="col-lg-8 col-md-6 header-center">
                         <h3>BOY SCOUTS OF THE PHILIPPINES</h3>
                         <p class="subtitle">National Headquarters</p>
-                        <p class="tagline">"Be Prepared"</p>
-                        <div class="badge-container">
-                            <i class="fas fa-shield-alt me-2"></i>
-                            <span>Official Payment Portal</span>
-                        </div>
+                       
                     </div>
 
                     <div class="col-lg-2 col-md-3 text-center text-md-end">
