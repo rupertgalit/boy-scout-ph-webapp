@@ -280,6 +280,90 @@ class Form extends CI_Controller
       }
    }
 
+   	public function check_ref()
+	{
+		// $ref_num = "BSP-0206284713";
+		$ref_num = $this->input->post('refnum');
+
+		// Validate reference number
+		if (empty($ref_num) || !preg_match('/^\S+$/', $ref_num)) {
+			$response = [
+				'status' => false,
+				'message' => 'Invalid reference number.'
+			];
+			header('Content-Type: application/json');
+			echo json_encode($response);
+			return;
+		}
+
+		$endpoint_url = '/transaction-status';
+		$param = [
+			'reference_number' => $ref_num
+		];
+
+
+		$api_response = $this->myServices->external_api($param, $endpoint_url);
+
+		
+		$response_decoded = json_decode($api_response, true);
+
+
+
+
+		// if (!is_array($response_decoded) || !isset($response_decoded['status'])) {
+		// 	$response = [
+		// 		'status' => false,
+		// 		'message' => 'Invalid API response.'
+		// 	];
+		// 	header('Content-Type: application/json');
+		// 	echo json_encode($response);
+		// 	return;
+		// }
+
+		$record_status = $response_decoded['data']['status'] ?? null;
+		$redirect_url = null;
+		$payment_status = 'UNKNOWN';
+
+
+		if ($response_decoded['status']) {
+			switch ($record_status) {
+				case 'SUCCESS':
+					$payment_status = 'SUCCESS';
+					$redirect_url = base_url('/success') . '?refnum=' . urlencode($ref_num);
+					break;
+
+				case 'FAILED':
+					$payment_status = 'FAILED';
+					$redirect_url = base_url('/failed') . '?refnum=' . urlencode($ref_num);
+					break;
+
+				case 'PENDING':
+				case 'CREATED':
+				default:
+					$payment_status = $record_status ?: 'CREATED';
+					$redirect_url = null;
+					break;
+			}
+
+			$result = [
+				'status' => true,
+				'message' => 'success',
+				'payment_status' => $payment_status,
+				'redirect_url' => $redirect_url,
+				// 'data' => $response_decoded['data']
+			];
+		} else {
+			$result = [
+				'status' => false,
+				'message' => $response_decoded['message'] ?? 'Unknown error'
+			];
+		}
+
+
+		header('Content-Type: application/json');
+		echo json_encode($result);
+	}
+
 
 
 

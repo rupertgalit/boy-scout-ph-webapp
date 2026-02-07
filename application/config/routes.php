@@ -63,6 +63,7 @@ $route['blank-page'] = 'dashboard/blank_page';
 /*form pages*/
 $route['form'] = 'form/form_page';
 $route['generate-qr'] = 'form/generate_qr';
+$route['check-reference'] = 'form/check_ref';
 $route['scout'] = 'form/call_api';
 // $route['qr'] = 'form/qr_page';
 $route['success'] = 'form/success_page';

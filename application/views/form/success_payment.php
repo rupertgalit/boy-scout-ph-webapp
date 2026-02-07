@@ -318,14 +318,14 @@
             <!-- Reference Number -->
             <div class="reference-section">
                 <div class="reference-label">Your Payment Reference Number:</div>
-                <div class="reference-number" id="referenceNumber">BSP-2024-789456</div>
+                <div class="reference-number" id="referenceNumber"><?= $this->input->get('refnum')?></div>
                 <div class="reference-note">
                     <i class="fas fa-info-circle me-2"></i>
                     Save this reference number for your records and future inquiries.
                 </div>
             </div>
              <div class="action-buttons">
-                <button class="action-btn btn-secondary" onclick="goToHomepage()">
+                <button class="action-btn btn-secondary" onclick="window.location.href='/form'">
                     <i class="fas fa-home me-1"></i>
                     Back to BSP Home
                 </button>

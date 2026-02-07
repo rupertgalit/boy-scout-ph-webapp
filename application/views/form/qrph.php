@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <div class="qrph-code-container" id="qrCodeContainer">
                 <!-- <div class="qrph-overlay">
@@ -97,7 +97,6 @@
     <script src="/assets/js/qrcode-lib/easy.qrcode.min.js"></script>
 
     <script>
-
         function downloadQRCode() {
             const qrContainer = document.getElementById('qrCodeContainer');
 
@@ -125,6 +124,7 @@
                 showToast('Failed to download QR code. Please try again.', 'error');
             });
         }
+
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toastNotification');
             const toastIcon = toast.querySelector('.toast-icon');
@@ -164,7 +164,7 @@
             return JSON.stringify(paymentData);
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             console.log('QR Ph page loaded successfully');
             console.log('QR Data:', generateQRCodeData());
         });
@@ -183,6 +183,44 @@
             logoBackgroundColor: 'black',
             logoBackgroundTransparent: true,
         });
+    </script>
+
+<!-- check reference -->
+    <script>
+        function callEndpoint() {
+            const formdata = new FormData();
+            formdata.append("refnum", "<?= htmlspecialchars($reference_number, ENT_QUOTES, 'UTF-8') ?>");
+
+            fetch("<?= base_url('check-reference') ?>", {
+                    method: "POST",
+                    body: formdata
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    if (result.payment_status === "PENDING") {
+                        console.log("CREATED");
+                    } else if (result.payment_status === "SUCCESS") {
+                        console.log("Redirecting to:", result.redirect_url);
+                        window.location.href = result.redirect_url;
+                    } else {
+                        console.warn("Unexpected payment status:", result.payment_status);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error calling endpoint:", error);
+                });
+        }
+
+        // Run immediately once
+        callEndpoint();
+
+        // Repeat every 5 seconds
+        setInterval(callEndpoint, 5000);
     </script>
 
 
