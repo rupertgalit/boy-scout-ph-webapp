@@ -64,8 +64,8 @@ class Dashboard extends CI_Controller
         if (
             isset($decoded_response['status']) &&
             $decoded_response['status'] === false &&
-            isset($decoded_response['message']) &&
-            strtolower($decoded_response['message']) === 'session denied'
+            isset($decoded_response['status_code']) &&
+            strtolower($decoded_response['status_code']) === '000'
         ) {
            
             $data['transactions'] = [];

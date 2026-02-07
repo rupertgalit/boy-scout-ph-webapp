@@ -62,15 +62,18 @@ $route['blank-page'] = 'dashboard/blank_page';
 
 /*form pages*/
 $route['form'] = 'form/form_page';
-$route['qr'] = 'form/qr_page';
+$route['generate-qr'] = 'form/generate_qr';
+$route['scout'] = 'form/call_api';
+// $route['qr'] = 'form/qr_page';
 $route['success'] = 'form/success_page';
 
+/*form routes*/
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';
 
 
-$route['scout'] = 'form/call_api';
-$route['generate-qr'] = 'form/generate_qr';
+
+
 
 
 

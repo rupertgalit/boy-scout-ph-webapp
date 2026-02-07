@@ -1,14 +1,13 @@
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
-   /* SweetAlert Modern Theme */
+
    .swal-modern {
       border-radius: 14px !important;
       padding: 1.5rem !important;
       box-shadow: 0 10px 25px rgba(0, 0, 0, .2) !important;
       font-family: 'Segoe UI', Arial;
    }
-
    .swal-btn-confirm {
       background: linear-gradient(135deg, #4f46e5, #6366f1);
       color: #fff !important;
@@ -18,13 +17,10 @@
       font-weight: 600 !important;
       transition: all .2s ease;
    }
-
    .swal-btn-confirm:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(99, 102, 241, .4);
    }
-
-   /* Dark mode override */
    .dark-mode .swal-modern {
       background: #1e1e2f !important;
       color: #eaeaea !important;
