@@ -308,12 +308,8 @@
                                             <i class="fas fa-user-shield"></i>
                                             Registration Type <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="registration_type" id="registrationType"
-                                            required>
+                                        <select class="form-control" name="registration_type" id="registrationType" required>
                                             <option value="" disabled selected>Select Registration Type</option>
-                                            <option value="AAR">AAR</option>
-                                            <option value="ASR">ASR</option>
-                                            <option value="SUR">ASR</option>
                                         </select>
                                         <div class="error-message d-none" id="registrationTypeError"></div>
                                     </div>
@@ -390,7 +386,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="preview-item">
-                                <span class="preview-label">Registration:</span>
+                                <span class="preview-label">Registration #:</span>
                                 <span class="preview-value" id="previewRegistrationFull">-</span>
                             </div>
                         </div>
@@ -512,7 +508,7 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
             <?php if ($this->session->flashdata('error')) : ?>
                 Swal.fire({
@@ -535,7 +531,7 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             <?php if ($this->session->flashdata('error')) : ?>
                 Swal.fire({
                     icon: 'error',
@@ -569,7 +565,7 @@
         let currentPaymentData = {};
 
         const amountInput = document.getElementById('amount');
-        amountInput.addEventListener('input', function () {
+        amountInput.addEventListener('input', function() {
             let value = this.value;
 
             if (/^9{4,}$/.test(value)) {
@@ -587,12 +583,12 @@
         });
 
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize Bootstrap Modal
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
             // Preview button event listener
-            document.getElementById('previewBtn').addEventListener('click', function () {
+            document.getElementById('previewBtn').addEventListener('click', function() {
                 if (validateForm()) {
                     updatePreview();
 
@@ -616,14 +612,14 @@
             });
 
             // Confirm payment button event listener
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
                 if (validateForm()) {
                     previewModal.hide();
                 }
             });
 
             // School select change handler
-            document.getElementById('school').addEventListener('change', function () {
+            document.getElementById('school').addEventListener('change', function() {
                 const otherFields = document.getElementById('otherSchoolFields');
                 if (this.value === 'other') {
                     otherFields.style.display = 'block';
@@ -636,7 +632,7 @@
             // Payment card click handlers
             document.querySelectorAll('.payment-card').forEach(card => {
                 const input = card.querySelector('input[type="radio"]');
-                card.addEventListener('click', function (e) {
+                card.addEventListener('click', function(e) {
                     if (e.target !== input) {
                         input.checked = true;
                         updateCardStates();
@@ -647,7 +643,7 @@
                     }
                 });
 
-                input.addEventListener('change', function () {
+                input.addEventListener('change', function() {
                     updateCardStates();
                 });
             });
@@ -658,7 +654,7 @@
                 element.addEventListener('blur', validateField);
 
                 if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function () {
+                    element.addEventListener('keyup', function() {
                         const errorElement = this.closest('.col-md-6, .col-12, .col-md-8')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -667,7 +663,7 @@
                 }
 
                 if (element.tagName.toLowerCase() === 'select') {
-                    element.addEventListener('change', function () {
+                    element.addEventListener('change', function() {
                         const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -683,7 +679,7 @@
             document.getElementById('registrationNo').addEventListener('blur', validateField);
 
             // Clear error on input for registration number
-            document.getElementById('registrationNo').addEventListener('input', function () {
+            document.getElementById('registrationNo').addEventListener('input', function() {
                 const errorElement = document.getElementById('registrationError');
                 if (errorElement) {
                     errorElement.classList.add('d-none');
@@ -692,7 +688,7 @@
             });
 
             // Clear error on change for registration type
-            document.getElementById('registrationType').addEventListener('change', function () {
+            document.getElementById('registrationType').addEventListener('change', function() {
                 const errorElement = document.getElementById('registrationTypeError');
                 if (errorElement) {
                     errorElement.classList.add('d-none');
@@ -1087,7 +1083,7 @@
 
 
         /* ===== DISTRICT ===== */
-        document.getElementById("region").addEventListener("change", function () {
+        document.getElementById("region").addEventListener("change", function() {
 
             let council = this.value;
 
@@ -1135,7 +1131,7 @@
 
 
         /* ===== SUB DISTRICT ===== */
-        document.getElementById("district").addEventListener("change", function () {
+        document.getElementById("district").addEventListener("change", function() {
 
             let district = this.value;
 
@@ -1181,7 +1177,7 @@
 
 
         /* ===== SCHOOL ===== */
-        document.getElementById("districtUnit").addEventListener("change", function () {
+        document.getElementById("districtUnit").addEventListener("change", function() {
 
             let council = document.getElementById("region").value;
             let district = document.getElementById("district").value;
@@ -1307,7 +1303,7 @@
 
         /*  SCOUT TYPE  */
 
-        document.getElementById("scoutType").addEventListener("change", function () {
+        document.getElementById("scoutType").addEventListener("change", function() {
 
             let scout = this.value;
 
@@ -1354,7 +1350,7 @@
 
         /*  ON DESCRIPTION */
 
-        document.getElementById("description").addEventListener("change", function () {
+        document.getElementById("description").addEventListener("change", function() {
 
 
             let scout = document.getElementById("scoutType").value;
@@ -1449,12 +1445,13 @@
         });
 
 
-
-
         loadScoutTypes();
 
+
+
+
         /*  ON DESCRIPTION ITEM CATEGORY */
-        document.getElementById("itemCategory").addEventListener("change", function () {
+        document.getElementById("itemCategory").addEventListener("change", function() {
 
             const selected = this.options[this.selectedIndex];
 
@@ -1491,12 +1488,58 @@
             }
 
         });
+
+
+        /*  REGISTRATION NO. TYPE LIST */
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadRegistrationTypes();
+        });
+
+        function loadRegistrationTypes() {
+
+            const apiUrl = baseUrl + "/reg_form_list";
+
+            fetch(apiUrl)
+                .then(r => r.json())
+                .then(res => {
+
+                    let opt = `<option value="" disabled selected>Select Registration Type</option>`;
+
+                    let list = Array.isArray(res.data) ? res.data : [res.data];
+
+                    if (!res.data || list.length === 0) {
+                        document.getElementById("registrationType").innerHTML = opt;
+                        return;
+                    }
+
+                    list.forEach(item => {
+
+                        // Only show ACTIVE status (optional but recommended)
+                        if (item.status === "active") {
+                            opt += `<option value="${item.registration_type}">
+                                ${item.registration_type}
+                            </option>`;
+                        }
+
+                    });
+
+                    document.getElementById("registrationType").innerHTML = opt;
+
+                })
+                .catch(() => {
+                    document.getElementById("registrationType").innerHTML =
+                        `<option value="" disabled selected>Failed to load types</option>`;
+                });
+        }
     </script>
 
 
 
+
+
     <script>
-        document.getElementById("confirmPaymentBtn").addEventListener("click", function () {
+        document.getElementById("confirmPaymentBtn").addEventListener("click", function() {
 
             const btn = this;
 

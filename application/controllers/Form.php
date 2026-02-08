@@ -170,10 +170,10 @@ class Form extends CI_Controller
 
    public function generate_qr()
    {
-      
+
       $this->load->library('form_validation');
 
- 
+
 
       $this->form_validation->set_rules('payment-for', 'Payment For', 'required|trim');
       $this->form_validation->set_rules('council-code', 'Council', 'required|trim');
@@ -182,10 +182,15 @@ class Form extends CI_Controller
       $this->form_validation->set_rules('scout-code', 'Scout Type', 'required|trim');
       $this->form_validation->set_rules('payment-type-code', 'Payment Type', 'required|trim');
 
+      $this->form_validation->set_rules('registration_no', 'Registration No', 'required|trim');
+      $this->form_validation->set_rules('registration_type', 'Registration Type', 'required|trim');
       $this->form_validation->set_rules('amount', 'Amount', 'required|numeric|greater_than[0]');
+
       $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
       $this->form_validation->set_rules('phone', 'Phone', 'required|min_length[7]|max_length[15]');
       $this->form_validation->set_rules('fullname', 'Full Name', 'required|min_length[3]');
+
+  
 
       if ($this->form_validation->run() == FALSE) {
 
@@ -212,6 +217,9 @@ class Form extends CI_Controller
          "description_code"  => $this->security->xss_clean($this->input->post("description-code")),
          "scout_code"        => $this->security->xss_clean($this->input->post("scout-code")),
          "payment_type_code" => $this->security->xss_clean($this->input->post("payment-type-code")),
+
+         "control_no" => $this->security->xss_clean($this->input->post("registration_no")),
+         "form_registration_type" => $this->security->xss_clean($this->input->post("registration_type")),
 
          "amount"            => number_format((float)$this->input->post("amount"), 2, '.', ''),
 
@@ -264,6 +272,7 @@ class Form extends CI_Controller
             : 'Failed to generate QR. Please try again.';
 
          $this->session->set_flashdata('error', $message);
+         // echo json_encode($records);
          redirect('/form');
          return;
       } catch (Exception $e) {
@@ -280,89 +289,89 @@ class Form extends CI_Controller
       }
    }
 
-   	public function check_ref()
-	{
-		// $ref_num = "BSP-0206284713";
-		$ref_num = $this->input->post('refnum');
+   public function check_ref()
+   {
+      // $ref_num = "BSP-0206284713";
+      $ref_num = $this->input->post('refnum');
 
-		// Validate reference number
-		if (empty($ref_num) || !preg_match('/^\S+$/', $ref_num)) {
-			$response = [
-				'status' => false,
-				'message' => 'Invalid reference number.'
-			];
-			header('Content-Type: application/json');
-			echo json_encode($response);
-			return;
-		}
+      // Validate reference number
+      if (empty($ref_num) || !preg_match('/^\S+$/', $ref_num)) {
+         $response = [
+            'status' => false,
+            'message' => 'Invalid reference number.'
+         ];
+         header('Content-Type: application/json');
+         echo json_encode($response);
+         return;
+      }
 
-		$endpoint_url = '/transaction-status';
-		$param = [
-			'reference_number' => $ref_num
-		];
-
-
-		$api_response = $this->myServices->external_api($param, $endpoint_url);
-
-		
-		$response_decoded = json_decode($api_response, true);
+      $endpoint_url = '/transaction-status';
+      $param = [
+         'reference_number' => $ref_num
+      ];
 
 
+      $api_response = $this->myServices->external_api($param, $endpoint_url);
 
 
-		// if (!is_array($response_decoded) || !isset($response_decoded['status'])) {
-		// 	$response = [
-		// 		'status' => false,
-		// 		'message' => 'Invalid API response.'
-		// 	];
-		// 	header('Content-Type: application/json');
-		// 	echo json_encode($response);
-		// 	return;
-		// }
-
-		$record_status = $response_decoded['data']['status'] ?? null;
-		$redirect_url = null;
-		$payment_status = 'UNKNOWN';
+      $response_decoded = json_decode($api_response, true);
 
 
-		if ($response_decoded['status']) {
-			switch ($record_status) {
-				case 'SUCCESS':
-					$payment_status = 'SUCCESS';
-					$redirect_url = base_url('/success') . '?refnum=' . urlencode($ref_num);
-					break;
-
-				case 'FAILED':
-					$payment_status = 'FAILED';
-					$redirect_url = base_url('/failed') . '?refnum=' . urlencode($ref_num);
-					break;
-
-				case 'PENDING':
-				case 'CREATED':
-				default:
-					$payment_status = $record_status ?: 'CREATED';
-					$redirect_url = null;
-					break;
-			}
-
-			$result = [
-				'status' => true,
-				'message' => 'success',
-				'payment_status' => $payment_status,
-				'redirect_url' => $redirect_url,
-				// 'data' => $response_decoded['data']
-			];
-		} else {
-			$result = [
-				'status' => false,
-				'message' => $response_decoded['message'] ?? 'Unknown error'
-			];
-		}
 
 
-		header('Content-Type: application/json');
-		echo json_encode($result);
-	}
+      // if (!is_array($response_decoded) || !isset($response_decoded['status'])) {
+      // 	$response = [
+      // 		'status' => false,
+      // 		'message' => 'Invalid API response.'
+      // 	];
+      // 	header('Content-Type: application/json');
+      // 	echo json_encode($response);
+      // 	return;
+      // }
+
+      $record_status = $response_decoded['data']['status'] ?? null;
+      $redirect_url = null;
+      $payment_status = 'UNKNOWN';
+
+
+      if ($response_decoded['status']) {
+         switch ($record_status) {
+            case 'SUCCESS':
+               $payment_status = 'SUCCESS';
+               $redirect_url = base_url('/success') . '?refnum=' . urlencode($ref_num);
+               break;
+
+            case 'FAILED':
+               $payment_status = 'FAILED';
+               $redirect_url = base_url('/failed') . '?refnum=' . urlencode($ref_num);
+               break;
+
+            case 'PENDING':
+            case 'CREATED':
+            default:
+               $payment_status = $record_status ?: 'CREATED';
+               $redirect_url = null;
+               break;
+         }
+
+         $result = [
+            'status' => true,
+            'message' => 'success',
+            'payment_status' => $payment_status,
+            'redirect_url' => $redirect_url,
+            // 'data' => $response_decoded['data']
+         ];
+      } else {
+         $result = [
+            'status' => false,
+            'message' => $response_decoded['message'] ?? 'Unknown error'
+         ];
+      }
+
+
+      header('Content-Type: application/json');
+      echo json_encode($result);
+   }
 
 
 
@@ -490,6 +499,20 @@ class Form extends CI_Controller
       );
    }
 
+   /* SCOUT TYPE – GET  */
+   public function reg_form_list()
+   {
+      $result = $this->call_api('/v1/registration-form-list', [], 'GET');
+
+      // normalize to array
+      if (!empty($result['data']) && !isset($result['data'][0])) {
+         $result['data'] = [$result['data']];
+      }
+
+      echo json_encode($result);
+   }
+
+
 
 
 
@@ -507,7 +530,7 @@ class Form extends CI_Controller
    }
 
 
-   /* PAYMENT TYPE –GET  */
+   /* PAYMENT TYPE – GET  */
    public function scout_payment_type()
    {
       $result = $this->call_api('/v1/scout-payment-type', [], 'GET');
