@@ -1,13 +1,13 @@
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <style>
-
    .swal-modern {
       border-radius: 14px !important;
       padding: 1.5rem !important;
       box-shadow: 0 10px 25px rgba(0, 0, 0, .2) !important;
       font-family: 'Segoe UI', Arial;
    }
+
    .swal-btn-confirm {
       background: linear-gradient(135deg, #4f46e5, #6366f1);
       color: #fff !important;
@@ -17,10 +17,12 @@
       font-weight: 600 !important;
       transition: all .2s ease;
    }
+
    .swal-btn-confirm:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(99, 102, 241, .4);
    }
+
    .dark-mode .swal-modern {
       background: #1e1e2f !important;
       color: #eaeaea !important;
@@ -88,8 +90,8 @@
                   <th>Txn Amount</th>
                   <th class="ref-col">Description</th>
                   <th>Category</th>
-                  <th class="ref-col">Scout Level</th>
-                  <th>School</th>
+                  <th>Scout Level</th>
+                  <th class="ref-col">School</th>
                   <th>Sub District</th>
                   <th class="date-col">District</th>
                   <th>Council</th>
@@ -98,6 +100,9 @@
                   <th>Phone</th>
                   <th>Email</th>
                   <th>Payment For</th>
+                  <th>Registration Type</th>
+                  <th>Control No</th>
+
 
                </tr>
                </tr>
@@ -165,13 +170,17 @@
 
                         <td><?= htmlspecialchars($row['created_at']); ?></td>
 
-                        <td><?= htmlspecialchars($row['modified_at'] ?? ''); ?></td>
+                        <td><?= htmlspecialchars($row['modified_at'] ?? '-'); ?></td>
 
                         <td><?= htmlspecialchars($row['phone']); ?></td>
 
                         <td><?= htmlspecialchars($row['email']); ?></td>
 
                         <td><?= htmlspecialchars($row['payment_for']); ?></td>
+
+                        <td><?= htmlspecialchars($row['registration_type']); ?></td>
+
+                        <td><?= htmlspecialchars($row['control_no']); ?></td>
                      </tr>
 
                   <?php endforeach; ?>
@@ -225,14 +234,26 @@
          scrollX: true,
          searching: true,
          responsive: true,
-         autoWidth: false,
+
+        
+         autoWidth: true,
+
          pageLength: 10,
+
          order: [
             [14, 'desc']
          ],
+
+        
+         columnDefs: [{
+            className: "text-center",
+            targets: "_all"
+         }],
+
          dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6"f>>' +
             '<"row"<"col-sm-12"tr>>' +
             '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+
          buttons: [{
                extend: 'csvHtml5',
                className: 'btn btn-sm btn-outline-secondary',
@@ -258,17 +279,18 @@
                }
             }
          ],
+
          language: {
             emptyTable: "No records available",
             zeroRecords: "No matching records found"
          },
+
          initComplete: function() {
             var api = this.api();
             var container = $('#exportButtonsContainer');
             container.empty();
             api.buttons().container().appendTo(container);
 
-            // Enable/disable export buttons
             if (api.data().count() === 0) {
                api.buttons().disable();
             } else {
@@ -276,6 +298,7 @@
             }
          }
       });
+
 
       // Adjust columns on resize
       $(window).on('resize', function() {
@@ -299,6 +322,9 @@
          window.location.href = "<?= base_url('auth/logout'); ?>";
       });
    </script> -->
+
+
+   
 
    <script>
       const isDark = document.body.classList.contains('dark-mode') ||
