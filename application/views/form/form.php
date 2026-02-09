@@ -1421,7 +1421,7 @@
                             data-amount="${amount}" 
                             data-fee="${fee}"
                             data-fix="${amount_fix}">
-                            ${name} ${amount_display}
+                            ${name} 
                         </option>`;
 
                     });

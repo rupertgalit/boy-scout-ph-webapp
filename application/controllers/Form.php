@@ -499,7 +499,7 @@ class Form extends CI_Controller
       );
    }
 
-   /* SCOUT TYPE – GET  */
+   /* REG NO.  – GET  */
    public function reg_form_list()
    {
       $result = $this->call_api('/v1/registration-form-list', [], 'GET');
