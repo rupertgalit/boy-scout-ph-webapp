@@ -66,7 +66,7 @@
                                 </h3>
                                 <p class="section-subtitle">Select where your payment will be directed</p>
                             </div>
-                            <i class="fas fa-chevron-down section-icon"></i>
+
                         </div>
 
                         <div class="collapse show" id="paymentTypeCollapse">
@@ -124,7 +124,7 @@
                                 </h3>
                                 <p class="section-subtitle">Enter your personal details</p>
                             </div>
-                            <i class="fas fa-chevron-down section-icon"></i>
+
                         </div>
 
                         <div class="collapse show" id="personalCollapse">
@@ -172,7 +172,7 @@
                                 <h3 class="section-title"><i class="fas fa-scroll me-2"></i>Scout Information</h3>
                                 <p class="section-subtitle">Select your region, council, and payment purpose</p>
                             </div>
-                            <i class="fas fa-chevron-down section-icon"></i>
+
                         </div>
 
                         <div class="collapse show" id="scoutCollapse">
@@ -183,9 +183,12 @@
                                             <i class="fas fa-map-marker-alt"></i>
                                             Council <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="council-code" id="region" required>
-                                            <option value="" disabled selected>Select Region</option>
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="council-code" id="region" required>
+                                                <option value="" disabled selected>Select Region</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="regionError"></div>
                                     </div>
 
@@ -194,21 +197,26 @@
                                             <i class="fas fa-school"></i>
                                             District <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="district-code" id="district" required>
-                                            <option value="" disabled selected>Select District</option>
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="district-code" id="district" required>
+                                                <option value="" disabled selected>Select District</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="districtError"></div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-building"></i>
                                             District Unit<span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="sub-district-code" id="districtUnit"
-                                            required>
-                                            <option value="" disabled selected>Select District Unit</option>
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="sub-district-code" id="districtUnit"
+                                                required>
+                                                <option value="" disabled selected>Select District Unit</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="districtUnitError"></div>
                                     </div>
 
@@ -217,11 +225,15 @@
                                             <i class="fas fa-bullseye"></i>
                                             School <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="school-code" id="school" required>
-                                            <option value="" disabled selected>Select School</option>
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="school-code" id="school" required>
+                                                <option value="" disabled selected>Select School</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="schoolError"></div>
                                     </div>
+
 
                                     <div class="col-12" id="otherSchoolFields" style="display: none;">
                                         <label class="form-label">
@@ -243,7 +255,7 @@
                                 <h3 class="section-title"><i class="fas fa-scroll me-2"></i>Scout Details</h3>
                                 <p class="section-subtitle">Additional scout information</p>
                             </div>
-                            <i class="fas fa-chevron-down section-icon"></i>
+
                         </div>
 
                         <div class="collapse show" id="scoutDetailsCollapse">
@@ -254,22 +266,28 @@
                                             <i class="fas fa-user-shield"></i>
                                             Scout Type <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="scout-code" id="scoutType" required>
-                                            <option value="" disabled selected>Select Scout Type</option>
-
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="scout-code" id="scoutType" required>
+                                                <option value="" disabled selected>Select Scout Type</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="scoutTypeError"></div>
                                     </div>
+
 
                                     <div class="col-md-6">
                                         <label class="form-label">
                                             <i class="fas fa-file-alt"></i>
                                             Payment Type <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="payment-type-code" id="description" required>
-                                            <option value="" disabled selected>Select Description</option>
-
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="payment-type-code" id="description"
+                                                required>
+                                                <option value="" disabled selected>Select Description</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="descriptionError"></div>
                                     </div>
 
@@ -278,10 +296,13 @@
                                             <i class="fas fa-box"></i>
                                             Payment Description <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="description-code" id="itemCategory" required>
-                                            <option value="" disabled selected>Select Item Category</option>
-
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="description-code" id="itemCategory"
+                                                required>
+                                                <option value="" disabled selected>Select Item Category</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="itemCategoryError"></div>
                                     </div>
                                 </div>
@@ -297,7 +318,7 @@
                                 </h3>
                                 <p class="section-subtitle">Enter the Payment Details</p>
                             </div>
-                            <i class="fas fa-chevron-down section-icon"></i>
+
                         </div>
 
                         <div class="collapse show" id="amountCollapse">
@@ -308,9 +329,13 @@
                                             <i class="fas fa-user-shield"></i>
                                             Registration Type <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" name="registration_type" id="registrationType" required>
-                                            <option value="" disabled selected>Select Registration Type</option>
-                                        </select>
+                                        <div class="select-wrapper">
+                                            <select class="form-control" name="registration_type" id="registrationType"
+                                                required>
+                                                <option value="" disabled selected>Select Registration Type</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
                                         <div class="error-message d-none" id="registrationTypeError"></div>
                                     </div>
                                     <div class="col-md-6">
@@ -508,7 +533,7 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
 
             <?php if ($this->session->flashdata('error')) : ?>
                 Swal.fire({
@@ -531,7 +556,7 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             <?php if ($this->session->flashdata('error')) : ?>
                 Swal.fire({
                     icon: 'error',
@@ -565,7 +590,7 @@
         let currentPaymentData = {};
 
         const amountInput = document.getElementById('amount');
-        amountInput.addEventListener('input', function() {
+        amountInput.addEventListener('input', function () {
             let value = this.value;
 
             if (/^9{4,}$/.test(value)) {
@@ -583,12 +608,12 @@
         });
 
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize Bootstrap Modal
             const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
 
             // Preview button event listener
-            document.getElementById('previewBtn').addEventListener('click', function() {
+            document.getElementById('previewBtn').addEventListener('click', function () {
                 if (validateForm()) {
                     updatePreview();
 
@@ -612,14 +637,14 @@
             });
 
             // Confirm payment button event listener
-            document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
+            document.getElementById('confirmPaymentBtn').addEventListener('click', function () {
                 if (validateForm()) {
                     previewModal.hide();
                 }
             });
 
             // School select change handler
-            document.getElementById('school').addEventListener('change', function() {
+            document.getElementById('school').addEventListener('change', function () {
                 const otherFields = document.getElementById('otherSchoolFields');
                 if (this.value === 'other') {
                     otherFields.style.display = 'block';
@@ -632,7 +657,7 @@
             // Payment card click handlers
             document.querySelectorAll('.payment-card').forEach(card => {
                 const input = card.querySelector('input[type="radio"]');
-                card.addEventListener('click', function(e) {
+                card.addEventListener('click', function (e) {
                     if (e.target !== input) {
                         input.checked = true;
                         updateCardStates();
@@ -643,7 +668,7 @@
                     }
                 });
 
-                input.addEventListener('change', function() {
+                input.addEventListener('change', function () {
                     updateCardStates();
                 });
             });
@@ -654,7 +679,7 @@
                 element.addEventListener('blur', validateField);
 
                 if (element.tagName.toLowerCase() === 'input') {
-                    element.addEventListener('keyup', function() {
+                    element.addEventListener('keyup', function () {
                         const errorElement = this.closest('.col-md-6, .col-12, .col-md-8')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -663,7 +688,7 @@
                 }
 
                 if (element.tagName.toLowerCase() === 'select') {
-                    element.addEventListener('change', function() {
+                    element.addEventListener('change', function () {
                         const errorElement = this.closest('.col-md-6, .col-12')?.querySelector('.error-message');
                         if (errorElement) {
                             errorElement.classList.add('d-none');
@@ -679,7 +704,7 @@
             document.getElementById('registrationNo').addEventListener('blur', validateField);
 
             // Clear error on input for registration number
-            document.getElementById('registrationNo').addEventListener('input', function() {
+            document.getElementById('registrationNo').addEventListener('input', function () {
                 const errorElement = document.getElementById('registrationError');
                 if (errorElement) {
                     errorElement.classList.add('d-none');
@@ -688,7 +713,7 @@
             });
 
             // Clear error on change for registration type
-            document.getElementById('registrationType').addEventListener('change', function() {
+            document.getElementById('registrationType').addEventListener('change', function () {
                 const errorElement = document.getElementById('registrationTypeError');
                 if (errorElement) {
                     errorElement.classList.add('d-none');
@@ -1083,7 +1108,7 @@
 
 
         /* ===== DISTRICT ===== */
-        document.getElementById("region").addEventListener("change", function() {
+        document.getElementById("region").addEventListener("change", function () {
 
             let council = this.value;
 
@@ -1131,7 +1156,7 @@
 
 
         /* ===== SUB DISTRICT ===== */
-        document.getElementById("district").addEventListener("change", function() {
+        document.getElementById("district").addEventListener("change", function () {
 
             let district = this.value;
 
@@ -1177,7 +1202,7 @@
 
 
         /* ===== SCHOOL ===== */
-        document.getElementById("districtUnit").addEventListener("change", function() {
+        document.getElementById("districtUnit").addEventListener("change", function () {
 
             let council = document.getElementById("region").value;
             let district = document.getElementById("district").value;
@@ -1303,7 +1328,7 @@
 
         /*  SCOUT TYPE  */
 
-        document.getElementById("scoutType").addEventListener("change", function() {
+        document.getElementById("scoutType").addEventListener("change", function () {
 
             let scout = this.value;
 
@@ -1350,7 +1375,7 @@
 
         /*  ON DESCRIPTION */
 
-        document.getElementById("description").addEventListener("change", function() {
+        document.getElementById("description").addEventListener("change", function () {
 
 
             let scout = document.getElementById("scoutType").value;
@@ -1451,7 +1476,7 @@
 
 
         /*  ON DESCRIPTION ITEM CATEGORY */
-        document.getElementById("itemCategory").addEventListener("change", function() {
+        document.getElementById("itemCategory").addEventListener("change", function () {
 
             const selected = this.options[this.selectedIndex];
 
@@ -1492,7 +1517,7 @@
 
         /*  REGISTRATION NO. TYPE LIST */
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             loadRegistrationTypes();
         });
 
@@ -1539,7 +1564,7 @@
 
 
     <script>
-        document.getElementById("confirmPaymentBtn").addEventListener("click", function() {
+        document.getElementById("confirmPaymentBtn").addEventListener("click", function () {
 
             const btn = this;
 
