@@ -37,7 +37,7 @@
 
                 <div class="col-lg-8 col-md-6 header-center">
                     <h1>BOY SCOUTS OF THE PHILIPPINES</h1>
-                    <p class="subtitle">National Headquarters</p>
+                    <!-- <p class="subtitle">National Headquarters</p> -->
 
                 </div>
 
