@@ -977,9 +977,9 @@
                 document.getElementById('districtUnit').selectedOptions[0]?.text || '-';
 
             // Combine Registration Type and Registration # into one field
-            const registrationType = document.getElementById('registrationType').selectedOptions[0]?.text || '-';
+            const registrationType = document.getElementById('registrationType').value || '-';
             const registrationNo = document.getElementById('registrationNo').value || '-';
-            document.getElementById('previewRegistrationFull').textContent = `${registrationType}: ${registrationNo}`;
+            document.getElementById('previewRegistrationFull').textContent = `${registrationType} No: ${registrationNo}`;
 
             // Scout details
             document.getElementById('previewScoutType').textContent =
@@ -1518,7 +1518,7 @@
                         // Only show ACTIVE status (optional but recommended)
                         if (item.status === "active") {
                             opt += `<option value="${item.registration_type}">
-                                ${item.registration_type}
+                                ${item.registration_type} (${item.form_name})
                             </option>`;
                         }
 
