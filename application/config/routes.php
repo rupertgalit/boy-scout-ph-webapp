@@ -68,6 +68,12 @@ $route['scout'] = 'form/call_api';
 // $route['qr'] = 'form/qr_page';
 $route['success'] = 'form/success_page';
 
+// Website
+$route['page'] = 'website/page';
+$route['register'] = 'website/register';
+$route['bsp-login'] = 'website/bsp_login';
+
+
 /*form routes*/
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';

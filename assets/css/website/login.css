@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #f0f4fa 0%, #e6ecf5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card {
+    max-width: 460px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 2.5rem;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 25px 50px -10px rgba(0, 20, 40, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0a3824;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+}
+
+.title img {
+    height: 52px;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.08));
+}
+
+.badge {
+    background: #1b3b4f;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 60px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 14px rgba(0, 40, 50, 0.2);
+    margin: 1.5rem 0 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: fit-content;
+}
+
+.login-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.field label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #1c3b4b;
+    margin-bottom: 0.4rem;
+}
+
+.field label i {
+    font-size: 1rem;
+    color: #3f7353;
+}
+
+.required:after {
+    content: "*";
+    color: #c7452b;
+    margin-left: 4px;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: white;
+    border: 2px solid #dae3ec;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #0a3824;
+    transition: all 0.15s;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2f6f9a;
+    box-shadow: 0 0 0 4px rgba(27, 79, 114, 0.2);
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 3.5rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 6px;
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3f7353;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.toggle-password:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-login {
+    background: #0a3824;
+    border: none;
+    padding: 1.1rem 2rem;
+    border-radius: 60px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 2rem;
+    box-shadow: 0 15px 25px -8px #0a382480;
+    cursor: pointer;
+    transition: 0.15s;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+}
+
+.btn-login:hover {
+    background: #3f7353;
+    transform: scale(1.02);
+}
+
+.error-msg {
+    color: #c02b1d;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 6px;
+    padding-left: 16px;
+    min-height: 20px;
+}
+
+.invalid {
+    border-color: #c02b1d !important;
+    background: #fff6f5;
+}
+
+hr {
+    border: 1px solid #cbdae7;
+    margin: 1.8rem 0 1rem;
+}
+
+.register-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 0.8rem;
+}
+
+.register-block span {
+    color: #0a3824;
+    font-weight: 500;
+}
+
+.btn-register {
+    background: transparent;
+    border: 2px solid #3f7353;
+    padding: 0.7rem 1.8rem;
+    border-radius: 60px;
+    color: #3f7353;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.15s;
+    text-decoration: none;
+}
+
+.btn-register:hover {
+    background: #3f7353;
+    color: white;
+    border-color: #3f7353;
+}
