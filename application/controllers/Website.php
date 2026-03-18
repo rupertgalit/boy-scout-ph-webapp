@@ -25,5 +25,11 @@ class Website extends CI_Controller
 	{
 		$this->load->view('website/login.php');
 	}
+	
+		public function bsp_auth_login()
+	{
+
+		$this->load->view('website/login.php');
+	}
 
 }
