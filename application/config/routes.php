@@ -73,6 +73,12 @@ $route['page'] = 'website/page';
 $route['register'] = 'website/register';
 $route['bsp-login'] = 'website/bsp_login';
 
+// Profiling
+$route['landing'] = 'profiling/landing_profile';
+$route['aur-table'] = 'profiling/aur_table';
+$route['asr-table'] = 'profiling/asr_table';
+$route['aur-form'] = 'profiling/aur_form';
+
 
 /*form routes*/
 $route['login'] = 'auth/login';

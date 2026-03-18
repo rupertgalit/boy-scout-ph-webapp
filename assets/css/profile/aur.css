@@ -1,0 +1,453 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #2c2c2c;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.page {
+  width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 3mm;
+  border: 2px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  page-break-after: avoid;
+  position: relative;
+}
+
+/* typography */
+.small {
+  font-size: 9.5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.red-label {
+  color: red;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* header */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.bsp-id {
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.main-title {
+  text-align: center;
+  flex: 1;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bsp-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.title-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.main-title .address {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.main-title h3 {
+  margin: 1px 0;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.aur-flag {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5px;
+  margin-left: -4rem;
+  margin-top: 35px;
+  margin-bottom: -4px;
+  margin-right: -2rem;
+}
+
+.aur-flag .aur-text {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.aur-flag .aur-number {
+  color: red;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.aur-flag .aur-number span {
+  border-bottom: 2px solid red;
+  margin-left: 5px;
+}
+
+input,
+.input-line {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 10px;
+  width: auto;
+  min-width: 40px;
+  outline: none;
+
+}
+
+input:focus {
+  border-bottom-color: red;
+}
+
+.checkbox {
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid #000;
+  display: inline-block;
+  margin-right: 2px;
+  background: white;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.1s;
+}
+
+.checkbox.checked {
+  background-color: #000;
+  position: relative;
+}
+
+.checkbox.checked::after {
+  content: "✓";
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  margin-top: -2px;
+}
+
+.section {
+  border: 2px solid #000;
+}
+
+.sections {
+  border-style: solid;
+  border-color: #000;
+  border-width: 0 2px 2px 2px;
+}
+
+/* tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5px;
+}
+
+td,
+th {
+  border: 1px solid #000;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+
+.no-border td {
+  border: none;
+  padding: 1px 3px;
+}
+
+.gray {
+  background: #e0e0e0;
+  font-weight: 700;
+}
+
+/* adult section */
+.adult-wrapper {
+  display: flex;
+  border: 2px solid #000;
+  margin-top: 5px;
+}
+
+.adult-left {
+  width: 70%;
+  border-right: 2px solid #000;
+}
+
+.adult-left table td {
+  border-bottom: 1px solid #aaa;
+}
+
+.adult-left table tr:last-child td {
+  border-bottom: none;
+}
+
+.adult-right {
+  width: 30%;
+  padding: 7px;
+  font-size: 9.5px;
+  font-weight: 500;
+}
+
+.office-wrapper {
+  font-size: 10px;
+  margin-top: 5px;
+  display: flex;
+  border: 3px solid #000;
+  font-family: Arial, sans-serif;
+}
+
+/* LEFT SIDE */
+.registration-fees {
+  width: 50%;
+  padding: 10px 10px 0;
+  border-right: 3px solid #000;
+}
+
+.registration-fees h3,
+.office-actions h3 {
+  margin-top: -5px;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.fees-row {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.fees-row.header {
+  font-weight: bold;
+  text-align: center;
+}
+
+.fees-row input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.total-fee {
+  text-align-last: end;
+  font-size: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.total-fee input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 150px;
+}
+
+.fees-bottom {
+  display: flex;
+  margin-top: 10px;
+}
+
+.fees-bottom div {
+  margin-bottom: 8px;
+}
+
+.fees-bottom input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100px;
+}
+
+/* RIGHT SIDE */
+.office-actions {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.local-office {
+  padding: 10px 10px 0;
+  border-bottom: 3px solid #000;
+}
+
+.regional-office {
+  padding: 10px 10px 0;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.action-row input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 120px;
+  margin: 0 5px;
+}
+
+.action-label {
+  text-align: justify;
+  font-size: 10px;
+  margin-left: 4.5rem;
+  margin-bottom: 5px;
+}
+
+.action-line {
+  margin: 10px 0;
+  border-bottom: 1px solid #222;
+  display: flex;
+  align-items: flex-end;
+  min-height: 2em;
+}
+
+.action-line:after {
+  content: "";
+  flex: 1;
+}
+
+/* privacy */
+.privacy-section {
+  margin-top: 5px;
+}
+
+.privacy-text,
+.tagalog-text,
+.contact-text {
+  font-size: 7.8px;
+  line-height: 1.3;
+  text-align: center;
+  font-weight: 500;
+}
+
+.tagalog-text {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.contact-text {
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* force all input-like underlines to be visible */
+.dash-field {
+  border-bottom: 1px solid #222;
+  min-width: 60px;
+  display: inline-block;
+  height: 1.2em;
+}
+
+/* spacing adjustments */
+.header-top .red-label {
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.page {
+  line-height: 1.2;
+}
+
+/* additional row tables with empty fields */
+.input-cell {
+  border-bottom: 1px solid #333;
+  width: 100%;
+  height: 1.5em;
+}
+
+/* Save button and status styles */
+.save-button {
+  padding: 8px 20px;
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #000;
+  transition: background-color 0.3s;
+}
+
+.save-button:hover {
+  background: #3a3a3a;
+}
+
+.save-button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.status-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.status-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.status-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}

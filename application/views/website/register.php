@@ -15,7 +15,10 @@
 
 <body>
     <div class="card">
-        <div class="title"><span><img src="assets/images/boyscouts_logofinal.png" alt="BSP fleur de lis" /></span> BSP - Manila Register </div>
+        <div class="card-header-with-button">
+             <button class="modal-role-btn" id="openRoleModalBtn"><i class="bi bi-person-switch"></i> Change Position</button>
+            <div class="title"><span><img src="assets/images/boyscouts_logofinal.png" alt="BSP fleur de lis" /></span> BSP - Manila Register </div>
+        </div>
         <div class="role-badge" id="roleDisplay"><i class="bi bi-compass me-1"></i> Scout / Scout Leader Registration
             Form</div>
 
@@ -96,11 +99,11 @@
                         type="text" id="scoutMemberId" placeholder="BSA-12345" />
                     <div class="error-text" id="errScoutMemberId"></div>
                 </div>
-                <div class="field full-width"><label class="required"><i class="bi bi-upc-scan"></i> AUR
+                <div class="field "><label class="required"><i class="bi bi-upc-scan"></i> AUR
                         number</label><input type="text" id="scoutAur" placeholder="AUR-xxxx" />
                     <div class="error-text" id="errScoutAur"></div>
                 </div>
-                <div class="field"><label class="required"><i class="bi bi-person-badge"></i> username</label><input
+                <div class="field full-width"><label class="required"><i class="bi bi-person-badge"></i> username</label><input
                         type="text" id="scoutUsername" placeholder="choose username" />
                     <div class="error-text" id="errScoutUsername"></div>
                 </div>
@@ -115,7 +118,7 @@
                     <div class="error-text" id="errScoutPass"></div>
                 </div>
 
-                <div class="field full-width">
+                <div class="field ">
                     <label class="required"><i class="bi bi-lock"></i> confirm password</label>
                     <div class="password-wrapper">
                         <input type="password" id="scoutConfirm" placeholder="······" />
@@ -149,7 +152,7 @@
                         type="text" id="councilMemberId" placeholder="C-9876" />
                     <div class="error-text" id="errCouncilMemberId"></div>
                 </div>
-                <div class="field"><label class="required"><i class="bi bi-person-badge"></i> Username</label><input
+                <div class="field full-width"><label class="required"><i class="bi bi-person-badge"></i> Username</label><input
                         type="text" id="councilUsername" placeholder="choose username" />
                     <div class="error-text" id="errCouncilUsername"></div>
                 </div>
@@ -165,7 +168,7 @@
                     <div class="error-text" id="errCouncilPass"></div>
                 </div>
 
-                <div class="field full-width">
+                <div class="field ">
                     <label class="required"><i class="bi bi-lock"></i> confirm password</label>
                     <div class="password-wrapper">
                         <input type="password" id="councilConfirm" placeholder="······" />
@@ -224,7 +227,7 @@
             <div class="modal-header"><i class="bi bi-person-circle"></i> I’m registering as</div>
             <label class="role-tile selected" id="modalOptScout">
                 <input type="radio" name="modalRole" value="scout" checked />
-                <span><i class="bi bi-compass"></i> Scout / Leader</span>
+                <span><i class="bi bi-compass"></i> Scout / Scout Leader</span>
             </label>
             <label class="role-tile" id="modalOptCouncil">
                 <input type="radio" name="modalRole" value="council" />
@@ -240,6 +243,7 @@
             const roleModal = document.getElementById('roleModal');
             const closeRoleBtn = document.getElementById('closeModalBtn');
             const saveRoleBtn = document.getElementById('saveRoleBtn');
+            const openRoleModalBtn = document.getElementById('openRoleModalBtn'); // New modal button
             const scoutRadio = document.querySelector('#modalOptScout input');
             const councilRadio = document.querySelector('#modalOptCouncil input');
             const optScout = document.getElementById('modalOptScout');
@@ -269,6 +273,19 @@
                 document.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('invalid'));
                 document.querySelectorAll('.error-text').forEach(span => span.innerText = '');
             }
+
+            // Open modal with the new button
+            openRoleModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Sync radio tiles with current active form before showing modal
+                if (scoutForm.classList.contains('active-form')) {
+                    scoutRadio.checked = true;
+                } else {
+                    councilRadio.checked = true;
+                }
+                updateTiles();
+                roleModal.classList.add('active');
+            });
 
             saveRoleBtn.addEventListener('click', () => { applyRoleAndChip(); roleModal.classList.remove('active'); });
             closeRoleBtn.addEventListener('click', (e) => { e.preventDefault(); roleModal.classList.remove('active'); });
